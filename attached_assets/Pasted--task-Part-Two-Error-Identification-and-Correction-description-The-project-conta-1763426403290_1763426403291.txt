@@ -1,0 +1,59 @@
+{
+  "task": "Part Two — Error Identification and Correction",
+  
+  "description": "The project contains multiple translation-related issues, missing keys, placeholder text, and inconsistencies. Scan the entire project and resolve all errors.",
+  
+  "errorsToFix": {
+    "missingTranslationKeys": {
+      "issue": "Many translation keys used in the components do not exist in the translation files.",
+      "symptoms": [
+        "Keys like 'footer.contact_us' appear visibly on the website",
+        "Sections display raw translation keys instead of translated text",
+        "English and French JSON files are incomplete and missing required keys"
+      ]
+    },
+
+    "placeholderText": {
+      "issue": "There is still placeholder and lorem ipsum text throughout various sections of the website.",
+      "symptoms": [
+        "Lorem ipsum paragraphs",
+        "Generic placeholder words like 'text here', 'sample', 'dummy'",
+        "Pages or components showing default template text"
+      ]
+    },
+
+    "hardcodedText": {
+      "issue": "Some visible UI text is hardcoded directly into components instead of coming from translations.",
+      "symptoms": [
+        "Static English text inside JSX",
+        "Labels, titles, or descriptions not referencing translation keys"
+      ]
+    },
+
+    "incompleteLanguageCoverage": {
+      "issue": "Some parts of the UI only have English or only French translations, not both.",
+      "symptoms": [
+        "Missing French equivalents",
+        "Missing English equivalents",
+        "Mixed-language UI"
+      ]
+    },
+
+    "consistencyProblems": {
+      "issue": "Certain text is inconsistent across pages (e.g., company age).",
+      "symptoms": [
+        "Different numbers in different pages",
+        "Contradicting statements",
+        "Sections not matching the unified content rules"
+      ]
+    }
+  },
+
+  "requirements": {
+    "fullTranslationCoverage": "Every visible text string must exist in both the English and French translation files.",
+    "noHardcodedText": "No UI text should be directly written inside components.",
+    "noPlaceholders": "All lorem ipsum and placeholder content must be replaced with meaningful text.",
+    "noVisibleKeys": "No translation keys should appear visibly on the website UI.",
+    "consistency": "All content must remain consistent across all pages."
+  }
+}
