@@ -413,8 +413,8 @@ export default function TrackPage() {
 
   return (
     <>
-      <section className="container py-24 sm:py-32">
-        <div className="mx-auto max-w-6xl">
+      <section className="container py-24 sm:py-32 overflow-x-hidden">
+        <div className="mx-auto max-w-6xl w-full">
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
               <Package className="h-16 w-16 text-primary" />
@@ -427,7 +427,7 @@ export default function TrackPage() {
             </p>
           </div>
 
-          <div className="space-y-4 mb-8">
+          <div className="space-y-4 mb-8 w-full">
             <Input
               type="text"
               placeholder="Enter tracking number"
@@ -438,7 +438,7 @@ export default function TrackPage() {
                   handleTrack();
                 }
               }}
-              className="text-lg h-14"
+              className="text-base sm:text-lg h-12 sm:h-14 w-full"
             />
             <Button 
               onClick={handleTrack}
@@ -462,25 +462,24 @@ export default function TrackPage() {
               {/* Status Card */}
               <Card>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="text-2xl">Tracking: {shipment.trackingNumber}</CardTitle>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <CardTitle className="text-xl sm:text-2xl break-all">Tracking: {shipment.trackingNumber}</CardTitle>
                       <CardDescription className="mt-2">
                         Created on {new Date(shipment.createdAt).toLocaleDateString()}
                       </CardDescription>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <br />
+                    <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                       <Button 
                         onClick={downloadShipmentLabel}
                         variant="outline"
-                        className="gap-2"
+                        className="gap-2 flex-1 sm:flex-initial"
                       >
                         <Download className="h-4 w-4" />
-                        Download Label
+                        <span className="hidden sm:inline">Download Label</span>
+                        <span className="sm:hidden">Label</span>
                       </Button>
-                      <br />
-                      <Badge className={`${getStatusColor(shipment.status)} text-white text-lg px-4 py-2`}>
+                      <Badge className={`${getStatusColor(shipment.status)} text-white text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2 whitespace-nowrap`}>
                         {shipment.status.toUpperCase()}
                       </Badge>
                     </div>
