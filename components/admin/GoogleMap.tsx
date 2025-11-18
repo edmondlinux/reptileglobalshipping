@@ -27,7 +27,59 @@ export function GoogleMap({
   const markerRef = useRef<mapboxgl.Marker | null>(null);
   const recipientMarkerRef = useRef<mapboxgl.Marker | null>(null);
   const routeUpdateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const originalPositionRef = useRef<{ lng: number; lat: number } | null>(null);
   const [routeDistance, setRouteDistance] = useState<string>("");
+  const [coveredDistance, setCoveredDistance] = useState<string>("");
+
+  // Function to draw the covered distance line (from original position to current marker position)
+  const drawCoveredDistanceLine = (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number) => {
+    // Remove existing covered distance layer if it exists
+    if (map.getLayer('covered-distance')) {
+      map.removeLayer('covered-distance');
+    }
+    if (map.getSource('covered-distance')) {
+      map.removeSource('covered-distance');
+    }
+
+    // Calculate distance
+    const R = 6371; // Earth's radius in km
+    const dLat = (toLat - fromLat) * Math.PI / 180;
+    const dLng = (toLng - fromLng) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(fromLat * Math.PI / 180) * Math.cos(toLat * Math.PI / 180) *
+              Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+    setCoveredDistance(`${distance.toFixed(2)} km`);
+
+    // Add covered distance line
+    map.addSource('covered-distance', {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'LineString',
+          coordinates: [[fromLng, fromLat], [toLng, toLat]],
+        },
+      },
+    });
+
+    map.addLayer({
+      id: 'covered-distance',
+      type: 'line',
+      source: 'covered-distance',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+      },
+      paint: {
+        'line-color': '#ef4444', // Red color for covered distance
+        'line-width': 4,
+        'line-opacity': 0.85,
+      },
+    });
+  };
 
   // Function to fetch and draw route
   const fetchAndDrawRoute = async (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number) => {
@@ -118,6 +170,17 @@ export function GoogleMap({
       const lngLat = marker.getLngLat();
       onLocationChange(lngLat.lat, lngLat.lng);
       
+      // Draw covered distance line from original position
+      if (originalPositionRef.current && map.loaded()) {
+        drawCoveredDistanceLine(
+          map,
+          originalPositionRef.current.lng,
+          originalPositionRef.current.lat,
+          lngLat.lng,
+          lngLat.lat
+        );
+      }
+      
       // Clear previous timeout
       if (routeUpdateTimeoutRef.current) {
         clearTimeout(routeUpdateTimeoutRef.current);
@@ -135,6 +198,17 @@ export function GoogleMap({
       marker.setLngLat(e.lngLat);
       onLocationChange(e.lngLat.lat, e.lngLat.lng);
       
+      // Draw covered distance line from original position
+      if (originalPositionRef.current && map.loaded()) {
+        drawCoveredDistanceLine(
+          map,
+          originalPositionRef.current.lng,
+          originalPositionRef.current.lat,
+          e.lngLat.lng,
+          e.lngLat.lat
+        );
+      }
+      
       // Clear previous timeout
       if (routeUpdateTimeoutRef.current) {
         clearTimeout(routeUpdateTimeoutRef.current);
@@ -150,6 +224,9 @@ export function GoogleMap({
 
     mapRef.current = map;
     markerRef.current = marker;
+    
+    // Store the original position
+    originalPositionRef.current = { lng: longitude || -74.0060, lat: latitude || 40.7128 };
 
     return () => {
       if (routeUpdateTimeoutRef.current) {
@@ -212,8 +289,14 @@ export function GoogleMap({
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
             <span>Destination</span>
           </div>
+          {coveredDistance && (
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <span>Covered: {coveredDistance}</span>
+            </div>
+          )}
           <div className="ml-auto font-semibold">
-            Distance: {routeDistance}
+            Total Distance: {routeDistance}
           </div>
         </div>
       )}
