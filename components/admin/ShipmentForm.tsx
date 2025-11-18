@@ -64,6 +64,8 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
   const [showRecipientSuggestions, setShowRecipientSuggestions] = useState(false);
   const [recipientLat, setRecipientLat] = useState<number | undefined>();
   const [recipientLng, setRecipientLng] = useState<number | undefined>();
+  const [senderSuggestions, setSenderSuggestions] = useState<AddressSuggestion[]>([]);
+  const [showSenderSuggestions, setShowSenderSuggestions] = useState(false);
 
   const handleInputChange = (field: string, value: any) => {
     setFormData({ ...formData, [field]: value });
@@ -133,6 +135,24 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
     }
   };
 
+  // Handle sender address paste with auto-parsing
+  const handleSenderAddressPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = e.clipboardData.getData('text');
+    const parsed = parseAddress(pastedText);
+    
+    if (parsed) {
+      e.preventDefault();
+      setFormData({
+        ...formData,
+        senderAddress: parsed.street,
+        senderCity: parsed.city,
+        senderState: parsed.state,
+        senderZip: parsed.zip,
+        senderCountry: parsed.country
+      });
+    }
+  };
+
   // Autocomplete for recipient address
   const handleRecipientAddressChange = async (value: string) => {
     handleInputChange("recipientAddress", value);
@@ -153,6 +173,29 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
       }
     } else {
       setShowRecipientSuggestions(false);
+    }
+  };
+
+  // Autocomplete for sender address
+  const handleSenderAddressChange = async (value: string) => {
+    handleInputChange("senderAddress", value);
+    
+    if (value.length > 2) {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(value)}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}&autocomplete=true&limit=5`;
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.features) {
+          setSenderSuggestions(data.features);
+          setShowSenderSuggestions(true);
+        }
+      } catch (error) {
+        console.error('Error fetching address suggestions:', error);
+      }
+    } else {
+      setShowSenderSuggestions(false);
     }
   };
 
@@ -188,6 +231,36 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
     setRecipientLat(lat);
     setRecipientLng(lng);
     setShowRecipientSuggestions(false);
+  };
+
+  // Select sender address from suggestions
+  const selectSenderSuggestion = (suggestion: AddressSuggestion) => {
+    // Extract address components from the suggestion
+    let street = suggestion.place_name.split(',')[0];
+    let city = '';
+    let state = '';
+    let zip = '';
+    let country = '';
+    
+    if (suggestion.context) {
+      suggestion.context.forEach(ctx => {
+        if (ctx.id.startsWith('place')) city = ctx.text;
+        if (ctx.id.startsWith('region')) state = ctx.text;
+        if (ctx.id.startsWith('postcode')) zip = ctx.text;
+        if (ctx.id.startsWith('country')) country = ctx.text;
+      });
+    }
+    
+    setFormData({
+      ...formData,
+      senderAddress: street,
+      senderCity: city,
+      senderState: state,
+      senderZip: zip,
+      senderCountry: country
+    });
+    
+    setShowSenderSuggestions(false);
   };
 
   // Geocode address to coordinates
@@ -264,14 +337,28 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
                 placeholder="+1 (555) 123-4567"
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 relative">
               <Label htmlFor="senderAddress">Address *</Label>
               <Input
                 id="senderAddress"
                 value={formData.senderAddress}
-                onChange={(e) => handleInputChange("senderAddress", e.target.value)}
-                placeholder="123 Main St"
+                onChange={(e) => handleSenderAddressChange(e.target.value)}
+                onPaste={handleSenderAddressPaste}
+                placeholder="123 Main St (paste full address to auto-fill)"
               />
+              {showSenderSuggestions && senderSuggestions.length > 0 && (
+                <div className="absolute z-50 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-auto">
+                  {senderSuggestions.map((suggestion, index) => (
+                    <div
+                      key={index}
+                      className="px-4 py-2 hover:bg-muted cursor-pointer text-sm"
+                      onClick={() => selectSenderSuggestion(suggestion)}
+                    >
+                      {suggestion.place_name}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="senderCity">City *</Label>

@@ -14,6 +14,8 @@ interface MapboxMapProps {
   recipientLng?: number;
 }
 
+const { recipientLat, recipientLng } = { recipientLat: undefined, recipientLng: undefined };
+
 export function GoogleMap({ 
   latitude, 
   longitude, 
@@ -32,7 +34,7 @@ export function GoogleMap({
   const [coveredDistance, setCoveredDistance] = useState<string>("");
 
   // Function to draw the covered distance line (from original position to current marker position)
-  const drawCoveredDistanceLine = (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number) => {
+  const drawCoveredDistanceLine = async (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number, recipientLng?: number, recipientLat?: number) => {
     // Remove existing covered distance layer if it exists
     if (map.getLayer('covered-distance')) {
       map.removeLayer('covered-distance');
@@ -41,44 +43,103 @@ export function GoogleMap({
       map.removeSource('covered-distance');
     }
 
-    // Calculate distance
-    const R = 6371; // Earth's radius in km
-    const dLat = (toLat - fromLat) * Math.PI / 180;
-    const dLng = (toLng - fromLng) * Math.PI / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(fromLat * Math.PI / 180) * Math.cos(toLat * Math.PI / 180) *
-              Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
-    setCoveredDistance(`${distance.toFixed(2)} km`);
+    try {
+      // Fetch the actual route from original position to current position
+      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${toLng},${toLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+      const response = await fetch(url);
+      const data = await response.json();
 
-    // Add covered distance line
-    map.addSource('covered-distance', {
-      type: 'geojson',
-      data: {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'LineString',
-          coordinates: [[fromLng, fromLat], [toLng, toLat]],
-        },
-      },
-    });
+      if (data.routes && data.routes.length > 0) {
+        const coveredRoute = data.routes[0];
+        const distance = (coveredRoute.distance / 1000).toFixed(2);
+        setCoveredDistance(`${distance} km`);
 
-    map.addLayer({
-      id: 'covered-distance',
-      type: 'line',
-      source: 'covered-distance',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-      },
-      paint: {
-        'line-color': '#ef4444', // Red color for covered distance
-        'line-width': 4,
-        'line-opacity': 0.85,
-      },
-    });
+        // If we have the full route available and recipient coordinates, try to match the covered route with it
+        let routeGeometry = coveredRoute.geometry;
+        
+        // If recipient coordinates are available, check if we should adjust the route
+        if (recipientLng && recipientLat) {
+          // Fetch the full route from original to recipient
+          const fullRouteUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${recipientLng},${recipientLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+          const fullRouteResponse = await fetch(fullRouteUrl);
+          const fullRouteData = await fullRouteResponse.json();
+          
+          if (fullRouteData.routes && fullRouteData.routes.length > 0) {
+            const fullRoute = fullRouteData.routes[0];
+            const fullCoordinates = fullRoute.geometry.coordinates;
+            
+            // Find the closest point on the full route to the current position
+            let closestIndex = 0;
+            let minDistance = Infinity;
+            
+            fullCoordinates.forEach((coord: [number, number], index: number) => {
+              const dist = Math.sqrt(
+                Math.pow(coord[0] - toLng, 2) + Math.pow(coord[1] - toLat, 2)
+              );
+              if (dist < minDistance) {
+                minDistance = dist;
+                closestIndex = index;
+              }
+            });
+            
+            // If the current position is close enough to the route (threshold: 0.01 degrees ~ 1km)
+            if (minDistance < 0.01) {
+              // Use the portion of the full route from start to closest point
+              const coveredCoordinates = fullCoordinates.slice(0, closestIndex + 1);
+              routeGeometry = {
+                type: 'LineString',
+                coordinates: coveredCoordinates
+              };
+              
+              // Recalculate distance based on the route portion
+              let totalDistance = 0;
+              for (let i = 0; i < coveredCoordinates.length - 1; i++) {
+                const [lng1, lat1] = coveredCoordinates[i];
+                const [lng2, lat2] = coveredCoordinates[i + 1];
+                const R = 6371;
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLng = (lng2 - lng1) * Math.PI / 180;
+                const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                          Math.sin(dLng / 2) * Math.sin(dLng / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                totalDistance += R * c;
+              }
+              setCoveredDistance(`${totalDistance.toFixed(2)} km`);
+            }
+          }
+        }
+
+        // Add covered distance route
+        map.addSource('covered-distance', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {},
+            geometry: routeGeometry,
+          },
+        });
+
+        map.addLayer({
+          id: 'covered-distance',
+          type: 'line',
+          source: 'covered-distance',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-color': '#ef4444', // Red color for covered distance
+            'line-width': 4,
+            'line-opacity': 0.85,
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Error drawing covered distance route:', error);
+      // Fallback to straight line if route fetch fails
+      setCoveredDistance('N/A');
+    }
   };
 
   // Function to fetch and draw route
@@ -177,7 +238,9 @@ export function GoogleMap({
           originalPositionRef.current.lng,
           originalPositionRef.current.lat,
           lngLat.lng,
-          lngLat.lat
+          lngLat.lat,
+          recipientLng,
+          recipientLat
         );
       }
       
@@ -205,7 +268,9 @@ export function GoogleMap({
           originalPositionRef.current.lng,
           originalPositionRef.current.lat,
           e.lngLat.lng,
-          e.lngLat.lat
+          e.lngLat.lat,
+          recipientLng,
+          recipientLat
         );
       }
       
