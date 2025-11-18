@@ -304,7 +304,7 @@ export function GoogleMap({
   };
 
   useEffect(() => {
-    if (!mapContainerRef.current || mapRef.current) return;
+    if (!mapContainerRef.current) return;
 
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
@@ -324,37 +324,26 @@ export function GoogleMap({
       .addTo(map);
 
     // Debounced route update on marker drag
-    let dragTimeout: NodeJS.Timeout | null = null;
     marker.on("drag", () => {
       const lngLat = marker.getLngLat();
+      setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
       
-      // Debounce the state updates during drag
-      if (dragTimeout) {
-        clearTimeout(dragTimeout);
+      // Check if marker has moved from original position
+      if (originalPositionRef.current) {
+        const distance = calculateStraightLineDistance(
+          originalPositionRef.current.lng,
+          originalPositionRef.current.lat,
+          lngLat.lng,
+          lngLat.lat
+        );
+        setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
       }
-      
-      dragTimeout = setTimeout(() => {
-        setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
-        
-        // Check if marker has moved from original position
-        if (originalPositionRef.current) {
-          const distance = calculateStraightLineDistance(
-            originalPositionRef.current.lng,
-            originalPositionRef.current.lat,
-            lngLat.lng,
-            lngLat.lat
-          );
-          setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
-        }
-      }, 100); // Debounce by 100ms
     });
 
     marker.on("dragend", () => {
       const lngLat = marker.getLngLat();
-      setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
-      
-      // Only update parent component on dragend, not during drag
       onLocationChange(lngLat.lat, lngLat.lng);
+      setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
       
       // In edit mode, draw covered distance line
       if (isEditMode && originalPositionRef.current && map.loaded()) {
@@ -393,10 +382,8 @@ export function GoogleMap({
 
     map.on("click", (e) => {
       marker.setLngLat(e.lngLat);
-      setCurrentMarkerPosition({ lng: e.lngLat.lng, lat: e.lngLat.lat });
-      
-      // Update parent component after setting marker
       onLocationChange(e.lngLat.lat, e.lngLat.lng);
+      setCurrentMarkerPosition({ lng: e.lngLat.lng, lat: e.lngLat.lat });
       
       // Check if marker has moved from original position
       if (originalPositionRef.current) {
@@ -437,39 +424,23 @@ export function GoogleMap({
     markerRef.current = marker;
     
     // Store the original position
-    if (!originalPositionRef.current) {
-      originalPositionRef.current = { lng: longitude || -74.0060, lat: latitude || 40.7128 };
-    }
+    originalPositionRef.current = { lng: longitude || -74.0060, lat: latitude || 40.7128 };
 
     return () => {
       if (routeUpdateTimeoutRef.current) {
         clearTimeout(routeUpdateTimeoutRef.current);
       }
       map.remove();
-      mapRef.current = null;
-      markerRef.current = null;
     };
   }, []);
 
-  // Update current location marker - only when explicitly needed
+  // Update current location marker
   useEffect(() => {
-    if (markerRef.current && latitude && longitude && !isEditMode) {
-      // Only update marker position if it's significantly different (not from drag)
-      const currentPos = markerRef.current.getLngLat();
-      const distance = calculateStraightLineDistance(
-        currentPos.lng,
-        currentPos.lat,
-        longitude,
-        latitude
-      );
-      
-      // Only update if distance is more than 100m (0.1km) to avoid feedback loop
-      if (distance > 0.1) {
-        markerRef.current.setLngLat([longitude, latitude]);
-        mapRef.current?.setCenter([longitude, latitude]);
-      }
+    if (markerRef.current && latitude && longitude) {
+      markerRef.current.setLngLat([longitude, latitude]);
+      mapRef.current?.setCenter([longitude, latitude]);
     }
-  }, [latitude, longitude, isEditMode]);
+  }, [latitude, longitude]);
 
   // Move marker to sender address when it's provided
   useEffect(() => {
