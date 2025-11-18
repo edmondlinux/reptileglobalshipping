@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -37,9 +38,17 @@ const routeList: RouteProps[] = [
 ];
 
 export const Navbar = () => {
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
   const { user, signout, isLoading } = useAuth();
+
+  useEffect(() => {
+    const authParam = searchParams.get("auth");
+    if (authParam === "signin" || authParam === "signup") {
+      setShowAuthDialog(true);
+    }
+  }, [searchParams]);
 
   return (
     <>

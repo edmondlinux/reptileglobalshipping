@@ -53,8 +53,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
         await signup(name, email, password);
         toast.success("Account created successfully! Welcome aboard.");
       }
-      router.push("/");
-      onClose();
+      handleClose();
       setName("");
       setEmail("");
       setPassword("");
@@ -63,6 +62,11 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleClose = () => {
+    onClose();
+    router.push("/");
   };
 
   const toggleMode = () => {
@@ -75,7 +79,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[480px] p-0 overflow-hidden">
         <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background p-8">
           <DialogHeader className="space-y-3">
