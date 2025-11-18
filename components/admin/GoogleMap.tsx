@@ -196,19 +196,19 @@ export function GoogleMap({
 
   // Function to fetch and draw route
   const fetchAndDrawRoute = async (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number) => {
+    // Remove existing route layer if it exists - do this BEFORE fetching new route
+    if (map.getLayer('route')) {
+      map.removeLayer('route');
+    }
+    if (map.getSource('route')) {
+      map.removeSource('route');
+    }
+    
     const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${toLng},${toLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
-
-      // Remove existing route layer if it exists
-      if (map.getLayer('route')) {
-        map.removeLayer('route');
-      }
-      if (map.getSource('route')) {
-        map.removeSource('route');
-      }
 
       if (data.routes && data.routes.length > 0) {
         const route = data.routes[0];
@@ -363,12 +363,9 @@ export function GoogleMap({
         clearTimeout(routeUpdateTimeoutRef.current);
       }
       
-      // Update route after 1 second delay (or immediately if not in edit mode)
-      if (showRoute && recipientLat && recipientLng && map.loaded()) {
-        const delay = isEditMode ? 1000 : 0;
-        routeUpdateTimeoutRef.current = setTimeout(() => {
-          fetchAndDrawRoute(map, lngLat.lng, lngLat.lat, recipientLng, recipientLat);
-        }, delay);
+      // Recalculate route immediately when destination exists
+      if (recipientLat && recipientLng && map.loaded()) {
+        fetchAndDrawRoute(map, lngLat.lng, lngLat.lat, recipientLng, recipientLat);
       }
     });
 
@@ -406,12 +403,9 @@ export function GoogleMap({
         clearTimeout(routeUpdateTimeoutRef.current);
       }
       
-      // Update route after 1 second delay (or immediately if not in edit mode)
-      if (showRoute && recipientLat && recipientLng && map.loaded()) {
-        const delay = isEditMode ? 1000 : 0;
-        routeUpdateTimeoutRef.current = setTimeout(() => {
-          fetchAndDrawRoute(map, e.lngLat.lng, e.lngLat.lat, recipientLng, recipientLat);
-        }, delay);
+      // Recalculate route immediately when destination exists
+      if (recipientLat && recipientLng && map.loaded()) {
+        fetchAndDrawRoute(map, e.lngLat.lng, e.lngLat.lat, recipientLng, recipientLat);
       }
     });
 
@@ -461,6 +455,14 @@ export function GoogleMap({
         mapRef.current.removeSource('covered-distance');
       }
       
+      // Clear the main route layer completely
+      if (mapRef.current.getLayer('route')) {
+        mapRef.current.removeLayer('route');
+      }
+      if (mapRef.current.getSource('route')) {
+        mapRef.current.removeSource('route');
+      }
+      
       // Redraw route from new origin (works in both create and edit mode)
       if (recipientLat && recipientLng && mapRef.current.loaded()) {
         fetchAndDrawRoute(mapRef.current, senderLng, senderLat, recipientLng, recipientLat);
@@ -500,21 +502,29 @@ export function GoogleMap({
 
   // Handle updating the origin to current marker position
   const handleUpdateOrigin = () => {
-    if (currentMarkerPosition) {
+    if (currentMarkerPosition && mapRef.current) {
       originalPositionRef.current = currentMarkerPosition;
       setShowUpdateOriginButton(false);
       setCoveredDistance("");
       
       // Clear covered distance layer
-      if (mapRef.current?.getLayer('covered-distance')) {
+      if (mapRef.current.getLayer('covered-distance')) {
         mapRef.current.removeLayer('covered-distance');
       }
-      if (mapRef.current?.getSource('covered-distance')) {
+      if (mapRef.current.getSource('covered-distance')) {
         mapRef.current.removeSource('covered-distance');
       }
       
+      // Clear the main route layer
+      if (mapRef.current.getLayer('route')) {
+        mapRef.current.removeLayer('route');
+      }
+      if (mapRef.current.getSource('route')) {
+        mapRef.current.removeSource('route');
+      }
+      
       // Redraw route from new origin
-      if (showRoute && recipientLat && recipientLng && mapRef.current?.loaded()) {
+      if (recipientLat && recipientLng && mapRef.current.loaded()) {
         fetchAndDrawRoute(mapRef.current, currentMarkerPosition.lng, currentMarkerPosition.lat, recipientLng, recipientLat);
       }
     }
