@@ -26,7 +26,72 @@ export function GoogleMap({
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const markerRef = useRef<mapboxgl.Marker | null>(null);
   const recipientMarkerRef = useRef<mapboxgl.Marker | null>(null);
+  const routeUpdateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [routeDistance, setRouteDistance] = useState<string>("");
+
+  // Function to fetch and draw route
+  const fetchAndDrawRoute = async (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number) => {
+    const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${toLng},${toLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.routes && data.routes.length > 0) {
+        const route = data.routes[0];
+        const distance = (route.distance / 1000).toFixed(2); // Convert to km
+        setRouteDistance(`${distance} km`);
+
+        // Remove existing route layer if it exists
+        if (map.getLayer('route')) {
+          map.removeLayer('route');
+        }
+        if (map.getSource('route')) {
+          map.removeSource('route');
+        }
+
+        // Add route layer
+        map.addSource('route', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {},
+            geometry: route.geometry,
+          },
+        });
+
+        map.addLayer({
+          id: 'route',
+          type: 'line',
+          source: 'route',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-color': '#3b82f6',
+            'line-width': 4,
+            'line-opacity': 0.75,
+          },
+        });
+
+        // Fit map to show entire route
+        const coordinates = route.geometry.coordinates;
+        const bounds = coordinates.reduce(
+          (bounds: mapboxgl.LngLatBounds, coord: [number, number]) => {
+            return bounds.extend(coord as [number, number]);
+          },
+          new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
+        );
+
+        map.fitBounds(bounds, {
+          padding: 50,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching route:', error);
+    }
+  };
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -48,20 +113,48 @@ export function GoogleMap({
       .setLngLat([longitude || -74.0060, latitude || 40.7128])
       .addTo(map);
 
+    // Debounced route update on marker drag
     marker.on("dragend", () => {
       const lngLat = marker.getLngLat();
       onLocationChange(lngLat.lat, lngLat.lng);
+      
+      // Clear previous timeout
+      if (routeUpdateTimeoutRef.current) {
+        clearTimeout(routeUpdateTimeoutRef.current);
+      }
+      
+      // Update route after 1 second delay
+      if (showRoute && recipientLat && recipientLng && map.loaded()) {
+        routeUpdateTimeoutRef.current = setTimeout(() => {
+          fetchAndDrawRoute(map, lngLat.lng, lngLat.lat, recipientLng, recipientLat);
+        }, 1000);
+      }
     });
 
     map.on("click", (e) => {
       marker.setLngLat(e.lngLat);
       onLocationChange(e.lngLat.lat, e.lngLat.lng);
+      
+      // Clear previous timeout
+      if (routeUpdateTimeoutRef.current) {
+        clearTimeout(routeUpdateTimeoutRef.current);
+      }
+      
+      // Update route after 1 second delay
+      if (showRoute && recipientLat && recipientLng && map.loaded()) {
+        routeUpdateTimeoutRef.current = setTimeout(() => {
+          fetchAndDrawRoute(map, e.lngLat.lng, e.lngLat.lat, recipientLng, recipientLat);
+        }, 1000);
+      }
     });
 
     mapRef.current = map;
     markerRef.current = marker;
 
     return () => {
+      if (routeUpdateTimeoutRef.current) {
+        clearTimeout(routeUpdateTimeoutRef.current);
+      }
       map.remove();
     };
   }, []);
@@ -93,75 +186,13 @@ export function GoogleMap({
       .setLngLat([recipientLng, recipientLat])
       .addTo(map);
 
-    // Fetch route from Mapbox Directions API
-    const fetchRoute = async () => {
-      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${longitude},${latitude};${recipientLng},${recipientLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.routes && data.routes.length > 0) {
-          const route = data.routes[0];
-          const distance = (route.distance / 1000).toFixed(2); // Convert to km
-          setRouteDistance(`${distance} km`);
-
-          // Remove existing route layer if it exists
-          if (map.getLayer('route')) {
-            map.removeLayer('route');
-          }
-          if (map.getSource('route')) {
-            map.removeSource('route');
-          }
-
-          // Add route layer
-          map.addSource('route', {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              properties: {},
-              geometry: route.geometry,
-            },
-          });
-
-          map.addLayer({
-            id: 'route',
-            type: 'line',
-            source: 'route',
-            layout: {
-              'line-join': 'round',
-              'line-cap': 'round',
-            },
-            paint: {
-              'line-color': '#3b82f6',
-              'line-width': 4,
-              'line-opacity': 0.75,
-            },
-          });
-
-          // Fit map to show entire route
-          const coordinates = route.geometry.coordinates;
-          const bounds = coordinates.reduce(
-            (bounds: mapboxgl.LngLatBounds, coord: [number, number]) => {
-              return bounds.extend(coord as [number, number]);
-            },
-            new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
-          );
-
-          map.fitBounds(bounds, {
-            padding: 50,
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching route:', error);
-      }
-    };
-
     // Wait for map to load before adding route
     if (map.loaded()) {
-      fetchRoute();
+      fetchAndDrawRoute(map, longitude, latitude, recipientLng, recipientLat);
     } else {
-      map.on('load', fetchRoute);
+      map.on('load', () => {
+        fetchAndDrawRoute(map, longitude, latitude, recipientLng, recipientLat);
+      });
     }
 
   }, [showRoute, recipientLat, recipientLng, latitude, longitude]);
