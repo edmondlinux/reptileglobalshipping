@@ -23,13 +23,13 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden min-h-[600px] md:min-h-[800px]">
       {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
-        <div className="flex animate-carousel">
+        <div className="flex animate-carousel h-full">
           {/* First set of images */}
           {carouselImages.map((src, idx) => (
-            <div key={`first-${idx}`} className="flex-shrink-0 w-screen h-full relative">
+            <div key={`first-${idx}`} className="flex-shrink-0 w-screen min-h-[600px] md:min-h-[800px] relative">
               <Image
                 src={src}
                 alt={`Background ${idx + 1}`}
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           ))}
           {/* Duplicate set for seamless loop */}
           {carouselImages.map((src, idx) => (
-            <div key={`second-${idx}`} className="flex-shrink-0 w-screen h-full relative">
+            <div key={`second-${idx}`} className="flex-shrink-0 w-screen min-h-[600px] md:min-h-[800px] relative">
               <Image
                 src={src}
                 alt={`Background ${idx + 1}`}
