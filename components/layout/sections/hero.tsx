@@ -1,3 +1,4 @@
+
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -5,11 +6,9 @@ import { ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
 
   return (
     <section className="container w-full">
@@ -17,21 +16,21 @@ export const HeroSection = () => {
         <div className="text-center space-y-8">
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
-              {t("hero.title")}
+              Welcome to RapidWave Logistics
             </h1>
           </div>
 
           <h2 className="text-2xl md:text-3xl text-transparent bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text font-bold">
-            {t("hero.subtitle")}
+            Your Trusted Partner in Global Shipping
           </h2>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            {t("hero.description")}
+            We've been transporting goods for 5 years with reliability and excellence. Experience seamless logistics solutions tailored to your needs.
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
             <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              {t("hero.getStarted")}
+              Get Started
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
 
@@ -44,7 +43,7 @@ export const HeroSection = () => {
                 href="https://github.com/nobruf/shadcn-landing-page.git"
                 target="_blank"
               >
-                {t("hero.github")}
+                Github Repository
               </Link>
             </Button>
           </div>

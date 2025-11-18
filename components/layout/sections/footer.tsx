@@ -1,11 +1,10 @@
+
 "use client";
 import { Separator } from "@/components/ui/separator";
 import { ChevronsDownIcon } from "lucide-react";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
 
 export const FooterSection = () => {
-  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -21,85 +20,85 @@ export const FooterSection = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">{t("footer.contact")}</h3>
+            <h3 className="font-bold text-lg">Contact</h3>
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.github")}
+                Github
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.twitter")}
+                Twitter
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.instagram")}
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">{t("footer.platforms")}</h3>
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.ios")}
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.android")}
-              </Link>
-            </div>
-
-            <div>
-              <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.web")}
+                Instagram
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">{t("footer.help")}</h3>
+            <h3 className="font-bold text-lg">Platforms</h3>
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.contact_us")}
+                iOS
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.faq")}
+                Android
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.feedback")}
+                Web
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">{t("footer.socials")}</h3>
+            <h3 className="font-bold text-lg">Help</h3>
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.twitch")}
+                Contact Us
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.discord")}
+                FAQ
               </Link>
             </div>
 
             <div>
               <Link href="#" className="opacity-60 hover:opacity-100">
-                {t("footer.dribbble")}
+                Feedback
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="font-bold text-lg">Socials</h3>
+            <div>
+              <Link href="#" className="opacity-60 hover:opacity-100">
+                Twitch
+              </Link>
+            </div>
+
+            <div>
+              <Link href="#" className="opacity-60 hover:opacity-100">
+                Discord
+              </Link>
+            </div>
+
+            <div>
+              <Link href="#" className="opacity-60 hover:opacity-100">
+                Dribbble
               </Link>
             </div>
           </div>
@@ -108,7 +107,7 @@ export const FooterSection = () => {
         <Separator className="my-6" />
         <section className="">
           <h3 className="">
-            &copy; {currentYear} {t("footer.designed_developed_by")}
+            &copy; {currentYear} Designed and developed by
             <Link
               target="_blank"
               href="https://github.com/leoMirandaa"

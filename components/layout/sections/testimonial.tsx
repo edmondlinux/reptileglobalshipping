@@ -1,5 +1,5 @@
+
 "use client";
-import { useTranslation } from "react-i18next";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -25,28 +25,61 @@ interface ReviewProps {
   rating: number;
 }
 
-export const TestimonialSection = () => {
-  const { t } = useTranslation();
-  
-  const testimonialList: ReviewProps[] = t("testimonials.items", { returnObjects: true }) as ReviewProps[];
-  const avatarImages = [
-    "https://i.pravatar.cc/150?img=12",
-    "https://i.pravatar.cc/150?img=33",
-    "https://i.pravatar.cc/150?img=47",
-    "https://i.pravatar.cc/150?img=68",
-    "https://i.pravatar.cc/150?img=25",
-    "https://i.pravatar.cc/150?img=52",
-  ];
+const testimonialList: ReviewProps[] = [
+  {
+    image: "https://i.pravatar.cc/150?img=12",
+    name: "Sarah Mitchell",
+    userName: "@sarahmitchell",
+    comment: "We've been using RapidWave for our monthly shipments to Europe for the past year. The tracking is always accurate, and our packages arrive on time. Their customer service team actually responds quickly when we have questions!",
+    rating: 5.0
+  },
+  {
+    image: "https://i.pravatar.cc/150?img=33",
+    name: "Marcus Chen",
+    userName: "@marcusc_logistics",
+    comment: "Switched from our previous carrier after a friend recommended RapidWave. Best decision we made for our e-commerce business. They handle our international shipments with care, and we've had zero lost packages in 8 months.",
+    rating: 4.8
+  },
+  {
+    image: "https://i.pravatar.cc/150?img=47",
+    name: "Elena Rodriguez",
+    userName: "@elena_r",
+    comment: "As a small business owner, I need reliable shipping that won't break the bank. RapidWave delivers on both fronts. Their rates are competitive and my customers always receive their orders in perfect condition.",
+    rating: 4.9
+  },
+  {
+    image: "https://i.pravatar.cc/150?img=68",
+    name: "David Thompson",
+    userName: "@d_thompson_tech",
+    comment: "Been working with RapidWave since they started. Watched them grow and improve their service year after year. The personal touch they bring to logistics is rare these days. Highly recommend for anyone shipping overseas.",
+    rating: 5.0
+  },
+  {
+    image: "https://i.pravatar.cc/150?img=25",
+    name: "Amara Okafor",
+    userName: "@amara_ok",
+    comment: "What impressed me most was how they handled a delay caused by customs. They kept me updated every step of the way and worked to resolve it quickly. That's the kind of service that keeps customers coming back.",
+    rating: 4.9
+  },
+  {
+    image: "https://i.pravatar.cc/150?img=52",
+    name: "James Wilson",
+    userName: "@jwilson_imports",
+    comment: "Our company ships fragile electronics internationally. RapidWave's packaging recommendations and careful handling have resulted in a 99% safe delivery rate. They understand what businesses need from a shipping partner.",
+    rating: 5.0
+  }
+];
 
+export const TestimonialSection = () => {
   return (
     <section id="testimonials" className="container py-24 sm:py-32">
       <div className="text-center mb-8">
         <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-          {t("testimonials.title")}
+          What Our Customers Say
         </h2>
 
         <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-          {t("testimonials.heading")}
+          Hear What Our 1000+ Clients Say
         </h2>
       </div>
 
@@ -78,7 +111,7 @@ export const TestimonialSection = () => {
                   <div className="flex flex-row items-center gap-4">
                     <Avatar>
                       <AvatarImage
-                        src={avatarImages[index]}
+                        src={review.image}
                         alt="User Avatar"
                       />
                       <AvatarFallback>

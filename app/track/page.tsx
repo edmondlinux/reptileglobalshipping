@@ -2,20 +2,17 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { Package } from "lucide-react";
 
 export default function TrackPage() {
-  const { t } = useTranslation();
   const [trackingNumber, setTrackingNumber] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Functionality to be implemented later
-    alert(t("track.note"));
+    alert("Tracking functionality coming soon");
   };
 
   return (
@@ -27,28 +24,28 @@ export default function TrackPage() {
               <Package className="h-16 w-16 text-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {t("track.title")}
+              Track Your Shipment
             </h1>
             <p className="text-xl text-muted-foreground">
-              {t("track.subtitle")}
+              Enter your tracking number to see real-time updates
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               type="text"
-              placeholder={t("track.placeholder")}
+              placeholder="Enter tracking number"
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
               className="text-lg h-14"
             />
             <Button type="submit" size="lg" className="w-full">
-              {t("track.button")}
+              Track Shipment
             </Button>
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-6">
-            {t("track.note")}
+            Tracking functionality coming soon
           </p>
         </div>
       </section>

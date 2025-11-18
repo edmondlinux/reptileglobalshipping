@@ -1,24 +1,21 @@
 
 "use client";
 
-import { useTranslation } from "react-i18next";
 import { FooterSection } from "@/components/layout/sections/footer";
 
 export default function TeamPage() {
-  const { t } = useTranslation();
-
   return (
     <>
       <section className="container py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {t("team.title")}
+            Meet Our Team
           </h1>
           <p className="text-xl text-muted-foreground">
-            {t("team.subtitle")}
+            The People Behind Your Shipments
           </p>
           <p className="text-lg text-muted-foreground mt-4">
-            {t("team.description")}
+            Our dedicated team of logistics professionals has been working together for 5 years to deliver exceptional service.
           </p>
         </div>
       </section>

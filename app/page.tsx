@@ -1,6 +1,6 @@
+
 "use client";
 
-import { useTranslation } from "react-i18next";
 import { HeroSection } from "@/components/layout/sections/hero";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 import { BenefitsSection } from "@/components/layout/sections/benefits";
@@ -9,8 +9,6 @@ import { ServicesSection } from "@/components/layout/sections/services";
 import { FooterSection } from "@/components/layout/sections/footer";
 
 export default function Home() {
-  const { t } = useTranslation();
-
   return (
     <>
       <HeroSection />
