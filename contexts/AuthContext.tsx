@@ -3,6 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
 
 interface User {
   id: string;
@@ -81,6 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken(null);
     Cookies.remove('auth-token');
     Cookies.remove('auth-user');
+    toast.success('Successfully signed out. See you soon!');
   };
 
   return (

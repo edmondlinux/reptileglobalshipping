@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,29 @@ export default function RootLayout({
           <AuthProvider>
             <Navbar />
             {children}
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: 'hsl(var(--background))',
+                  color: 'hsl(var(--foreground))',
+                  border: '1px solid hsl(var(--border))',
+                },
+                success: {
+                  iconTheme: {
+                    primary: 'hsl(var(--primary))',
+                    secondary: 'hsl(var(--primary-foreground))',
+                  },
+                },
+                error: {
+                  iconTheme: {
+                    primary: 'hsl(var(--destructive))',
+                    secondary: 'hsl(var(--destructive-foreground))',
+                  },
+                },
+              }}
+            />
           </AuthProvider>
         </ThemeProvider>
       </body>

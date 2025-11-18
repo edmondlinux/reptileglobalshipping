@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: 'No account found with this email address' },
         { status: 401 }
       );
     }
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const isPasswordValid = await verifyPassword(password, user.password);
     if (!isPasswordValid) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: 'Incorrect password. Please try again.' },
         { status: 401 }
       );
     }

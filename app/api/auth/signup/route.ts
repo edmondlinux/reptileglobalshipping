@@ -12,14 +12,14 @@ export async function POST(request: NextRequest) {
 
     if (!name || !email || !password) {
       return NextResponse.json(
-        { error: 'Please provide all required fields' },
+        { error: 'All fields are required. Please fill in your name, email, and password.' },
         { status: 400 }
       );
     }
 
     if (password.length < 6) {
       return NextResponse.json(
-        { error: 'Password must be at least 6 characters' },
+        { error: 'Password must be at least 6 characters long for security.' },
         { status: 400 }
       );
     }
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
-        { error: 'User already exists' },
+        { error: 'An account with this email already exists. Please sign in instead.' },
         { status: 400 }
       );
     }
