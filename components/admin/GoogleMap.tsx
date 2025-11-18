@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { Button } from "@/components/ui/button";
 
 interface MapboxMapProps {
   latitude: number;
@@ -12,9 +13,9 @@ interface MapboxMapProps {
   showRoute?: boolean;
   recipientLat?: number;
   recipientLng?: number;
+  senderLat?: number;
+  senderLng?: number;
 }
-
-const { recipientLat, recipientLng } = { recipientLat: undefined, recipientLng: undefined };
 
 export function GoogleMap({ 
   latitude, 
@@ -22,7 +23,9 @@ export function GoogleMap({
   onLocationChange,
   showRoute = false,
   recipientLat,
-  recipientLng
+  recipientLng,
+  senderLat,
+  senderLng
 }: MapboxMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -32,6 +35,20 @@ export function GoogleMap({
   const originalPositionRef = useRef<{ lng: number; lat: number } | null>(null);
   const [routeDistance, setRouteDistance] = useState<string>("");
   const [coveredDistance, setCoveredDistance] = useState<string>("");
+  const [showUpdateOriginButton, setShowUpdateOriginButton] = useState(false);
+  const [currentMarkerPosition, setCurrentMarkerPosition] = useState<{ lng: number; lat: number } | null>(null);
+
+  // Calculate straight line distance
+  const calculateStraightLineDistance = (lng1: number, lat1: number, lng2: number, lat2: number): number => {
+    const R = 6371; // Earth's radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
 
   // Function to draw the covered distance line (from original position to current marker position)
   const drawCoveredDistanceLine = async (map: mapboxgl.Map, fromLng: number, fromLat: number, toLng: number, toLat: number, recipientLng?: number, recipientLat?: number) => {
@@ -134,11 +151,44 @@ export function GoogleMap({
             'line-opacity': 0.85,
           },
         });
+      } else {
+        // No route available, draw straight line
+        const distance = calculateStraightLineDistance(fromLng, fromLat, toLng, toLat);
+        setCoveredDistance(`${distance.toFixed(2)} km (straight line)`);
+        
+        map.addSource('covered-distance', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: [[fromLng, fromLat], [toLng, toLat]]
+            },
+          },
+        });
+
+        map.addLayer({
+          id: 'covered-distance',
+          type: 'line',
+          source: 'covered-distance',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-color': '#ef4444',
+            'line-width': 4,
+            'line-opacity': 0.85,
+            'line-dasharray': [2, 2],
+          },
+        });
       }
     } catch (error) {
       console.error('Error drawing covered distance route:', error);
-      // Fallback to straight line if route fetch fails
-      setCoveredDistance('N/A');
+      // Fallback to straight line
+      const distance = calculateStraightLineDistance(fromLng, fromLat, toLng, toLat);
+      setCoveredDistance(`${distance.toFixed(2)} km (straight line)`);
     }
   };
 
@@ -150,18 +200,18 @@ export function GoogleMap({
       const response = await fetch(url);
       const data = await response.json();
 
+      // Remove existing route layer if it exists
+      if (map.getLayer('route')) {
+        map.removeLayer('route');
+      }
+      if (map.getSource('route')) {
+        map.removeSource('route');
+      }
+
       if (data.routes && data.routes.length > 0) {
         const route = data.routes[0];
         const distance = (route.distance / 1000).toFixed(2); // Convert to km
         setRouteDistance(`${distance} km`);
-
-        // Remove existing route layer if it exists
-        if (map.getLayer('route')) {
-          map.removeLayer('route');
-        }
-        if (map.getSource('route')) {
-          map.removeSource('route');
-        }
 
         // Add route layer
         map.addSource('route', {
@@ -200,9 +250,54 @@ export function GoogleMap({
         map.fitBounds(bounds, {
           padding: 50,
         });
+      } else {
+        // No driving route available (e.g., USA to UK), draw straight line
+        const distance = calculateStraightLineDistance(fromLng, fromLat, toLng, toLat);
+        setRouteDistance(`${distance.toFixed(2)} km (straight line)`);
+
+        // Add straight line route
+        map.addSource('route', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: [[fromLng, fromLat], [toLng, toLat]]
+            },
+          },
+        });
+
+        map.addLayer({
+          id: 'route',
+          type: 'line',
+          source: 'route',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-color': '#3b82f6',
+            'line-width': 4,
+            'line-opacity': 0.75,
+            'line-dasharray': [2, 2], // Dashed line for straight line routes
+          },
+        });
+
+        // Fit map to show both points
+        const bounds = new mapboxgl.LngLatBounds()
+          .extend([fromLng, fromLat])
+          .extend([toLng, toLat]);
+
+        map.fitBounds(bounds, {
+          padding: 100,
+        });
       }
     } catch (error) {
       console.error('Error fetching route:', error);
+      // Fallback to straight line on error
+      const distance = calculateStraightLineDistance(fromLng, fromLat, toLng, toLat);
+      setRouteDistance(`${distance.toFixed(2)} km (straight line)`);
     }
   };
 
@@ -227,9 +322,26 @@ export function GoogleMap({
       .addTo(map);
 
     // Debounced route update on marker drag
+    marker.on("drag", () => {
+      const lngLat = marker.getLngLat();
+      setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
+      
+      // Check if marker has moved from original position
+      if (originalPositionRef.current) {
+        const distance = calculateStraightLineDistance(
+          originalPositionRef.current.lng,
+          originalPositionRef.current.lat,
+          lngLat.lng,
+          lngLat.lat
+        );
+        setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
+      }
+    });
+
     marker.on("dragend", () => {
       const lngLat = marker.getLngLat();
       onLocationChange(lngLat.lat, lngLat.lng);
+      setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
       
       // Draw covered distance line from original position
       if (originalPositionRef.current && map.loaded()) {
@@ -260,6 +372,18 @@ export function GoogleMap({
     map.on("click", (e) => {
       marker.setLngLat(e.lngLat);
       onLocationChange(e.lngLat.lat, e.lngLat.lng);
+      setCurrentMarkerPosition({ lng: e.lngLat.lng, lat: e.lngLat.lat });
+      
+      // Check if marker has moved from original position
+      if (originalPositionRef.current) {
+        const distance = calculateStraightLineDistance(
+          originalPositionRef.current.lng,
+          originalPositionRef.current.lat,
+          e.lngLat.lng,
+          e.lngLat.lat
+        );
+        setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
+      }
       
       // Draw covered distance line from original position
       if (originalPositionRef.current && map.loaded()) {
@@ -309,6 +433,33 @@ export function GoogleMap({
     }
   }, [latitude, longitude]);
 
+  // Move marker to sender address when it's provided
+  useEffect(() => {
+    if (senderLat && senderLng && markerRef.current && mapRef.current) {
+      markerRef.current.setLngLat([senderLng, senderLat]);
+      mapRef.current.setCenter([senderLng, senderLat]);
+      onLocationChange(senderLat, senderLng);
+      
+      // Update original position to sender address
+      originalPositionRef.current = { lng: senderLng, lat: senderLat };
+      setShowUpdateOriginButton(false);
+      
+      // Clear covered distance when origin changes
+      setCoveredDistance("");
+      if (mapRef.current.getLayer('covered-distance')) {
+        mapRef.current.removeLayer('covered-distance');
+      }
+      if (mapRef.current.getSource('covered-distance')) {
+        mapRef.current.removeSource('covered-distance');
+      }
+      
+      // Redraw route from new origin
+      if (showRoute && recipientLat && recipientLng && mapRef.current.loaded()) {
+        fetchAndDrawRoute(mapRef.current, senderLng, senderLat, recipientLng, recipientLat);
+      }
+    }
+  }, [senderLat, senderLng]);
+
   // Draw route when both locations are available
   useEffect(() => {
     if (!showRoute || !recipientLat || !recipientLng || !mapRef.current || !latitude || !longitude) {
@@ -339,10 +490,39 @@ export function GoogleMap({
 
   }, [showRoute, recipientLat, recipientLng, latitude, longitude]);
 
+  // Handle updating the origin to current marker position
+  const handleUpdateOrigin = () => {
+    if (currentMarkerPosition) {
+      originalPositionRef.current = currentMarkerPosition;
+      setShowUpdateOriginButton(false);
+      setCoveredDistance("");
+      
+      // Clear covered distance layer
+      if (mapRef.current?.getLayer('covered-distance')) {
+        mapRef.current.removeLayer('covered-distance');
+      }
+      if (mapRef.current?.getSource('covered-distance')) {
+        mapRef.current.removeSource('covered-distance');
+      }
+      
+      // Redraw route from new origin
+      if (showRoute && recipientLat && recipientLng && mapRef.current?.loaded()) {
+        fetchAndDrawRoute(mapRef.current, currentMarkerPosition.lng, currentMarkerPosition.lat, recipientLng, recipientLat);
+      }
+    }
+  };
+
   return (
     <div className="space-y-2">
-      <div className="w-full h-[400px] rounded-lg overflow-hidden border">
+      <div className="relative w-full h-[400px] rounded-lg overflow-hidden border">
         <div ref={mapContainerRef} className="w-full h-full" />
+        {showUpdateOriginButton && (
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+            <Button onClick={handleUpdateOrigin} size="sm" className="shadow-lg">
+              Set as New Origin
+            </Button>
+          </div>
+        )}
       </div>
       {showRoute && routeDistance && (
         <div className="flex items-center gap-4 text-sm text-muted-foreground">

@@ -66,6 +66,8 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
   const [recipientLng, setRecipientLng] = useState<number | undefined>();
   const [senderSuggestions, setSenderSuggestions] = useState<AddressSuggestion[]>([]);
   const [showSenderSuggestions, setShowSenderSuggestions] = useState(false);
+  const [senderLat, setSenderLat] = useState<number | undefined>();
+  const [senderLng, setSenderLng] = useState<number | undefined>();
 
   const handleInputChange = (field: string, value: any) => {
     setFormData({ ...formData, [field]: value });
@@ -235,6 +237,8 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
 
   // Select sender address from suggestions
   const selectSenderSuggestion = (suggestion: AddressSuggestion) => {
+    const [lng, lat] = suggestion.center;
+    
     // Extract address components from the suggestion
     let street = suggestion.place_name.split(',')[0];
     let city = '';
@@ -260,6 +264,8 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
       senderCountry: country
     });
     
+    setSenderLat(lat);
+    setSenderLng(lng);
     setShowSenderSuggestions(false);
   };
 
@@ -296,6 +302,21 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
       geocodeAddress(fullAddress, 'recipient');
     }
   }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry]);
+
+  // Auto-geocode sender address when all fields are filled
+  useEffect(() => {
+    const { senderAddress, senderCity, senderState, senderCountry } = formData;
+    
+    if (senderAddress && senderCity && senderState && senderCountry) {
+      const fullAddress = `${senderAddress}, ${senderCity}, ${senderState}, ${senderCountry}`;
+      geocodeAddress(fullAddress, 'sender').then(coords => {
+        if (coords) {
+          setSenderLat(coords.lat);
+          setSenderLng(coords.lng);
+        }
+      });
+    }
+  }, [formData.senderAddress, formData.senderCity, formData.senderState, formData.senderCountry]);
 
   return (
     <div className="space-y-6">
@@ -685,6 +706,8 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
             showRoute={recipientLat !== undefined && recipientLng !== undefined}
             recipientLat={recipientLat}
             recipientLng={recipientLng}
+            senderLat={senderLat}
+            senderLng={senderLng}
           />
           <p className="text-sm text-muted-foreground mt-4">
             Click on the map or drag the blue marker to set the current shipment location. 
