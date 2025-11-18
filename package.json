@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@devnomic/marquee": "^1.0.2",
+    "@googlemaps/js-api-loader": "^2.0.2",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -21,6 +22,7 @@
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-google-maps/api": "^2.20.7",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
