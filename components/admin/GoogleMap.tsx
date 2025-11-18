@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -18,9 +17,9 @@ interface MapboxMapProps {
   isEditMode?: boolean;
 }
 
-export function GoogleMap({ 
-  latitude, 
-  longitude, 
+export function GoogleMap({
+  latitude,
+  longitude,
   onLocationChange,
   showRoute = false,
   recipientLat,
@@ -75,22 +74,22 @@ export function GoogleMap({
 
         // If we have the full route available and recipient coordinates, try to match the covered route with it
         let routeGeometry = coveredRoute.geometry;
-        
+
         // If recipient coordinates are available, check if we should adjust the route
         if (recipientLng && recipientLat) {
           // Fetch the full route from original to recipient
           const fullRouteUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${recipientLng},${recipientLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
           const fullRouteResponse = await fetch(fullRouteUrl);
           const fullRouteData = await fullRouteResponse.json();
-          
+
           if (fullRouteData.routes && fullRouteData.routes.length > 0) {
             const fullRoute = fullRouteData.routes[0];
             const fullCoordinates = fullRoute.geometry.coordinates;
-            
+
             // Find the closest point on the full route to the current position
             let closestIndex = 0;
             let minDistance = Infinity;
-            
+
             fullCoordinates.forEach((coord: [number, number], index: number) => {
               const dist = Math.sqrt(
                 Math.pow(coord[0] - toLng, 2) + Math.pow(coord[1] - toLat, 2)
@@ -100,7 +99,7 @@ export function GoogleMap({
                 closestIndex = index;
               }
             });
-            
+
             // If the current position is close enough to the route (threshold: 0.01 degrees ~ 1km)
             if (minDistance < 0.01) {
               // Use the portion of the full route from start to closest point
@@ -109,7 +108,7 @@ export function GoogleMap({
                 type: 'LineString',
                 coordinates: coveredCoordinates
               };
-              
+
               // Recalculate distance based on the route portion
               let totalDistance = 0;
               for (let i = 0; i < coveredCoordinates.length - 1; i++) {
@@ -157,7 +156,7 @@ export function GoogleMap({
         // No route available, draw straight line
         const distance = calculateStraightLineDistance(fromLng, fromLat, toLng, toLat);
         setCoveredDistance(`${distance.toFixed(2)} km (straight line)`);
-        
+
         map.addSource('covered-distance', {
           type: 'geojson',
           data: {
@@ -203,7 +202,7 @@ export function GoogleMap({
     if (map.getSource('route')) {
       map.removeSource('route');
     }
-    
+
     const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${fromLng},${fromLat};${toLng},${toLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
 
     try {
@@ -327,7 +326,7 @@ export function GoogleMap({
     marker.on("drag", () => {
       const lngLat = marker.getLngLat();
       setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
-      
+
       // Check if marker has moved from original position
       if (originalPositionRef.current) {
         const distance = calculateStraightLineDistance(
@@ -344,7 +343,7 @@ export function GoogleMap({
       const lngLat = marker.getLngLat();
       onLocationChange(lngLat.lat, lngLat.lng);
       setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
-      
+
       // In edit mode, draw covered distance line
       if (isEditMode && originalPositionRef.current && map.loaded()) {
         drawCoveredDistanceLine(
@@ -357,7 +356,7 @@ export function GoogleMap({
           recipientLat
         );
       }
-      
+
       // In create mode, check if marker moved from original position
       if (!isEditMode && originalPositionRef.current) {
         const distance = calculateStraightLineDistance(
@@ -368,61 +367,31 @@ export function GoogleMap({
         );
         setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
       }
-      
+
       // Clear previous timeout
       if (routeUpdateTimeoutRef.current) {
         clearTimeout(routeUpdateTimeoutRef.current);
       }
-      
+
       // Recalculate route immediately when destination exists
       if (recipientLat && recipientLng && map.loaded()) {
         fetchAndDrawRoute(map, lngLat.lng, lngLat.lat, recipientLng, recipientLat);
       }
     });
 
-    map.on("click", (e) => {
-      marker.setLngLat(e.lngLat);
-      onLocationChange(e.lngLat.lat, e.lngLat.lng);
-      setCurrentMarkerPosition({ lng: e.lngLat.lng, lat: e.lngLat.lat });
-      
-      // Check if marker has moved from original position
-      if (originalPositionRef.current) {
-        const distance = calculateStraightLineDistance(
-          originalPositionRef.current.lng,
-          originalPositionRef.current.lat,
-          e.lngLat.lng,
-          e.lngLat.lat
-        );
-        setShowUpdateOriginButton(distance > 0.1); // Show button if moved more than 100m
-      }
-      
-      // Only draw covered distance line in edit mode
-      if (isEditMode && originalPositionRef.current && map.loaded()) {
-        drawCoveredDistanceLine(
-          map,
-          originalPositionRef.current.lng,
-          originalPositionRef.current.lat,
-          e.lngLat.lng,
-          e.lngLat.lat,
-          recipientLng,
-          recipientLat
-        );
-      }
-      
-      // Clear previous timeout
-      if (routeUpdateTimeoutRef.current) {
-        clearTimeout(routeUpdateTimeoutRef.current);
-      }
-      
-      // Recalculate route immediately when destination exists
-      if (recipientLat && recipientLng && map.loaded()) {
-        fetchAndDrawRoute(map, e.lngLat.lng, e.lngLat.lat, recipientLng, recipientLat);
-      }
+    const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
+    const { lng, lat } = e.lngLat;
+    // Use requestAnimationFrame to defer the state update
+    requestAnimationFrame(() => {
+      onLocationChange(lat, lng);
     });
+  };
+
+    map.on("click", handleMapClick);
 
     mapRef.current = map;
     markerRef.current = marker;
-    
+
     // Store the original position
     originalPositionRef.current = { lng: longitude || -74.0060, lat: latitude || 40.7128 };
 
@@ -444,26 +413,26 @@ export function GoogleMap({
 
   // Move marker to sender address when it's provided
   const prevSenderCoordsRef = useRef<{ lat: number; lng: number } | null>(null);
-  
+
   useEffect(() => {
     if (senderLat && senderLng && markerRef.current && mapRef.current) {
       // Only update if sender coordinates actually changed
-      if (!prevSenderCoordsRef.current || 
-          prevSenderCoordsRef.current.lat !== senderLat || 
+      if (!prevSenderCoordsRef.current ||
+          prevSenderCoordsRef.current.lat !== senderLat ||
           prevSenderCoordsRef.current.lng !== senderLng) {
-        
+
         markerRef.current.setLngLat([senderLng, senderLat]);
         mapRef.current.setCenter([senderLng, senderLat]);
-        
+
         // Only update location if not in edit mode
         if (!isEditMode) {
           onLocationChange(senderLat, senderLng);
         }
-        
+
         // Update original position to sender address
         originalPositionRef.current = { lng: senderLng, lat: senderLat };
         setShowUpdateOriginButton(false);
-        
+
         // Clear covered distance when origin changes
         setCoveredDistance("");
         if (mapRef.current.getLayer('covered-distance')) {
@@ -472,7 +441,7 @@ export function GoogleMap({
         if (mapRef.current.getSource('covered-distance')) {
           mapRef.current.removeSource('covered-distance');
         }
-        
+
         // Clear the main route layer completely
         if (mapRef.current.getLayer('route')) {
           mapRef.current.removeLayer('route');
@@ -480,12 +449,12 @@ export function GoogleMap({
         if (mapRef.current.getSource('route')) {
           mapRef.current.removeSource('route');
         }
-        
+
         // Redraw route from new origin (works in both create and edit mode)
         if (recipientLat && recipientLng && mapRef.current.loaded()) {
           fetchAndDrawRoute(mapRef.current, senderLng, senderLat, recipientLng, recipientLat);
         }
-        
+
         prevSenderCoordsRef.current = { lat: senderLat, lng: senderLng };
       }
     }
@@ -528,7 +497,7 @@ export function GoogleMap({
       prevSenderCoordsRef.current = currentMarkerPosition; // Update this too to prevent re-trigger
       setShowUpdateOriginButton(false);
       setCoveredDistance("");
-      
+
       // Clear covered distance layer
       if (mapRef.current.getLayer('covered-distance')) {
         mapRef.current.removeLayer('covered-distance');
@@ -536,7 +505,7 @@ export function GoogleMap({
       if (mapRef.current.getSource('covered-distance')) {
         mapRef.current.removeSource('covered-distance');
       }
-      
+
       // Clear the main route layer
       if (mapRef.current.getLayer('route')) {
         mapRef.current.removeLayer('route');
@@ -544,7 +513,7 @@ export function GoogleMap({
       if (mapRef.current.getSource('route')) {
         mapRef.current.removeSource('route');
       }
-      
+
       // Redraw route from new origin
       if (recipientLat && recipientLng && mapRef.current.loaded()) {
         fetchAndDrawRoute(mapRef.current, currentMarkerPosition.lng, currentMarkerPosition.lat, recipientLng, recipientLat);

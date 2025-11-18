@@ -302,12 +302,23 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
 
     if (recipientAddress && recipientCity && recipientState && recipientCountry) {
       const fullAddress = `${recipientAddress}, ${recipientCity}, ${recipientState}, ${recipientCountry}`;
-      geocodeAddress(fullAddress, 'recipient');
+      
+      // Only geocode if the address actually changed
+      if (fullAddress !== prevRecipientAddressRef.current) {
+        geocodeAddress(fullAddress, 'recipient').then(coords => {
+          if (coords) {
+            setRecipientLat(coords.lat);
+            setRecipientLng(coords.lng);
+          }
+        });
+        prevRecipientAddressRef.current = fullAddress;
+      }
     }
   }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry]);
 
   // Auto-geocode sender address when all fields are filled
   const prevSenderAddressRef = useRef<string>("");
+  const prevRecipientAddressRef = useRef<string>("");
   
   useEffect(() => {
     const { senderAddress, senderCity, senderState, senderCountry } = formData;
