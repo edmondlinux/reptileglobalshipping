@@ -140,12 +140,78 @@ export default function TrackPage() {
     // Barcode representation
     yPos = 55;
     doc.setFillColor(245, 245, 245);
-    doc.rect(15, yPos, pageWidth - 30, 25, 'F');
-    doc.setFontSize(32);
-    doc.setFont('helvetica', 'bold');
-    doc.text('||||| ||||| |||||', pageWidth / 2, yPos + 12, { align: 'center' });
-    doc.setFontSize(11);
-    doc.text(shipment.trackingNumber, pageWidth / 2, yPos + 20, { align: 'center' });
+    doc.rect(15, yPos, pageWidth - 30, 30, 'F');
+    
+    // Generate a realistic barcode pattern based on tracking number
+    const barcodeStartX = 30;
+    const barcodeWidth = pageWidth - 60;
+    const barHeight = 18;
+    const barcodeY = yPos + 3;
+    
+    // Create alternating bars based on tracking number characters
+    doc.setFillColor(0, 0, 0);
+    let currentX = barcodeStartX;
+    const trackingChars = shipment.trackingNumber.split('');
+    
+    // Start and end guards (thin-thick-thin pattern)
+    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+    currentX += 2;
+    doc.rect(currentX, barcodeY, 2, barHeight, 'F');
+    currentX += 3;
+    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+    currentX += 3;
+    
+    // Generate bars based on tracking number
+    trackingChars.forEach((char, index) => {
+      const charCode = char.charCodeAt(0);
+      const pattern = charCode % 4; // Create 4 different patterns
+      
+      if (pattern === 0) {
+        // Thin-thick pattern
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
+        currentX += 3.5;
+      } else if (pattern === 1) {
+        // Thick-thin pattern
+        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
+        currentX += 3.5;
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+      } else if (pattern === 2) {
+        // Thin-thin-thick pattern
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
+        currentX += 3.5;
+      } else {
+        // Thick-thin-thin pattern
+        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
+        currentX += 3.5;
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+        currentX += 2;
+      }
+      
+      if (currentX > barcodeStartX + barcodeWidth - 20) return;
+    });
+    
+    // End guards
+    currentX = barcodeStartX + barcodeWidth - 10;
+    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+    currentX += 2;
+    doc.rect(currentX, barcodeY, 2, barHeight, 'F');
+    currentX += 3;
+    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
+    
+    // Tracking number below barcode
+    doc.setFontSize(10);
+    doc.setTextColor(...darkGray);
+    doc.setFont('courier', 'bold');
+    doc.text(shipment.trackingNumber, pageWidth / 2, yPos + 26, { align: 'center' });
 
     // Sender and Recipient sections side by side
     yPos = 85;
