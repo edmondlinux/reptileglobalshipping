@@ -3,14 +3,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/layout/navbar";
-import { Hero } from "@/components/layout/sections/hero";
-import { Sponsors } from "@/components/layout/sections/sponsors";
-import { Services } from "@/components/layout/sections/services";
-import { Features } from "@/components/layout/sections/features";
-import { Benefits } from "@/components/layout/sections/benefits";
-import { Pricing } from "@/components/layout/sections/pricing";
-import { FAQ } from "@/components/layout/sections/faq";
-import { Footer } from "@/components/layout/sections/footer";
 import "../lib/i18n";
 
 export default function Home() {
@@ -19,14 +11,10 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Sponsors />
-      <Services />
-      <Features />
-      <Benefits />
-      <Pricing />
-      <FAQ />
-      <Footer />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold">Welcome to RapidWave Logistics</h1>
+        <p className="mt-4">Fast & Reliable Shipping Solutions</p>
+      </div>
     </>
   );
 }
