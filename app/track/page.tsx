@@ -60,9 +60,7 @@ export default function TrackPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [shipment, setShipment] = useState<ShipmentData | null>(null);
 
-  const handleSubmit = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    
+  const handleTrack = async () => {
     if (!trackingNumber.trim()) {
       toast.error("Please enter a tracking number");
       return;
@@ -113,16 +111,21 @@ export default function TrackPage() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+          <div className="space-y-4 mb-8">
             <Input
               type="text"
               placeholder="Enter tracking number"
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleTrack();
+                }
+              }}
               className="text-lg h-14"
             />
             <Button 
-              type="submit"
+              onClick={handleTrack}
               size="lg" 
               className="w-full opacity-100"
               disabled={isLoading}
@@ -136,7 +139,7 @@ export default function TrackPage() {
                 "Track Shipment"
               )}
             </Button>
-          </form>
+          </div>
 
           {shipment && (
             <div className="space-y-6">
