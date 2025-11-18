@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -65,8 +64,8 @@ export function CreateShipment({ trackingNumber, onRegenerateTracking }: CreateS
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          trackingNumber,
           ...formData,
+          trackingNumber,
         }),
       });
 
@@ -78,7 +77,7 @@ export function CreateShipment({ trackingNumber, onRegenerateTracking }: CreateS
 
       toast.success("Shipment created successfully!");
       onRegenerateTracking();
-      // Reset form
+      // Only reset form on success
       setFormData({
         senderName: "",
         senderEmail: "",
@@ -117,6 +116,7 @@ export function CreateShipment({ trackingNumber, onRegenerateTracking }: CreateS
         longitude: -74.0060,
       });
     } catch (err: any) {
+      // Don't reset form on error - keep user's data
       toast.error(err.message || "Failed to create shipment");
     } finally {
       setIsLoading(false);

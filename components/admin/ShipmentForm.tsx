@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -52,7 +53,18 @@ interface ShipmentFormProps {
   setFormData: (data: ShipmentFormData) => void;
 }
 
+interface AddressSuggestion {
+  place_name: string;
+  center: [number, number];
+  context?: Array<{ id: string; text: string }>;
+}
+
 export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
+  const [recipientSuggestions, setRecipientSuggestions] = useState<AddressSuggestion[]>([]);
+  const [showRecipientSuggestions, setShowRecipientSuggestions] = useState(false);
+  const [recipientLat, setRecipientLat] = useState<number | undefined>();
+  const [recipientLng, setRecipientLng] = useState<number | undefined>();
+
   const handleInputChange = (field: string, value: any) => {
     setFormData({ ...formData, [field]: value });
   };
@@ -68,14 +80,119 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
     setFormData({ ...formData, latitude: lat, longitude: lng });
   };
 
-  // Geocode recipient address to get coordinates
-  const geocodeRecipientAddress = async () => {
-    const { recipientAddress, recipientCity, recipientState, recipientCountry } = formData;
+  // Parse address from clipboard paste
+  const parseAddress = (addressText: string) => {
+    const parts = addressText.split(',').map(p => p.trim());
     
-    if (!recipientAddress || !recipientCity) return;
+    if (parts.length >= 3) {
+      const street = parts[0];
+      const city = parts[1];
+      const stateZipCountry = parts.slice(2).join(', ');
+      
+      // Extract ZIP code (5 digits)
+      const zipMatch = stateZipCountry.match(/\b\d{5}\b/);
+      const zip = zipMatch ? zipMatch[0] : '';
+      
+      // Extract state (2 letter code)
+      const stateMatch = stateZipCountry.match(/\b[A-Z]{2}\b/);
+      const state = stateMatch ? stateMatch[0] : '';
+      
+      // Extract country (remaining text after state and zip)
+      let country = stateZipCountry
+        .replace(zip, '')
+        .replace(state, '')
+        .replace(/,/g, '')
+        .trim();
+      
+      if (!country) country = 'United States';
+      
+      return { street, city, state, zip, country };
+    }
+    
+    return null;
+  };
 
-    const query = `${recipientAddress}, ${recipientCity}, ${recipientState}, ${recipientCountry}`;
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`;
+  // Handle address paste with auto-parsing
+  const handleRecipientAddressPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = e.clipboardData.getData('text');
+    const parsed = parseAddress(pastedText);
+    
+    if (parsed) {
+      e.preventDefault();
+      setFormData({
+        ...formData,
+        recipientAddress: parsed.street,
+        recipientCity: parsed.city,
+        recipientState: parsed.state,
+        recipientZip: parsed.zip,
+        recipientCountry: parsed.country
+      });
+      
+      // Geocode the full address
+      geocodeAddress(pastedText, 'recipient');
+    }
+  };
+
+  // Autocomplete for recipient address
+  const handleRecipientAddressChange = async (value: string) => {
+    handleInputChange("recipientAddress", value);
+    
+    if (value.length > 2) {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(value)}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}&autocomplete=true&limit=5`;
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.features) {
+          setRecipientSuggestions(data.features);
+          setShowRecipientSuggestions(true);
+        }
+      } catch (error) {
+        console.error('Error fetching address suggestions:', error);
+      }
+    } else {
+      setShowRecipientSuggestions(false);
+    }
+  };
+
+  // Select address from suggestions
+  const selectRecipientSuggestion = (suggestion: AddressSuggestion) => {
+    const [lng, lat] = suggestion.center;
+    
+    // Extract address components from the suggestion
+    let street = suggestion.place_name.split(',')[0];
+    let city = '';
+    let state = '';
+    let zip = '';
+    let country = '';
+    
+    if (suggestion.context) {
+      suggestion.context.forEach(ctx => {
+        if (ctx.id.startsWith('place')) city = ctx.text;
+        if (ctx.id.startsWith('region')) state = ctx.text;
+        if (ctx.id.startsWith('postcode')) zip = ctx.text;
+        if (ctx.id.startsWith('country')) country = ctx.text;
+      });
+    }
+    
+    setFormData({
+      ...formData,
+      recipientAddress: street,
+      recipientCity: city,
+      recipientState: state,
+      recipientZip: zip,
+      recipientCountry: country
+    });
+    
+    setRecipientLat(lat);
+    setRecipientLng(lng);
+    setShowRecipientSuggestions(false);
+  };
+
+  // Geocode address to coordinates
+  const geocodeAddress = async (addressString: string, type: 'sender' | 'recipient') => {
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(addressString)}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`;
 
     try {
       const response = await fetch(url);
@@ -83,6 +200,12 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
 
       if (data.features && data.features.length > 0) {
         const [lng, lat] = data.features[0].center;
+        
+        if (type === 'recipient') {
+          setRecipientLat(lat);
+          setRecipientLng(lng);
+        }
+        
         return { lat, lng };
       }
     } catch (error) {
@@ -90,6 +213,16 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
     }
     return null;
   };
+
+  // Auto-geocode recipient address when all fields are filled
+  useEffect(() => {
+    const { recipientAddress, recipientCity, recipientState, recipientCountry } = formData;
+    
+    if (recipientAddress && recipientCity && recipientState && recipientCountry) {
+      const fullAddress = `${recipientAddress}, ${recipientCity}, ${recipientState}, ${recipientCountry}`;
+      geocodeAddress(fullAddress, 'recipient');
+    }
+  }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry]);
 
   return (
     <div className="space-y-6">
@@ -218,14 +351,28 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
                 placeholder="+1 (555) 987-6543"
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 relative">
               <Label htmlFor="recipientAddress">Address *</Label>
               <Input
                 id="recipientAddress"
                 value={formData.recipientAddress}
-                onChange={(e) => handleInputChange("recipientAddress", e.target.value)}
-                placeholder="456 Oak Ave"
+                onChange={(e) => handleRecipientAddressChange(e.target.value)}
+                onPaste={handleRecipientAddressPaste}
+                placeholder="456 Oak Ave (paste full address to auto-fill)"
               />
+              {showRecipientSuggestions && recipientSuggestions.length > 0 && (
+                <div className="absolute z-50 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-auto">
+                  {recipientSuggestions.map((suggestion, index) => (
+                    <div
+                      key={index}
+                      className="px-4 py-2 hover:bg-muted cursor-pointer text-sm"
+                      onClick={() => selectRecipientSuggestion(suggestion)}
+                    >
+                      {suggestion.place_name}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="recipientCity">City *</Label>
@@ -448,10 +595,15 @@ export function ShipmentForm({ formData, setFormData }: ShipmentFormProps) {
             latitude={formData.latitude}
             longitude={formData.longitude}
             onLocationChange={handleLocationChange}
-            showRoute={false}
+            showRoute={recipientLat !== undefined && recipientLng !== undefined}
+            recipientLat={recipientLat}
+            recipientLng={recipientLng}
           />
           <p className="text-sm text-muted-foreground mt-4">
-            Click on the map or drag the blue marker to set the current shipment location. The route to the destination will be displayed automatically.
+            Click on the map or drag the blue marker to set the current shipment location. 
+            {recipientLat && recipientLng 
+              ? " The route to the destination is displayed above."
+              : " Enter the recipient address to see the route."}
           </p>
         </CardContent>
       </Card>

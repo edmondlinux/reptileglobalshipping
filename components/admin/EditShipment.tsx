@@ -96,6 +96,7 @@ export function EditShipment() {
 
       toast.success("Shipment updated successfully!");
     } catch (err: any) {
+      // Don't reset form on error - keep user's data
       toast.error(err.message || "Failed to update shipment");
     } finally {
       setIsSaving(false);
