@@ -61,50 +61,49 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="flex">
-        {/* Sidebar Navigation */}
-        <aside className="w-64 min-h-screen border-r bg-card">
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-2">Admin Panel</h2>
-            <p className="text-sm text-muted-foreground mb-6">Shipment Management</p>
-            
-            <nav className="space-y-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveTab(item.id)}
-                    className={cn(
-                      "w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left",
-                      activeTab === item.id
-                        ? "bg-primary text-primary-foreground"
-                        : "hover:bg-muted text-muted-foreground"
-                    )}
-                  >
-                    <Icon className="h-5 w-5" />
-                    <span className="font-medium">{item.label}</span>
-                  </button>
-                );
-              })}
-            </nav>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-2">Admin Panel</h1>
+          <p className="text-muted-foreground">Shipment Management Dashboard</p>
+        </div>
+
+        {/* 2x2 Grid Navigation */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="grid grid-cols-2 gap-6">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={cn(
+                    "flex flex-col items-center justify-center gap-4 p-8 rounded-xl border-2 transition-all",
+                    activeTab === item.id
+                      ? "bg-primary text-primary-foreground border-primary shadow-lg scale-105"
+                      : "bg-card hover:bg-muted border-border hover:border-primary/50"
+                  )}
+                >
+                  <Icon className="h-12 w-12" />
+                  <span className="text-lg font-semibold">{item.label}</span>
+                </button>
+              );
+            })}
           </div>
-        </aside>
+        </div>
 
         {/* Main Content */}
-        <main className="flex-1 p-8">
-          <div className="max-w-7xl mx-auto">
-            {activeTab === "create" && (
-              <CreateShipment
-                trackingNumber={trackingNumber}
-                onRegenerateTracking={regenerateTracking}
-              />
-            )}
-            {activeTab === "edit" && <EditShipment />}
-            {activeTab === "all" && <AllShipments />}
-            {activeTab === "analytics" && <Analytics />}
-          </div>
-        </main>
+        <div className="max-w-7xl mx-auto">
+          {activeTab === "create" && (
+            <CreateShipment
+              trackingNumber={trackingNumber}
+              onRegenerateTracking={regenerateTracking}
+            />
+          )}
+          {activeTab === "edit" && <EditShipment />}
+          {activeTab === "all" && <AllShipments />}
+          {activeTab === "analytics" && <Analytics />}
+        </div>
       </div>
     </div>
   );
