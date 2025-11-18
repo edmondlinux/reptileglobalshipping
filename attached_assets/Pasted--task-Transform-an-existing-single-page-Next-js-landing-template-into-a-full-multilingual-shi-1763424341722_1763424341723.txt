@@ -1,0 +1,65 @@
+{
+  "task": "Transform an existing single-page Next.js landing template into a full multilingual shipping, transport, and logistics website named 'RapidWave Logistics'. Implement i18next, add new pages, create a language switcher, and ensure all content is coherent and trustworthy.",
+  
+  "requirements": {
+    "internationalization": {
+      "library": "i18next",
+      "languages": ["en", "fr"],
+      "features": {
+        "languageSwitcher": true,
+        "switcherLocation": "navbar",
+        "flagsIncluded": true
+      }
+    },
+
+    "appTransformation": {
+      "currentState": "Single-page Next.js landing template",
+      "desiredState": "Full shipping transport & logistics website",
+      "branding": {
+        "appName": "RapidWave Logistics"
+      },
+      "bestPractices": "Follow all modern Next.js and file-structure best practices"
+    },
+
+    "pages": {
+      "requiredPages": [
+        "home",
+        "about",
+        "team",
+        "contact",
+        {
+          "track": {
+            "fields": [
+              { "input": "trackingNumber" },
+              { "button": "submitTrackingNumber" }
+            ],
+            "note": "Button has no backend function yet"
+          }
+        },
+        {
+          "testimonials": {
+            "minTestimonials": 4,
+            "languages": ["en", "fr"],
+            "realistic": true,
+            "notAIGeneratedLooking": true
+          }
+        }
+      ],
+      "behavior": {
+        "replaceScrollToSections": true,
+        "enableRealPageNavigation": true
+      }
+    },
+
+    "contentConsistency": {
+      "companyAge": 5,
+      "instructions": "Any part of the website that mentions company age must consistently state that RapidWave Logistics has been transporting goods for 5 years. About page must state: ‘This company has been transporting for 5 years now and we recently just got our website built to serve more customers worldwide.’"
+    },
+
+    "toneAndGoals": {
+      "primaryGoal": "Build customer trust and credibility",
+      "style": "Professional, modern, reliable",
+      "avoid": ["obviously AI-generated text", "inconsistent facts"]
+    }
+  }
+}
