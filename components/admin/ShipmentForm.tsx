@@ -375,7 +375,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="senderPhone">Phone *</Label>
+              <Label htmlFor="senderPhone">Phone</Label>
               <Input
                 id="senderPhone"
                 value={formData.senderPhone}
@@ -407,7 +407,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="senderCity">City *</Label>
+              <Label htmlFor="senderCity">City</Label>
               <Input
                 id="senderCity"
                 value={formData.senderCity}
@@ -416,7 +416,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="senderState">State/Province *</Label>
+              <Label htmlFor="senderState">State/Province</Label>
               <Input
                 id="senderState"
                 value={formData.senderState}
@@ -425,7 +425,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="senderZip">ZIP/Postal Code *</Label>
+              <Label htmlFor="senderZip">ZIP/Postal Code</Label>
               <Input
                 id="senderZip"
                 value={formData.senderZip}
@@ -476,7 +476,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="recipientPhone">Phone *</Label>
+              <Label htmlFor="recipientPhone">Phone</Label>
               <Input
                 id="recipientPhone"
                 value={formData.recipientPhone}
@@ -508,7 +508,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="recipientCity">City *</Label>
+              <Label htmlFor="recipientCity">City</Label>
               <Input
                 id="recipientCity"
                 value={formData.recipientCity}
@@ -517,7 +517,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="recipientState">State/Province *</Label>
+              <Label htmlFor="recipientState">State/Province</Label>
               <Input
                 id="recipientState"
                 value={formData.recipientState}
@@ -526,7 +526,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="recipientZip">ZIP/Postal Code *</Label>
+              <Label htmlFor="recipientZip">ZIP/Postal Code</Label>
               <Input
                 id="recipientZip"
                 value={formData.recipientZip}
@@ -535,7 +535,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="recipientCountry">Country *</Label>
+              <Label htmlFor="recipientCountry">Country</Label>
               <Input
                 id="recipientCountry"
                 value={formData.recipientCountry}
@@ -572,7 +572,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="weight">Weight (kg) *</Label>
+              <Label htmlFor="weight">Weight (kg)</Label>
               <Input
                 id="weight"
                 type="number"
@@ -582,7 +582,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="length">Length (cm) *</Label>
+              <Label htmlFor="length">Length (cm)</Label>
               <Input
                 id="length"
                 type="number"
@@ -592,7 +592,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="width">Width (cm) *</Label>
+              <Label htmlFor="width">Width (cm)</Label>
               <Input
                 id="width"
                 type="number"
@@ -602,7 +602,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="height">Height (cm) *</Label>
+              <Label htmlFor="height">Height (cm)</Label>
               <Input
                 id="height"
                 type="number"

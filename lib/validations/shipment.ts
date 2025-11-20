@@ -7,40 +7,32 @@ export const shipmentValidationSchema = z.object({
   // Sender Information
   senderName: z.string().min(2, "Sender name must be at least 2 characters"),
   senderEmail: z.string().email("Invalid sender email address"),
-  senderPhone: z.string().min(10, "Sender phone must be at least 10 characters"),
+  senderPhone: z.string().optional(),
   senderAddress: z.string().min(5, "Sender address must be at least 5 characters"),
-  senderCity: z.string().min(2, "Sender city must be at least 2 characters"),
-  senderState: z.string().min(2, "Sender state must be at least 2 characters"),
-  senderZip: z.string().min(3, "Sender ZIP code must be at least 3 characters"),
+  senderCity: z.string().optional(),
+  senderState: z.string().optional(),
+  senderZip: z.string().optional(),
   senderCountry: z.string().min(2, "Sender country must be at least 2 characters"),
   
   // Recipient Information
   recipientName: z.string().min(2, "Recipient name must be at least 2 characters"),
   recipientEmail: z.string().email("Invalid recipient email address"),
-  recipientPhone: z.string().min(10, "Recipient phone must be at least 10 characters"),
+  recipientPhone: z.string().optional(),
   recipientAddress: z.string().min(5, "Recipient address must be at least 5 characters"),
-  recipientCity: z.string().min(2, "Recipient city must be at least 2 characters"),
-  recipientState: z.string().min(2, "Recipient state must be at least 2 characters"),
-  recipientZip: z.string().min(3, "Recipient ZIP code must be at least 3 characters"),
-  recipientCountry: z.string().min(2, "Recipient country must be at least 2 characters"),
+  recipientCity: z.string().optional(),
+  recipientState: z.string().optional(),
+  recipientZip: z.string().optional(),
+  recipientCountry: z.string().optional(),
   
   // Package Details
   packageType: z.enum(["box", "envelope", "pallet", "crate"], {
     errorMap: () => ({ message: "Invalid package type" })
   }),
-  weight: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
-    message: "Weight must be a positive number"
-  }),
+  weight: z.string().optional(),
   dimensions: z.object({
-    length: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
-      message: "Length must be a positive number"
-    }),
-    width: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
-      message: "Width must be a positive number"
-    }),
-    height: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
-      message: "Height must be a positive number"
-    }),
+    length: z.string().optional(),
+    width: z.string().optional(),
+    height: z.string().optional(),
   }),
   value: z.string().refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
     message: "Declared value must be a positive number"
