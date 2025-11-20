@@ -144,7 +144,7 @@ export default function TrackPage() {
     doc.text('RapidWave Logistics', pageWidth / 2, yPos + 5, { align: 'center' });
 
     doc.setFontSize(10);
-    doc.setTextColor(...lightGray);
+    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
     doc.setFont('helvetica', 'normal');
     doc.text('Global Shipping Solutions', pageWidth / 2, yPos + 12, { align: 'center' });
 
