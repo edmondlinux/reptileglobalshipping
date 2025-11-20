@@ -104,13 +104,17 @@ export default function TrackPage() {
     }
   };
 
-  const handleTrack = async () => {
+  const handleTrack = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
     // Get the current value from the input to handle paste scenarios
-    const currentValue = trackingNumber.trim();
+    const inputElement = document.querySelector('input[type="text"]') as HTMLInputElement;
+    const currentValue = (inputElement?.value || trackingNumber).trim();
     if (!currentValue) {
       toast.error("Please enter a tracking number");
       return;
     }
+    // Update state to match input value
+    setTrackingNumber(currentValue);
     await handleTrackWithNumber(currentValue);
   };
 
@@ -444,27 +448,16 @@ export default function TrackPage() {
             </p>
           </div>
 
-          <div className="space-y-4 mb-8 w-full">
+          <form onSubmit={handleTrack} className="space-y-4 mb-8 w-full">
             <Input
               type="text"
               placeholder="Enter tracking number"
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
-              onPaste={(e) => {
-                e.preventDefault();
-                const pastedText = e.clipboardData.getData('text');
-                setTrackingNumber(pastedText);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  handleTrack();
-                }
-              }}
               className="text-base sm:text-lg h-12 sm:h-14 w-full"
             />
             <Button 
-              onClick={handleTrack}
+              type="submit"
               size="lg" 
               className="w-full opacity-100"
               disabled={isLoading}
@@ -478,7 +471,7 @@ export default function TrackPage() {
                 "Track Shipment"
               )}
             </Button>
-          </div>
+          </form>
 
           {shipment && (
             <div className="space-y-6">
