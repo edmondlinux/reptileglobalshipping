@@ -1,3 +1,4 @@
+
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Shipment from '@/models/Shipment';
@@ -13,33 +14,46 @@ export async function POST(req: NextRequest) {
     // Validate the data
     const validatedData = shipmentValidationSchema.parse(data);
 
-    // Assuming you have a way to get recipient coordinates based on validatedData
-    // For demonstration, let's mock it or use placeholder values
-    const recipientCoords = { lat: 0, lng: 0 }; // Replace with actual logic
+    // Use recipient coordinates if provided, otherwise use placeholder
+    const recipientLat = validatedData.recipientLatitude || 0;
+    const recipientLng = validatedData.recipientLongitude || 0;
 
-    const shipmentData = {
+    const newShipment = new Shipment({
+      trackingNumber: validatedData.trackingNumber,
       senderName: validatedData.senderName,
+      senderEmail: validatedData.senderEmail,
+      senderPhone: validatedData.senderPhone,
       senderAddress: validatedData.senderAddress,
       senderCity: validatedData.senderCity,
       senderState: validatedData.senderState,
       senderZip: validatedData.senderZip,
+      senderCountry: validatedData.senderCountry,
       recipientName: validatedData.recipientName,
+      recipientEmail: validatedData.recipientEmail,
+      recipientPhone: validatedData.recipientPhone,
       recipientAddress: validatedData.recipientAddress,
       recipientCity: validatedData.recipientCity,
       recipientState: validatedData.recipientState,
       recipientZip: validatedData.recipientZip,
+      recipientCountry: validatedData.recipientCountry,
+      packageType: validatedData.packageType,
       weight: validatedData.weight,
       dimensions: validatedData.dimensions,
-      trackingNumber: validatedData.trackingNumber,
-      // Other fields as needed
-    };
-
-    const newShipment = new Shipment({
-      ...shipmentData,
+      value: validatedData.value,
+      description: validatedData.description || '',
+      specialInstructions: validatedData.specialInstructions || '',
+      serviceType: validatedData.serviceType,
+      priority: validatedData.priority,
+      insurance: validatedData.insurance || false,
+      signatureRequired: validatedData.signatureRequired || false,
+      shippingDate: validatedData.shippingDate,
+      estimatedDeliveryDate: validatedData.estimatedDeliveryDate,
+      shippingCost: validatedData.shippingCost,
       latitude: validatedData.latitude,
       longitude: validatedData.longitude,
-      recipientLatitude: recipientCoords.lat,
-      recipientLongitude: recipientCoords.lng,
+      recipientLatitude: recipientLat,
+      recipientLongitude: recipientLng,
+      status: 'pending',
       history: [{
         status: 'pending',
         location: `${validatedData.senderCity}, ${validatedData.senderState}`,
@@ -66,7 +80,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.error("Error creating shipment:", error); // Log the error for debugging
+    console.error("Error creating shipment:", error);
     return NextResponse.json(
       { error: error.message || 'Failed to create shipment' },
       { status: 500 }
