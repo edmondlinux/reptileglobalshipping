@@ -341,7 +341,10 @@ export function GoogleMap({
 
     marker.on("dragend", () => {
       const lngLat = marker.getLngLat();
-      onLocationChange(lngLat.lat, lngLat.lng);
+      // Use requestAnimationFrame to prevent form clearing
+      requestAnimationFrame(() => {
+        onLocationChange(lngLat.lat, lngLat.lng);
+      });
       setCurrentMarkerPosition({ lng: lngLat.lng, lat: lngLat.lat });
 
       // In edit mode, draw covered distance line
