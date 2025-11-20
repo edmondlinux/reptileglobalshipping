@@ -323,9 +323,10 @@ export default function TrackPage() {
     doc.setFont('helvetica', 'bold');
     doc.text('Priority:', detailsRight, yPos);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...primaryColor);
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]); 
     doc.setFont('helvetica', 'bold');
     doc.text(shipment.priority.toUpperCase(), detailsRight + 25, yPos);
+
     
     yPos += 6;
     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
