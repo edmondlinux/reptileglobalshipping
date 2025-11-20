@@ -57,7 +57,7 @@ export const Navbar = () => {
           <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
             <NavigationMenuItem className="font-bold flex">
               <Link href="/" className="ml-2 font-bold text-xl flex items-center">
-                RapidWave Logistics
+                <img src="/logo.png" alt="RapidWave Logistics" className="h-10 w-auto" />
               </Link>
             </NavigationMenuItem>
 
@@ -75,8 +75,8 @@ export const Navbar = () => {
 
                 <SheetContent side={"left"}>
                   <SheetHeader>
-                    <SheetTitle className="font-bold text-xl">
-                      RapidWave Logistics
+                    <SheetTitle className="font-bold text-xl flex items-center gap-2">
+                      <img src="/logo.png" alt="RapidWave Logistics" className="h-8 w-auto" />
                     </SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col justify-center items-center gap-2 mt-4">

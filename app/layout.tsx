@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "RapidWave Logistics - Trusted Global Shipping",
   description: "5 years of excellence in transportation and logistics services",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
