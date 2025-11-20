@@ -105,12 +105,15 @@ export default function TrackPage() {
   };
 
   const handleTrack = async () => {
-    // Get the current value from the input to handle paste scenarios
-    const currentValue = trackingNumber.trim();
+    // Get the current value directly from the input element to handle paste scenarios
+    const inputElement = document.querySelector('input[type="text"]') as HTMLInputElement;
+    const currentValue = inputElement?.value.trim() || trackingNumber.trim();
     if (!currentValue) {
       toast.error("Please enter a tracking number");
       return;
     }
+    // Update state to match the current input value
+    setTrackingNumber(currentValue);
     await handleTrackWithNumber(currentValue);
   };
 
