@@ -155,10 +155,20 @@ export function RouteMap({
           if (originData.features && originData.features.length > 0) {
             const [originLng, originLat] = originData.features[0].center;
             
-            originMarkerRef.current = new mapboxgl.Marker({ color: "#3b82f6" })
+            originMarkerRef.current = new mapboxgl.Marker({ 
+              color: "#3b82f6",
+              draggable: true 
+            })
               .setLngLat([originLng, originLat])
               .setPopup(new mapboxgl.Popup().setHTML("<h3>Origin (Sender)</h3>"))
               .addTo(map);
+
+            // Handle origin marker drag
+            originMarkerRef.current.on("dragend", () => {
+              const lngLat = originMarkerRef.current!.getLngLat();
+              console.log("Origin marker moved to:", lngLat);
+            });
+
             bounds.extend([originLng, originLat]);
           }
         }
@@ -203,11 +213,11 @@ export function RouteMap({
       <div className="flex items-center gap-6 p-4 bg-muted rounded-lg flex-wrap">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-          <span className="text-sm font-medium">Origin (Sender)</span>
+          <span className="text-sm font-medium">Origin (Sender) - Draggable</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded-full bg-blue-500 animate-pulse"></div>
-          <span className="text-sm font-medium">Current Location</span>
+          <span className="text-sm font-medium">Current Location - Draggable</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded-full bg-green-500"></div>

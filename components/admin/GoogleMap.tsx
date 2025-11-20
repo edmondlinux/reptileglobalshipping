@@ -138,7 +138,7 @@ export function GoogleMap({
     }
   }, [latitude, longitude]);
 
-  // Add origin marker when sender address is provided (blue - non-draggable)
+  // Add origin marker when sender address is provided (blue - draggable)
   useEffect(() => {
     if (senderLat && senderLng && mapRef.current) {
       // Remove existing origin marker if any
@@ -146,13 +146,20 @@ export function GoogleMap({
         originMarkerRef.current.remove();
       }
 
-      // Create new origin marker (blue, non-draggable)
+      // Create new origin marker (blue, draggable)
       originMarkerRef.current = new mapboxgl.Marker({
-        draggable: false,
+        draggable: true,
         color: "#3b82f6", // Blue color
       })
         .setLngLat([senderLng, senderLat])
         .addTo(mapRef.current);
+
+      // Handle origin marker drag
+      originMarkerRef.current.on("dragend", () => {
+        const lngLat = originMarkerRef.current!.getLngLat();
+        // You can add a callback here if you need to update sender coordinates
+        console.log("Origin marker moved to:", lngLat);
+      });
 
       // Initially set current location to sender location if not already set
       if (!latitude || !longitude || (latitude === 40.7128 && longitude === -74.0060)) {
@@ -219,11 +226,11 @@ export function GoogleMap({
       <div className="flex items-center gap-4 text-sm text-muted-foreground">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-          <span>Origin (Sender)</span>
+          <span>Origin (Sender) - Draggable</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-          <span>Current Location (Draggable)</span>
+          <span>Current Location - Draggable</span>
         </div>
         {recipientLat && recipientLng && (
           <div className="flex items-center gap-2">
