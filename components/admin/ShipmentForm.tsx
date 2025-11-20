@@ -45,6 +45,7 @@ interface ShipmentFormData {
   shippingCost: string;
   latitude: number;
   longitude: number;
+  status?: string;
 }
 
 interface ShipmentFormProps {
@@ -710,6 +711,25 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
                 placeholder="25.00"
               />
             </div>
+            {isEditMode && (
+              <div className="space-y-2">
+                <Label htmlFor="status">Shipment Status *</Label>
+                <Select value={formData.status} onValueChange={(value) => handleInputChange("status", value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="processing">Processing</SelectItem>
+                    <SelectItem value="in-transit">In Transit</SelectItem>
+                    <SelectItem value="out-for-delivery">Out for Delivery</SelectItem>
+                    <SelectItem value="delivered">Delivered</SelectItem>
+                    <SelectItem value="on-hold">On Hold</SelectItem>
+                    <SelectItem value="cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

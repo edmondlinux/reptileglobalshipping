@@ -38,6 +38,7 @@ export function ShipmentTimeline({ history }: ShipmentTimelineProps) {
       cancelled: "bg-red-500",
       processing: "bg-orange-500",
       "out-for-delivery": "bg-purple-500",
+      "on-hold": "bg-amber-600",
     };
     return colors[status.toLowerCase()] || "bg-gray-500";
   };

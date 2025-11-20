@@ -421,6 +421,9 @@ export default function TrackPage() {
       "in-transit": "bg-blue-500",
       delivered: "bg-green-500",
       cancelled: "bg-red-500",
+      processing: "bg-orange-500",
+      "out-for-delivery": "bg-purple-500",
+      "on-hold": "bg-amber-600",
     };
     return colors[status] || "bg-gray-500";
   };

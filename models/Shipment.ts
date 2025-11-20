@@ -91,7 +91,11 @@ const ShipmentSchema: Schema = new Schema(
     longitude: { type: Number, required: true },
     recipientLatitude: { type: Number },
     recipientLongitude: { type: Number },
-    status: { type: String, default: 'pending' },
+    status: { 
+      type: String, 
+      default: 'pending',
+      enum: ['pending', 'processing', 'in-transit', 'out-for-delivery', 'delivered', 'on-hold', 'cancelled']
+    },
     history: [{
       status: { type: String, required: true },
       location: { type: String, required: true },

@@ -57,6 +57,7 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
     shippingCost: "",
     latitude: 40.7128,
     longitude: -74.0060,
+    status: "pending",
   });
 
   const searchShipment = async () => {

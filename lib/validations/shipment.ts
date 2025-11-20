@@ -55,6 +55,9 @@ export const shipmentValidationSchema = z.object({
   priority: z.enum(["low", "normal", "high", "urgent"], {
     errorMap: () => ({ message: "Invalid priority level" })
   }),
+  status: z.enum(["pending", "processing", "in-transit", "out-for-delivery", "delivered", "on-hold", "cancelled"], {
+    errorMap: () => ({ message: "Invalid status" })
+  }).optional(),
   insurance: z.boolean().optional(),
   signatureRequired: z.boolean().optional(),
   shippingDate: z.string().min(1, "Shipping date is required"),

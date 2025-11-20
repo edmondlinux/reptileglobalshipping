@@ -64,38 +64,67 @@ export async function PUT(
     // Prepare update data
     const updateData: any = { ...data };
 
-    // If status or location changed, add to history
-    if (data.status && data.status !== currentShipment.status) {
-      const getIconForStatus = (status: string) => {
-        const iconMap: Record<string, string> = {
-          'pending': 'clock',
-          'in-transit': 'truck',
-          'out-for-delivery': 'mappin',
-          'delivered': 'check',
-          'cancelled': 'x',
-          'processing': 'package'
-        };
-        return iconMap[status.toLowerCase()] || 'clock';
+    const getIconForStatus = (status: string) => {
+      const iconMap: Record<string, string> = {
+        'pending': 'clock',
+        'in-transit': 'truck',
+        'out-for-delivery': 'mappin',
+        'delivered': 'check',
+        'cancelled': 'x',
+        'processing': 'package',
+        'on-hold': 'alert'
       };
+      return iconMap[status.toLowerCase()] || 'clock';
+    };
 
-      const getDescriptionForStatus = (status: string) => {
-        const descMap: Record<string, string> = {
-          'pending': 'Awaiting processing',
-          'in-transit': 'Package is on the way',
-          'out-for-delivery': 'Out for delivery to recipient',
-          'delivered': 'Successfully delivered',
-          'cancelled': 'Shipment cancelled',
-          'processing': 'Being processed at facility'
-        };
-        return descMap[status.toLowerCase()] || 'Status updated';
+    const getDescriptionForStatus = (status: string) => {
+      const descMap: Record<string, string> = {
+        'pending': 'Awaiting processing',
+        'in-transit': 'Package is on the way',
+        'out-for-delivery': 'Out for delivery to recipient',
+        'delivered': 'Successfully delivered',
+        'cancelled': 'Shipment cancelled',
+        'processing': 'Being processed at facility',
+        'on-hold': 'Shipment is on hold'
       };
+      return descMap[status.toLowerCase()] || 'Status updated';
+    };
+
+    // Check for status change
+    const statusChanged = data.status && data.status !== currentShipment.status;
+    
+    // Check for location change (latitude/longitude)
+    const locationChanged = (data.latitude !== undefined && data.latitude !== currentShipment.latitude) ||
+                           (data.longitude !== undefined && data.longitude !== currentShipment.longitude);
+
+    // Check for address changes
+    const addressChanged = (data.recipientCity && data.recipientCity !== currentShipment.recipientCity) ||
+                          (data.recipientState && data.recipientState !== currentShipment.recipientState) ||
+                          (data.recipientAddress && data.recipientAddress !== currentShipment.recipientAddress);
+
+    // Add history entry if status or location changed
+    if (statusChanged || locationChanged || addressChanged) {
+      const currentStatus = data.status || currentShipment.status;
+      const currentLocation = data.recipientCity 
+        ? `${data.recipientCity}, ${data.recipientState || currentShipment.recipientState}` 
+        : `${currentShipment.recipientCity}, ${currentShipment.recipientState}`;
+      
+      let description = '';
+      
+      if (statusChanged && (locationChanged || addressChanged)) {
+        description = `${getDescriptionForStatus(currentStatus)} - Location updated to ${currentLocation}`;
+      } else if (statusChanged) {
+        description = getDescriptionForStatus(currentStatus);
+      } else if (locationChanged || addressChanged) {
+        description = `Location updated to ${currentLocation}`;
+      }
 
       const newHistoryEntry = {
-        status: data.status,
-        location: data.recipientCity ? `${data.recipientCity}, ${data.recipientState}` : currentShipment.recipientCity + ', ' + currentShipment.recipientState,
-        description: getDescriptionForStatus(data.status),
+        status: currentStatus,
+        location: currentLocation,
+        description: description,
         timestamp: new Date(),
-        icon: getIconForStatus(data.status)
+        icon: getIconForStatus(currentStatus)
       };
 
       // Append to history array
