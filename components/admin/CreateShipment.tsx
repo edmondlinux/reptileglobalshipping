@@ -59,6 +59,73 @@ export function CreateShipment({ trackingNumber, onRegenerateTracking }: CreateS
     toast.success("Tracking number copied to clipboard!");
   };
 
+  const handleSaveAsDraft = async () => {
+    setIsLoading(true);
+    try {
+      const draftData = {
+        ...formData,
+        trackingNumber,
+      };
+
+      const response = await fetch("/api/drafts/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(draftData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to save draft");
+      }
+
+      toast.success("Draft saved successfully!");
+      onRegenerateTracking();
+      // Reset form on success
+      setFormData({
+        senderName: "",
+        senderEmail: "",
+        senderPhone: "",
+        senderAddress: "",
+        senderCity: "",
+        senderState: "",
+        senderZip: "",
+        senderCountry: "",
+        recipientName: "",
+        recipientEmail: "",
+        recipientPhone: "",
+        recipientAddress: "",
+        recipientCity: "",
+        recipientState: "",
+        recipientZip: "",
+        recipientCountry: "",
+        packageType: "box",
+        weight: "",
+        dimensions: {
+          length: "",
+          width: "",
+          height: "",
+        },
+        value: "",
+        description: "",
+        specialInstructions: "",
+        serviceType: "standard",
+        priority: "normal",
+        insurance: false,
+        signatureRequired: false,
+        shippingDate: "",
+        estimatedDeliveryDate: "",
+        shippingCost: "",
+        latitude: 40.7128,
+        longitude: -74.0060,
+      });
+    } catch (err: any) {
+      toast.error(err.message || "Failed to save draft");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
@@ -166,16 +233,28 @@ export function CreateShipment({ trackingNumber, onRegenerateTracking }: CreateS
       </CardHeader>
       <CardContent className="space-y-6">
         <ShipmentForm formData={formData} setFormData={setFormData} isEditMode={false} />
-        <Button onClick={handleSubmit} className="w-full" disabled={isLoading}>
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Creating Shipment...
-            </>
-          ) : (
-            "Create Shipment"
-          )}
-        </Button>
+        <div className="flex gap-3">
+          <Button onClick={handleSubmit} className="flex-1" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Creating...
+              </>
+            ) : (
+              "Create Shipment"
+            )}
+          </Button>
+          <Button onClick={handleSaveAsDraft} variant="outline" className="flex-1" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              "Save as Draft"
+            )}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

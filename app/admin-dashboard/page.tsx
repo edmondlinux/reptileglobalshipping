@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
@@ -8,8 +7,11 @@ import { CreateShipment } from "@/components/admin/CreateShipment";
 import { EditShipment } from "@/components/admin/EditShipment";
 import { AllShipments } from "@/components/admin/AllShipments";
 import { Analytics } from "@/components/admin/Analytics";
-import { Package, Edit, List, BarChart3 } from "lucide-react";
+import { DraftShipments } from "@/components/admin/DraftShipments";
+import { Package, Edit, List, BarChart3, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 
 function generateTrackingNumber(): string {
   const prefix = "RW";
@@ -18,7 +20,7 @@ function generateTrackingNumber(): string {
   return `${prefix}${timestamp}${random}`;
 }
 
-type TabType = "create" | "edit" | "all" | "analytics";
+type TabType = "create" | "edit" | "all" | "analytics" | "drafts";
 
 export default function AdminDashboard() {
   const { user, isLoading } = useAuth();
@@ -60,6 +62,7 @@ export default function AdminDashboard() {
 
   const navItems = [
     { id: "create" as TabType, label: "Create Shipment", icon: Package },
+    { id: "drafts" as TabType, label: "Drafts", icon: FileText },
     { id: "edit" as TabType, label: "Edit Shipment", icon: Edit },
     { id: "all" as TabType, label: "All Shipments", icon: List },
     { id: "analytics" as TabType, label: "Analytics", icon: BarChart3 },
@@ -109,6 +112,7 @@ export default function AdminDashboard() {
           {activeTab === "edit" && <EditShipment initialTrackingNumber={editTrackingNumber} />}
           {activeTab === "all" && <AllShipments onEditShipment={handleEditShipment} />}
           {activeTab === "analytics" && <Analytics />}
+          {activeTab === "drafts" && <DraftShipments onEditShipment={handleEditShipment} />}
         </div>
       </div>
     </div>
