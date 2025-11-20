@@ -150,7 +150,7 @@ export default function TrackPage() {
 
     // Tracking number
     doc.setFontSize(16);
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFont('helvetica', 'bold');
     doc.text(`TRACKING: ${shipment.trackingNumber}`, pageWidth / 2, yPos + 20, { align: 'center' });
 
@@ -226,7 +226,7 @@ export default function TrackPage() {
     
     // Tracking number below barcode
     doc.setFontSize(10);
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFont('courier', 'bold');
     doc.text(shipment.trackingNumber, pageWidth / 2, yPos + 26, { align: 'center' });
 
@@ -243,7 +243,7 @@ export default function TrackPage() {
     doc.text('FROM', 15, yPos + 5.5);
 
     yPos += 12;
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
     doc.text(shipment.senderName, 15, yPos);
@@ -270,7 +270,7 @@ export default function TrackPage() {
     doc.text('TO', 15 + colWidth + 5, yPos + 5.5);
 
     yPos += 12;
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
     doc.text(shipment.recipientName, 15 + colWidth + 5, yPos);
@@ -297,7 +297,7 @@ export default function TrackPage() {
     doc.text('PACKAGE DETAILS', 15, yPos + 5.5);
 
     yPos += 12;
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     
@@ -328,7 +328,7 @@ export default function TrackPage() {
     doc.text(shipment.priority.toUpperCase(), detailsRight + 25, yPos);
     
     yPos += 6;
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFont('helvetica', 'bold');
     doc.text('Dimensions:', detailsLeft, yPos);
     doc.setFont('helvetica', 'normal');
@@ -380,7 +380,7 @@ export default function TrackPage() {
     doc.text('ADDITIONAL SERVICES', 15, yPos + 5.5);
 
     yPos += 12;
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     const services = [];
@@ -401,13 +401,13 @@ export default function TrackPage() {
     yPos += 5;
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(...darkGray);
+    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     doc.text('RapidWave Logistics', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 5;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...lightGray);
+    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
     doc.text('For support, contact us at support@rapidwave.com | 1-800-RAPIDWAVE', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 4;
