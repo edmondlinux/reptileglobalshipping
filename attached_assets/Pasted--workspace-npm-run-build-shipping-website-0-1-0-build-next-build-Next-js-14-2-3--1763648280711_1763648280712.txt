@@ -1,0 +1,174 @@
+~/workspace$ npm run build
+
+> shipping-website@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.3
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+
+./components/admin/EditShipment.tsx
+122:6  Warning: React Hook useEffect has a missing dependency: 'searchShipment'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/GoogleMap.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'latitude', 'longitude', and 'onLocationChange'. Either include them or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+92:6  Warning: React Hook useEffect has a missing dependency: 'onLocationChange'. Either include it or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+
+./components/admin/RouteMap.tsx
+54:6  Warning: React Hook useEffect has missing dependencies: 'currentLat' and 'currentLng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/admin/ShipmentForm.tsx
+321:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+344:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/layout/navbar.tsx
+60:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+79:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/layout/sections/footer.tsx
+15:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+ ✓ Linting and checking validity of types    
+ ✓ Collecting page data    
+   Generating static pages (0/19)  [=   ] ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/404". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+
+   Generating static pages (5/19)  [=== ] ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/admin/dashboard". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/admin/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/about". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/about". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/testimonials". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/testimonials". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/contact". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/contact". Read more: https://nextjs.org/docs/messages/prerender-error
+
+   Generating static pages (12/19)  [ ===] ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/team". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/team". Read more: https://nextjs.org/docs/messages/prerender-error
+
+   Generating static pages (14/19)  [   =] ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/admin-dashboard". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/admin-dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/track". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at l (/home/runner/workspace/.next/server/chunks/804.js:66:11325)
+    at c (/home/runner/workspace/.next/server/chunks/804.js:66:22322)
+    at H (/home/runner/workspace/.next/server/chunks/574.js:1:9471)
+    at nj (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46251)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47571)
+    at nM (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:61546)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64546)
+    at nB (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:67538)
+    at nD (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:66680)
+    at nN (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64853)
+
+Error occurred prerendering page "/track". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ ✓ Generating static pages (19/19)
+
+> Export encountered errors on following paths:
+    /_not-found/page: /_not-found
+    /about/page: /about
+    /admin-dashboard/page: /admin-dashboard
+    /admin/dashboard/page: /admin/dashboard
+    /contact/page: /contact
+    /page: /
+    /team/page: /team
+    /testimonials/page: /testimonials
+    /track/page: /track
+~/workspace$ 
