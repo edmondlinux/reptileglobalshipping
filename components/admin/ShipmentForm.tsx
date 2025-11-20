@@ -727,18 +727,14 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
             latitude={formData.latitude}
             longitude={formData.longitude}
             onLocationChange={handleLocationChange}
-            showRoute={recipientLat !== undefined && recipientLng !== undefined}
             recipientLat={recipientLat}
             recipientLng={recipientLng}
             senderLat={senderLat}
             senderLng={senderLng}
-            isEditMode={isEditMode}
           />
           <p className="text-sm text-muted-foreground mt-4">
             Click on the map or drag the blue marker to set the current shipment location.
-            {recipientLat && recipientLng
-              ? " The route to the destination is displayed above."
-              : " Enter the recipient address to see the route."}
+            {recipientLat && recipientLng && " The green marker shows the destination."}
           </p>
         </CardContent>
       </Card>
