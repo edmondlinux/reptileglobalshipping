@@ -13,8 +13,9 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-xl text-muted-foreground">
-            We're here to help with your shipping needs
+            We&apos;re here to help with your shipping needs
           </p>
+
         </div>
       </section>
       <ContactSection />

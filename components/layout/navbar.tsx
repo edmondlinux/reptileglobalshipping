@@ -57,7 +57,7 @@ export const Navbar = () => {
           <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
             <NavigationMenuItem className="font-bold flex">
               <Link href="/" className="ml-2 font-bold text-xl flex items-center">
-                <img src="/logo.png" alt="RapidWave Logistics" className="h-10 w-auto" />
+                <img src="/logo.png" alt="RapidWave Logistics" className="h-11 w-auto" />
               </Link>
             </NavigationMenuItem>
 
