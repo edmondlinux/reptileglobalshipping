@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, MapPin, Trash2 } from "lucide-react";
+import { Loader2, MapPin, Trash2, Edit } from "lucide-react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,15 +15,46 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { ShipmentForm } from "./ShipmentForm";
 
 interface Shipment {
   trackingNumber: string;
   senderName: string;
+  senderEmail: string;
+  senderPhone: string;
+  senderAddress: string;
+  senderCity: string;
+  senderState: string;
+  senderZip: string;
+  senderCountry: string;
   recipientName: string;
+  recipientEmail: string;
+  recipientPhone: string;
+  recipientAddress: string;
+  recipientCity: string;
+  recipientState: string;
+  recipientZip: string;
+  recipientCountry: string;
+  packageType: string;
+  weight: string;
+  dimensions: {
+    length: string;
+    width: string;
+    height: string;
+  };
+  value: string;
+  description: string;
+  specialInstructions: string;
   status: string;
   serviceType: string;
+  priority: string;
+  insurance: boolean;
+  signatureRequired: boolean;
   shippingDate: string;
   estimatedDeliveryDate: string;
+  shippingCost: string;
+  latitude: number;
+  longitude: number;
   currentLocation?: { lat: number; lng: number };
   destination?: { lat: number; lng: number };
 }
@@ -33,8 +64,11 @@ export function AllShipments() {
   const [isLoading, setIsLoading] = useState(true);
   const [showRouteDialog, setShowRouteDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
   const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [editFormData, setEditFormData] = useState<Shipment | null>(null);
 
   useEffect(() => {
     fetchShipments();
@@ -54,6 +88,49 @@ export function AllShipments() {
       toast.error(err.message || "Failed to load shipments");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleEditClick = (shipment: Shipment) => {
+    setSelectedShipment(shipment);
+    setEditFormData(shipment);
+    setShowEditDialog(true);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!selectedShipment || !editFormData) return;
+
+    setIsSaving(true);
+    try {
+      const response = await fetch(
+        `/api/shipments/${selectedShipment.trackingNumber}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editFormData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to update shipment");
+      }
+
+      toast.success("Shipment updated successfully!");
+      
+      // Update shipment in local state
+      setShipments(shipments.map(
+        (s) => s.trackingNumber === selectedShipment.trackingNumber ? data.shipment : s
+      ));
+      
+      setShowEditDialog(false);
+      setSelectedShipment(null);
+      setEditFormData(null);
+    } catch (err: any) {
+      toast.error(err.message || "Failed to update shipment");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -171,6 +248,14 @@ export function AllShipments() {
                             View Route
                           </Button>
                           <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleEditClick(shipment)}
+                          >
+                            <Edit className="h-4 w-4 mr-1" />
+                            Edit
+                          </Button>
+                          <Button
                             variant="destructive"
                             size="sm"
                             onClick={() => handleDeleteClick(shipment)}
@@ -209,6 +294,52 @@ export function AllShipments() {
               <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
             </div>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Shipment Dialog */}
+      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Shipment: {selectedShipment?.trackingNumber}</DialogTitle>
+            <DialogDescription>
+              Update the shipment details below
+            </DialogDescription>
+          </DialogHeader>
+          {editFormData && (
+            <div className="py-4">
+              <ShipmentForm 
+                formData={editFormData} 
+                setFormData={setEditFormData}
+                isEditMode={true}
+              />
+            </div>
+          )}
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowEditDialog(false);
+                setEditFormData(null);
+              }}
+              disabled={isSaving}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSaveEdit}
+              disabled={isSaving}
+            >
+              {isSaving ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Saving...
+                </>
+              ) : (
+                "Save Changes"
+              )}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
