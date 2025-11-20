@@ -751,14 +751,9 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
             recipientLng={recipientLng}
             senderLat={senderLat}
             senderLng={senderLng}
-            isCreateMode={!isEditMode}
           />
           <p className="text-sm text-muted-foreground mt-4">
-            {!isEditMode ? (
-              <>Drag the pulsing blue dot or use the "Drop marker manually" button to set the current shipment location. The blue marker shows the origin (sender address).</>
-            ) : (
-              <>Click on the map or drag the pulsing blue dot to set the current shipment location. The blue marker shows the origin (sender address).</>
-            )}
+            Click on the map or drag the pulsing blue dot to set the current shipment location. The blue marker shows the origin (sender address) and cannot be moved.
             {recipientLat && recipientLng && " The green marker shows the destination."}
           </p>
         </CardContent>

@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
 
 interface MapboxMapProps {
   latitude: number;
@@ -16,7 +14,6 @@ interface MapboxMapProps {
   senderLat?: number;
   senderLng?: number;
   isEditMode?: boolean;
-  isCreateMode?: boolean;
 }
 
 export function GoogleMap({
@@ -27,14 +24,12 @@ export function GoogleMap({
   recipientLng,
   senderLat,
   senderLng,
-  isCreateMode = false,
 }: MapboxMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const currentLocationMarkerRef = useRef<mapboxgl.Marker | null>(null);
   const originMarkerRef = useRef<mapboxgl.Marker | null>(null);
   const recipientMarkerRef = useRef<mapboxgl.Marker | null>(null);
-  const [isDropMarkerMode, setIsDropMarkerMode] = useState(false);
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -106,7 +101,7 @@ export function GoogleMap({
     
     const currentMarker = new mapboxgl.Marker({
       element: el,
-      draggable: isCreateMode, // Only draggable in create mode
+      draggable: true,
     })
       .setLngLat([longitude || -74.0060, latitude || 40.7128])
       .addTo(map);
@@ -118,6 +113,16 @@ export function GoogleMap({
       });
     });
 
+    const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
+      const { lng, lat } = e.lngLat;
+      currentMarker.setLngLat([lng, lat]);
+      requestAnimationFrame(() => {
+        onLocationChange(lat, lng);
+      });
+    };
+
+    map.on("click", handleMapClick);
+
     mapRef.current = map;
     currentLocationMarkerRef.current = currentMarker;
 
@@ -125,39 +130,6 @@ export function GoogleMap({
       map.remove();
     };
   }, []);
-
-  // Handle map clicks for dropping markers
-  useEffect(() => {
-    if (!mapRef.current || !currentLocationMarkerRef.current) return;
-
-    const map = mapRef.current;
-    const currentMarker = currentLocationMarkerRef.current;
-
-    const handleMapClick = (e: mapboxgl.MapMouseEvent) => {
-      // Only allow map clicks when in drop marker mode (create mode only)
-      if (isCreateMode && isDropMarkerMode) {
-        const { lng, lat } = e.lngLat;
-        currentMarker.setLngLat([lng, lat]);
-        requestAnimationFrame(() => {
-          onLocationChange(lat, lng);
-        });
-        setIsDropMarkerMode(false); // Exit drop marker mode after placing
-      } else if (!isCreateMode) {
-        // In edit mode, allow normal map clicks
-        const { lng, lat } = e.lngLat;
-        currentMarker.setLngLat([lng, lat]);
-        requestAnimationFrame(() => {
-          onLocationChange(lat, lng);
-        });
-      }
-    };
-
-    map.on("click", handleMapClick);
-
-    return () => {
-      map.off("click", handleMapClick);
-    };
-  }, [isDropMarkerMode, isCreateMode, onLocationChange]);
 
   // Update current location marker
   useEffect(() => {
@@ -239,29 +211,8 @@ export function GoogleMap({
     }
   }, [recipientLat, recipientLng, latitude, longitude]);
 
-  // Update map cursor when in drop marker mode
-  useEffect(() => {
-    if (mapRef.current) {
-      mapRef.current.getCanvas().style.cursor = isDropMarkerMode ? 'crosshair' : '';
-    }
-  }, [isDropMarkerMode]);
-
   return (
     <div className="space-y-2">
-      {isCreateMode && (
-        <div className="mb-2">
-          <Button
-            type="button"
-            variant={isDropMarkerMode ? "default" : "outline"}
-            size="sm"
-            onClick={() => setIsDropMarkerMode(!isDropMarkerMode)}
-            className="flex items-center gap-2"
-          >
-            <MapPin className="h-4 w-4" />
-            {isDropMarkerMode ? "Click map to place marker" : "Drop marker manually"}
-          </Button>
-        </div>
-      )}
       <div className="relative w-full h-[400px] rounded-lg overflow-hidden border">
         <div ref={mapContainerRef} className="w-full h-full" />
       </div>
@@ -272,7 +223,7 @@ export function GoogleMap({
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
-          <span>Current Location {isCreateMode ? "(Draggable)" : ""}</span>
+          <span>Current Location (Draggable)</span>
         </div>
         {recipientLat && recipientLng && (
           <div className="flex items-center gap-2">
