@@ -61,54 +61,77 @@ export async function PUT(
       );
     }
 
-    // Prepare update data
+    // Helper functions
+    const getIconForStatus = (status: string) => {
+      const iconMap: Record<string, string> = {
+        'pending': 'clock',
+        'in-transit': 'truck',
+        'out-for-delivery': 'mappin',
+        'delivered': 'check',
+        'cancelled': 'x',
+        'processing': 'package'
+      };
+      return iconMap[status.toLowerCase()] || 'clock';
+    };
+
+    const getDescriptionForStatus = (status: string) => {
+      const descMap: Record<string, string> = {
+        'pending': 'Awaiting processing',
+        'in-transit': 'Package is on the way',
+        'out-for-delivery': 'Out for delivery to recipient',
+        'delivered': 'Successfully delivered',
+        'cancelled': 'Shipment cancelled',
+        'processing': 'Being processed at facility'
+      };
+      return descMap[status.toLowerCase()] || 'Status updated';
+    };
+
+    // Normalize status for comparison
+    const normalizeStatus = (status: string) => status.toLowerCase().replace(/_/g, '-');
+
+    // Check if status changed
+    const statusChanged = data.status && 
+      normalizeStatus(data.status) !== normalizeStatus(currentShipment.status);
+
+    // Prepare update data (without $push for now)
     const updateData: any = { ...data };
+    delete updateData.$push;
 
-    // If status or location changed, add to history
-    if (data.status && data.status !== currentShipment.status) {
-      const getIconForStatus = (status: string) => {
-        const iconMap: Record<string, string> = {
-          'pending': 'clock',
-          'in-transit': 'truck',
-          'out-for-delivery': 'mappin',
-          'delivered': 'check',
-          'cancelled': 'x',
-          'processing': 'package'
-        };
-        return iconMap[status.toLowerCase()] || 'clock';
-      };
-
-      const getDescriptionForStatus = (status: string) => {
-        const descMap: Record<string, string> = {
-          'pending': 'Awaiting processing',
-          'in-transit': 'Package is on the way',
-          'out-for-delivery': 'Out for delivery to recipient',
-          'delivered': 'Successfully delivered',
-          'cancelled': 'Shipment cancelled',
-          'processing': 'Being processed at facility'
-        };
-        return descMap[status.toLowerCase()] || 'Status updated';
-      };
+    // If status changed, add to history
+    if (statusChanged) {
+      const location = data.recipientCity && data.recipientState
+        ? `${data.recipientCity}, ${data.recipientState}`
+        : `${currentShipment.recipientCity}, ${currentShipment.recipientState}`;
 
       const newHistoryEntry = {
         status: data.status,
-        location: data.recipientCity ? `${data.recipientCity}, ${data.recipientState}` : currentShipment.recipientCity + ', ' + currentShipment.recipientState,
+        location: location,
         description: getDescriptionForStatus(data.status),
         timestamp: new Date(),
         icon: getIconForStatus(data.status)
       };
 
-      // Append to history array
-      updateData.$push = { history: newHistoryEntry };
+      // Update shipment with new data and push history entry
+      const shipment = await Shipment.findOneAndUpdate(
+        { trackingNumber: params.trackingNumber },
+        {
+          ...updateData,
+          $push: { history: newHistoryEntry }
+        },
+        { new: true }
+      );
+
+      return NextResponse.json({ success: true, shipment });
+    } else {
+      // Update without adding history
+      const shipment = await Shipment.findOneAndUpdate(
+        { trackingNumber: params.trackingNumber },
+        updateData,
+        { new: true }
+      );
+
+      return NextResponse.json({ success: true, shipment });
     }
-
-    const shipment = await Shipment.findOneAndUpdate(
-      { trackingNumber: params.trackingNumber },
-      updateData,
-      { new: true }
-    );
-
-    return NextResponse.json({ success: true, shipment });
   } catch (error: any) {
     if (error instanceof ZodError) {
       return NextResponse.json(
