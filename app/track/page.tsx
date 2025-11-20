@@ -448,6 +448,7 @@ export default function TrackPage() {
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
               onPaste={(e) => {
+                e.preventDefault();
                 const pastedText = e.clipboardData.getData('text');
                 setTrackingNumber(pastedText);
               }}
