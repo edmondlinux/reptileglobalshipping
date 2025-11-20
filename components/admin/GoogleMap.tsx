@@ -49,8 +49,8 @@ export function GoogleMap({
     el.innerHTML = `
       <style>
         .current-location-pulse-draggable {
-          width: 20px;
-          height: 20px;
+          width: 48px;
+          height: 48px;
           position: relative;
           cursor: grab;
         }
@@ -60,12 +60,14 @@ export function GoogleMap({
         .current-location-pulse-draggable::before {
           content: '';
           position: absolute;
-          width: 20px;
-          height: 20px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 48px;
+          height: 48px;
           border-radius: 50%;
-          background: #4285f4;
-          box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.7);
-          animation: pulse-animation-draggable 2s infinite;
+          background: rgba(66, 133, 244, 0.25);
+          animation: pulse-ring-draggable 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         .current-location-pulse-draggable::after {
           content: '';
@@ -73,21 +75,25 @@ export function GoogleMap({
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 12px;
-          height: 12px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
           background: #4285f4;
-          border: 2px solid white;
+          border: 3px solid white;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
-        @keyframes pulse-animation-draggable {
+        @keyframes pulse-ring-draggable {
           0% {
-            box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.7);
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 1;
           }
           50% {
-            box-shadow: 0 0 0 10px rgba(66, 133, 244, 0);
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.6;
           }
           100% {
-            box-shadow: 0 0 0 0 rgba(66, 133, 244, 0);
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 1;
           }
         }
       </style>
