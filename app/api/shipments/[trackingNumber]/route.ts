@@ -61,8 +61,9 @@ export async function PUT(
       );
     }
 
-    // Prepare update data
+    // Prepare update data - exclude history from direct updates to avoid conflicts
     const updateData: any = { ...data };
+    delete updateData.history; // Remove history to avoid conflicts with $push
 
     const getIconForStatus = (status: string) => {
       const iconMap: Record<string, string> = {
