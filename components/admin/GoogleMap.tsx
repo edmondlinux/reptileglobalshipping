@@ -68,7 +68,7 @@ export function GoogleMap({
             height: 48px;
             position: relative;
             cursor: grab;
-            z-index: 10;
+            z-index: 100 !important;
           }
           .current-location-pulse-draggable:active {
             cursor: grabbing;
@@ -122,10 +122,29 @@ export function GoogleMap({
         .setLngLat([longitude || -74.0060, latitude || 40.7128])
         .addTo(map);
 
+      let dragStartPos: { lat: number; lng: number } | null = null;
+
+      currentMarker.on("dragstart", () => {
+        const lngLat = currentMarker!.getLngLat();
+        dragStartPos = { lat: lngLat.lat, lng: lngLat.lng };
+      });
+
       currentMarker.on("dragend", () => {
         const lngLat = currentMarker!.getLngLat();
-        setPendingLocation({ lat: lngLat.lat, lng: lngLat.lng });
-        setShowConfirmModal(true);
+        
+        // Check if position actually changed significantly (more than ~10 meters)
+        if (dragStartPos) {
+          const latDiff = Math.abs(lngLat.lat - dragStartPos.lat);
+          const lngDiff = Math.abs(lngLat.lng - dragStartPos.lng);
+          
+          // ~0.0001 degrees is approximately 10 meters
+          if (latDiff > 0.0001 || lngDiff > 0.0001) {
+            setPendingLocation({ lat: lngLat.lat, lng: lngLat.lng });
+            setShowConfirmModal(true);
+          }
+        }
+        
+        dragStartPos = null;
       });
     }
 
@@ -154,9 +173,18 @@ export function GoogleMap({
 
       // Create new origin marker (blue, non-draggable with lower z-index)
       const originEl = document.createElement('div');
-      originEl.style.cssText = 'z-index: 5;';
+      originEl.className = 'origin-marker';
+      originEl.innerHTML = `
+        <style>
+          .origin-marker {
+            position: relative;
+            z-index: 1 !important;
+          }
+        </style>
+      `;
       
       originMarkerRef.current = new mapboxgl.Marker({
+        element: originEl,
         draggable: false,
         color: "#3b82f6", // Blue color
       })
