@@ -25,6 +25,7 @@ export default function AdminDashboard() {
   const router = useRouter();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [activeTab, setActiveTab] = useState<TabType>("create");
+  const [editTrackingNumber, setEditTrackingNumber] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!isLoading && (!user || user.role !== "admin")) {
@@ -38,6 +39,11 @@ export default function AdminDashboard() {
 
   const regenerateTracking = () => {
     setTrackingNumber(generateTrackingNumber());
+  };
+
+  const handleEditShipment = (trackingNum: string) => {
+    setEditTrackingNumber(trackingNum);
+    setActiveTab("edit");
   };
 
   if (isLoading) {
@@ -100,8 +106,8 @@ export default function AdminDashboard() {
               onRegenerateTracking={regenerateTracking}
             />
           )}
-          {activeTab === "edit" && <EditShipment />}
-          {activeTab === "all" && <AllShipments />}
+          {activeTab === "edit" && <EditShipment initialTrackingNumber={editTrackingNumber} />}
+          {activeTab === "all" && <AllShipments onEditShipment={handleEditShipment} />}
           {activeTab === "analytics" && <Analytics />}
         </div>
       </div>

@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, MapPin, Trash2 } from "lucide-react";
+import { Loader2, MapPin, Trash2, Edit } from "lucide-react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +28,11 @@ interface Shipment {
   destination?: { lat: number; lng: number };
 }
 
-export function AllShipments() {
+interface AllShipmentsProps {
+  onEditShipment?: (trackingNumber: string) => void;
+}
+
+export function AllShipments({ onEditShipment }: AllShipmentsProps) {
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showRouteDialog, setShowRouteDialog] = useState(false);
@@ -169,6 +173,14 @@ export function AllShipments() {
                           >
                             <MapPin className="h-4 w-4 mr-1" />
                             View Route
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => onEditShipment?.(shipment.trackingNumber)}
+                          >
+                            <Edit className="h-4 w-4 mr-1" />
+                            Edit
                           </Button>
                           <Button
                             variant="destructive"

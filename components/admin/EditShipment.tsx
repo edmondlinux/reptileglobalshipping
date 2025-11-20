@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,8 +12,12 @@ import { Search, Loader2 } from "lucide-react";
 import { shipmentValidationSchema } from "@/lib/validations/shipment";
 import { ZodError } from "zod";
 
-export function EditShipment() {
-  const [trackingNumber, setTrackingNumber] = useState("");
+interface EditShipmentProps {
+  initialTrackingNumber?: string;
+}
+
+export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
+  const [trackingNumber, setTrackingNumber] = useState(initialTrackingNumber || "");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [shipmentFound, setShipmentFound] = useState(false);
@@ -80,6 +84,13 @@ export function EditShipment() {
       setIsLoading(false);
     }
   };
+
+  // Auto-search when initialTrackingNumber is provided
+  useEffect(() => {
+    if (initialTrackingNumber && initialTrackingNumber.trim()) {
+      searchShipment();
+    }
+  }, [initialTrackingNumber]);
 
   const handleUpdate = async () => {
     setIsSaving(true);
