@@ -83,8 +83,12 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
 
   const handleLocationChange = (lat: number, lng: number) => {
     // Only update if the location actually changed significantly
-    if (Math.abs(formData.latitude - lat) > 0.0001 || Math.abs(formData.longitude - lng) > 0.0001) {
-      setFormData({ ...formData, latitude: lat, longitude: lng });
+    const latDiff = Math.abs(formData.latitude - lat);
+    const lngDiff = Math.abs(formData.longitude - lng);
+    
+    if (latDiff > 0.0001 || lngDiff > 0.0001) {
+      // Use callback form to avoid dependency on formData
+      setFormData(prev => ({ ...prev, latitude: lat, longitude: lng }));
     }
   };
 
@@ -300,6 +304,10 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
     return null;
   };
 
+  // Refs must be declared before useEffect
+  const prevSenderAddressRef = useRef<string>("");
+  const prevRecipientAddressRef = useRef<string>("");
+
   // Auto-geocode recipient address when all fields are filled
   useEffect(() => {
     const { recipientAddress, recipientCity, recipientState, recipientCountry } = formData;
@@ -309,21 +317,18 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
       
       // Only geocode if the address actually changed
       if (fullAddress !== prevRecipientAddressRef.current) {
+        prevRecipientAddressRef.current = fullAddress;
         geocodeAddress(fullAddress, 'recipient').then(coords => {
           if (coords) {
             setRecipientLat(coords.lat);
             setRecipientLng(coords.lng);
           }
         });
-        prevRecipientAddressRef.current = fullAddress;
       }
     }
   }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry]);
 
   // Auto-geocode sender address when all fields are filled
-  const prevSenderAddressRef = useRef<string>("");
-  const prevRecipientAddressRef = useRef<string>("");
-  
   useEffect(() => {
     const { senderAddress, senderCity, senderState, senderCountry } = formData;
 
@@ -332,13 +337,13 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
       
       // Only geocode if the address actually changed
       if (fullAddress !== prevSenderAddressRef.current) {
+        prevSenderAddressRef.current = fullAddress;
         geocodeAddress(fullAddress, 'sender').then(coords => {
           if (coords) {
             setSenderLat(coords.lat);
             setSenderLng(coords.lng);
           }
         });
-        prevSenderAddressRef.current = fullAddress;
       }
     }
   }, [formData.senderAddress, formData.senderCity, formData.senderState, formData.senderCountry]);
