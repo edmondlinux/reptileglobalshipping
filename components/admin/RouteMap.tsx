@@ -171,27 +171,11 @@ export function RouteMap({
             
             originMarkerRef.current = new mapboxgl.Marker({ 
               color: "#3b82f6",
-              draggable: true 
+              draggable: false 
             })
               .setLngLat([originLng, originLat])
               .setPopup(new mapboxgl.Popup().setHTML("<h3>Origin (Sender)</h3>"))
               .addTo(map);
-
-            // Store original origin location
-            setOriginalOriginLocation({ lat: originLat, lng: originLng });
-
-            // Handle origin marker drag start
-            originMarkerRef.current.on("dragstart", () => {
-              const lngLat = originMarkerRef.current!.getLngLat();
-              setOriginalOriginLocation({ lat: lngLat.lat, lng: lngLat.lng });
-            });
-
-            // Handle origin marker drag end
-            originMarkerRef.current.on("dragend", () => {
-              const lngLat = originMarkerRef.current!.getLngLat();
-              setPendingOriginLocation({ lat: lngLat.lat, lng: lngLat.lng });
-              setShowOriginChangeModal(true);
-            });
 
             bounds.extend([originLng, originLat]);
           }
@@ -255,11 +239,11 @@ export function RouteMap({
         <div className="flex items-center gap-6 p-4 bg-muted rounded-lg flex-wrap">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-            <span className="text-sm font-medium">Origin (Sender) - Draggable</span>
+            <span className="text-sm font-medium">Origin (Sender)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-blue-500 animate-pulse"></div>
-            <span className="text-sm font-medium">Current Location - Draggable</span>
+            <span className="text-sm font-medium">Current Location</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-green-500"></div>
