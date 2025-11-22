@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Shipment from '@/models/Shipment';
@@ -85,8 +84,8 @@ export async function POST(req: NextRequest) {
       recipientZip: validatedData.recipientZip || '',
       recipientCountry: validatedData.recipientCountry || '',
       packageType: validatedData.packageType,
-      weight: validatedData.weight,
-      dimensions: validatedData.dimensions,
+      weight: validatedData.weight || '',
+      dimensions: validatedData.dimensions || { length: '', width: '', height: '' },
       value: validatedData.value,
       description: validatedData.description || '',
       serviceType: validatedData.serviceType,
@@ -107,8 +106,8 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       shipment: newShipment,
       emailStatus: {
         senderEmailSent: emailResult.senderEmail.success,
@@ -118,7 +117,7 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     if (error instanceof ZodError) {
       return NextResponse.json(
-        { 
+        {
           error: 'Validation failed',
           details: error.errors.map(err => ({
             field: err.path.join('.'),
