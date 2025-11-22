@@ -1,0 +1,62 @@
+11:22:28.610 Running build in Washington, D.C., USA (East) – iad1
+11:22:28.611 Build machine configuration: 2 cores, 8 GB
+11:22:28.741 Cloning github.com/godyclif/Ggggggg (Branch: main, Commit: ab71269)
+11:22:28.742 Previous build caches not available.
+11:22:29.179 Cloning completed: 438.000ms
+11:22:29.547 Running "vercel build"
+11:22:30.014 Vercel CLI 48.10.5
+11:22:30.357 Installing dependencies...
+11:22:33.511 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+11:22:34.203 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+11:22:36.444 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+11:22:45.318 
+11:22:45.319 added 701 packages in 15s
+11:22:45.319 
+11:22:45.319 150 packages are looking for funding
+11:22:45.319   run `npm fund` for details
+11:22:45.390 Detected Next.js version: 14.2.3
+11:22:45.397 Running "npm run build"
+11:22:45.606 
+11:22:45.607 > shipping-website@0.1.0 build
+11:22:45.607 > next build
+11:22:45.607 
+11:22:46.153 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+11:22:46.154 This information is used to shape Next.js' roadmap and prioritize features.
+11:22:46.154 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+11:22:46.154 https://nextjs.org/telemetry
+11:22:46.154 
+11:22:46.208   ▲ Next.js 14.2.3
+11:22:46.209 
+11:22:46.267    Creating an optimized production build ...
+11:23:20.170 Browserslist: caniuse-lite is outdated. Please run:
+11:23:20.170   npx update-browserslist-db@latest
+11:23:20.170   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+11:23:23.215  ✓ Compiled successfully
+11:23:23.216    Linting and checking validity of types ...
+11:23:28.419 
+11:23:28.419 ./components/admin/GoogleMap.tsx
+11:23:28.419 146:6  Warning: React Hook useEffect has missing dependencies: 'latitude', 'longitude', and 'onLocationChange'. Either include them or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+11:23:28.420 211:6  Warning: React Hook useEffect has missing dependencies: 'latitude', 'longitude', 'onLocationChange', 'recipientLat', and 'recipientLng'. Either include them or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+11:23:28.420 
+11:23:28.420 ./components/admin/RouteMap.tsx
+11:23:28.420 80:6  Warning: React Hook useEffect has missing dependencies: 'currentLat' and 'currentLng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+11:23:28.421 
+11:23:28.421 ./components/admin/ShipmentForm.tsx
+11:23:28.421 329:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+11:23:28.422 349:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+11:23:28.422 
+11:23:28.422 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+11:23:37.378 Failed to compile.
+11:23:37.378 
+11:23:37.378 ./app/api/shipments/create/route.ts:83:7
+11:23:37.378 Type error: Type 'string | undefined' is not assignable to type 'string'.
+11:23:37.378   Type 'undefined' is not assignable to type 'string'.
+11:23:37.378 
+11:23:37.378 [0m [90m 81 |[39m       recipientEmail[33m:[39m validatedData[33m.[39mrecipientEmail[33m,[39m[0m
+11:23:37.378 [0m [90m 82 |[39m       recipientAddress[33m:[39m validatedData[33m.[39mrecipientAddress[33m,[39m[0m
+11:23:37.378 [0m[31m[1m>[22m[39m[90m 83 |[39m       recipientCity[33m:[39m validatedData[33m.[39mrecipientCity[33m,[39m[0m
+11:23:37.380 [0m [90m    |[39m       [31m[1m^[22m[39m[0m
+11:23:37.380 [0m [90m 84 |[39m       recipientState[33m:[39m validatedData[33m.[39mrecipientState[33m,[39m[0m
+11:23:37.380 [0m [90m 85 |[39m       recipientZip[33m:[39m validatedData[33m.[39mrecipientZip[33m,[39m[0m
+11:23:37.380 [0m [90m 86 |[39m       recipientCountry[33m:[39m validatedData[33m.[39mrecipientCountry[33m,[39m[0m
+11:23:37.439 Error: Command "npm run build" exited with 1
