@@ -72,7 +72,7 @@ export const HeroSection = () => {
 
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               Welcome to{" "}
-              <span className="text-transparent bg-gradient-to-r from-[#D247BF] via-primary to-[#7c3aed] bg-clip-text">
+              <span className="text-transparent bg-gradient-to-r from-[#1E3A5F] via-primary to-[#0D9488] bg-clip-text">
                 SwiftTrust
               </span>
               <br />

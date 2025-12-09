@@ -119,7 +119,7 @@ export function RouteMap({
               width: 48px;
               height: 48px;
               border-radius: 50%;
-              background: rgba(66, 133, 244, 0.25);
+              background: rgba(20, 184, 166, 0.25);
               animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             }
             .current-location-pulse::after {
@@ -131,7 +131,7 @@ export function RouteMap({
               width: 20px;
               height: 20px;
               border-radius: 50%;
-              background: #4285f4;
+              background: #14B8A6;
               border: 3px solid white;
               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
@@ -170,7 +170,7 @@ export function RouteMap({
             const [originLng, originLat] = originData.features[0].center;
             
             originMarkerRef.current = new mapboxgl.Marker({ 
-              color: "#3b82f6",
+              color: "#1E3A5F",
               draggable: false 
             })
               .setLngLat([originLng, originLat])

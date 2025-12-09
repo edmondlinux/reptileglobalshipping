@@ -80,7 +80,7 @@ export function GoogleMap({
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: rgba(66, 133, 244, 0.25);
+          background: rgba(20, 184, 166, 0.25);
           animation: pulse-ring-draggable 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         .current-location-pulse-draggable::after {
@@ -92,7 +92,7 @@ export function GoogleMap({
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background: #4285f4;
+          background: #14B8A6;
           border: 3px solid white;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
@@ -160,10 +160,10 @@ export function GoogleMap({
         originMarkerRef.current.remove();
       }
 
-      // Create new origin marker (blue, draggable)
+      // Create new origin marker (navy, draggable)
       originMarkerRef.current = new mapboxgl.Marker({
         draggable: true,
-        color: "#3b82f6", // Blue color
+        color: "#1E3A5F", // Navy color
       })
         .setLngLat([senderLng, senderLat])
         .addTo(mapRef.current);

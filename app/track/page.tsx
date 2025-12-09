@@ -126,7 +126,7 @@ export default function TrackPage() {
       format: 'a4'
     });
 
-    const primaryColor = [124, 58, 237]; // #7c3aed
+    const primaryColor = [20, 184, 166]; // #14B8A6 - Teal
     const darkGray = [51, 51, 51];
     const lightGray = [128, 128, 128];
     const pageWidth = doc.internal.pageSize.getWidth();
