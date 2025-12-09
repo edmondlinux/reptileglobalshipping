@@ -73,10 +73,10 @@ export const HeroSection = () => {
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               Welcome to{" "}
               <span className="text-transparent bg-gradient-to-r from-[#D247BF] via-primary to-[#7c3aed] bg-clip-text">
-                RapidWave
+                SwiftTrust
               </span>
               <br />
-              Logistics
+              Transport
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">

@@ -18,7 +18,7 @@ export function generateSenderEmailHTML(data: ShipmentEmailData): string {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">RapidWave Transport</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">SwiftTrust Transport</h1>
               <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 16px;">Shipment Confirmation</p>
             </td>
           </tr>
@@ -127,7 +127,7 @@ export function generateSenderEmailHTML(data: ShipmentEmailData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://rapidwavetransport.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Shipment</a>
+                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://swifttrusttransport.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Shipment</a>
                   </td>
                 </tr>
               </table>
@@ -141,9 +141,9 @@ export function generateSenderEmailHTML(data: ShipmentEmailData): string {
           <!-- Footer -->
           <tr>
             <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e9ecef;">
-              <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">RapidWave Transport</p>
-              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@rapidwavetransport.com | 1-800-RAPIDWAVE</p>
-              <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} RapidWave Transport. All rights reserved.</p>
+              <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">SwiftTrust Transport</p>
+              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@swifttrusttransport.com | 1-800-SWIFTTRUST</p>
+              <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} SwiftTrust Transport. All rights reserved.</p>
             </td>
           </tr>
         </table>
@@ -172,7 +172,7 @@ export function generateRecipientEmailHTML(data: ShipmentEmailData): string {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">RapidWave Transport</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">SwiftTrust Transport</h1>
               <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 16px;">Incoming Shipment Notification</p>
             </td>
           </tr>
@@ -261,7 +261,7 @@ export function generateRecipientEmailHTML(data: ShipmentEmailData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://rapidwavetransport.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Package</a>
+                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://swifttrusttransport.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Package</a>
                   </td>
                 </tr>
               </table>
@@ -275,9 +275,9 @@ export function generateRecipientEmailHTML(data: ShipmentEmailData): string {
           <!-- Footer -->
           <tr>
             <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e9ecef;">
-              <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">RapidWave Transport</p>
-              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@rapidwavetransport.com | 1-800-RAPIDWAVE</p>
-              <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} RapidWave Transport. All rights reserved.</p>
+              <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">SwiftTrust Transport</p>
+              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@swifttrusttransport.com | 1-800-SWIFTTRUST</p>
+              <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} SwiftTrust Transport. All rights reserved.</p>
             </td>
           </tr>
         </table>

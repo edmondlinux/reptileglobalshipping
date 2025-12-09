@@ -403,13 +403,13 @@ export default function TrackPage() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.text('RapidWave Transport', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('SwiftTrust Transport', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 5;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.text('For support, contact us at support@rapidwavetransport.com | 1-800-RAPIDWAVE', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('For support, contact us at support@swifttrusttransport.com | 1-800-SWIFTTRUST', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 4;
     doc.text('This is an official shipping label. Please keep for your records.', pageWidth / 2, yPos, { align: 'center' });

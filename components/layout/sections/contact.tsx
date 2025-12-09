@@ -52,7 +52,7 @@ export const ContactSection = () => {
     const { firstName, lastName, email, subject, message } = values;
     console.log(values);
 
-    const mailToLink = `mailto:support@rapidwavetransport.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
+    const mailToLink = `mailto:support@swifttrusttransport.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
 
     window.location.href = mailToLink;
   }
@@ -88,7 +88,7 @@ export const ContactSection = () => {
                 <div className="font-bold">Call us</div>
               </div>
 
-              <div>+1 (800) 745-9283 (WAVE)</div>
+              <div>+1 (800) 794-7878 (SWIFT)</div>
             </div>
 
             <div>
@@ -97,7 +97,7 @@ export const ContactSection = () => {
                 <div className="font-bold">Email Us</div>
               </div>
 
-              <div>support@rapidwavetransport.com</div>
+              <div>support@swifttrusttransport.com</div>
             </div>
 
             <div>
