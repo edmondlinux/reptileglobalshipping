@@ -38,6 +38,8 @@ const routeList: RouteProps[] = [
   { href: "/contact", label: "Contact" },
 ];
 
+import { LanguageSwitcher } from "./language-switcher";
+
 export const Navbar = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -68,7 +70,8 @@ export const Navbar = () => {
             </NavigationMenuItem>
 
             {/* mobile */}
-            <span className="flex md:hidden">
+            <span className="flex md:hidden gap-2">
+              <LanguageSwitcher />
               <ModeToggle />
 
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -158,6 +161,7 @@ export const Navbar = () => {
             </nav>
 
             <div className="hidden md:flex gap-2 items-center">
+              <LanguageSwitcher />
               {!isLoading && (
                 <>
                   {user ? (

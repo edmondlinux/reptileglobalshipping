@@ -21,11 +21,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background", inter.className)}>
         <ThemeProvider
           attribute="class"
