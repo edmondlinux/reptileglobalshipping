@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useAuth } from "@/contexts/AuthContext";
+import { ErrorMessage } from "@/components/ui/error-message";
 import toast from "react-hot-toast";
 import { Mail, Lock, User, Loader2 } from "lucide-react";
 
@@ -30,6 +31,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { signin, signup } = useAuth();
 
@@ -44,6 +46,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    setError(null);
 
     try {
       if (isSignIn) {
@@ -58,6 +61,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
       setEmail("");
       setPassword("");
     } catch (err: any) {
+      setError(err.message || "serverError");
       toast.error(err.message || "An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
@@ -153,6 +157,10 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
               </p>
             )}
           </div>
+
+          {error && (
+            <ErrorMessage errorKey={error} className="justify-center" />
+          )}
 
           <Button 
             onClick={handleSubmit}

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FooterSection } from "@/components/layout/sections/footer";
+import { ErrorMessage } from "@/components/ui/error-message";
 import { Package, Loader2, MapPin, Calendar, DollarSign, Box, Weight, Ruler, User, Mail, Phone, Home, Shield, FileText, Download } from "lucide-react";
 import { RouteMap } from "@/components/admin/RouteMap";
 import { ShipmentTimeline } from "@/components/admin/ShipmentTimeline";
@@ -482,6 +483,9 @@ export default function TrackPage() {
                 "Track Shipment"
               )}
             </Button>
+            {!isLoading && !shipment && trackingNumber && (
+              <ErrorMessage errorKey="shipmentNotFound" className="justify-center mt-2" />
+            )}
           </div>
 
           {shipment && (

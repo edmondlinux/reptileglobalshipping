@@ -98,5 +98,15 @@
       "title": "Geautomatiseerde facturering & betaling",
       "description": "Genereer facturen, volg betalingen en beheer onkosten moeiteloos met ingebouwde financiële automatisering."
     }
+  },
+  "Errors": {
+    "required": "Dit veld is verplicht",
+    "invalidEmail": "Voer een geldig e-mailadres in",
+    "minLength": "Te kort (minimaal {min} tekens)",
+    "maxLength": "Te lang (maximaal {max} tekens)",
+    "shipmentNotFound": "Zending niet gevonden. Controleer uw trackingnummer.",
+    "serverError": "Er is een serverfout opgetreden. Probeer het later opnieuw.",
+    "unauthorized": "U bent niet bevoegd om deze actie uit te voeren",
+    "invalidTracking": "Ongeldig formaat trackingnummer"
   }
 }

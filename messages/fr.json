@@ -98,5 +98,15 @@
       "title": "Facturation et paiement automatisés",
       "description": "Générez des factures, suivez les paiements et gérez les dépenses sans effort grâce à l'automatisation financière intégrée."
     }
+  },
+  "Errors": {
+    "required": "Ce champ est obligatoire",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide",
+    "minLength": "Trop court (minimum {min} caractères)",
+    "maxLength": "Trop long (maximum {max} caractères)",
+    "shipmentNotFound": "Expédition introuvable. Veuillez vérifier votre numéro de suivi.",
+    "serverError": "Une erreur de serveur est survenue. Veuillez réessayer plus tard.",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action",
+    "invalidTracking": "Format de numéro de suivi invalide"
   }
 }
