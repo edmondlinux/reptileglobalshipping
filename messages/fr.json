@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Bienvenue sur le portail d'expédition",
+    "description": "Services d'expédition rapides et fiables."
+  },
+  "Navbar": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "track": "Suivre l'envoi"
+  }
+}

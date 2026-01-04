@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Welcome to Shipping Portal",
+    "description": "Fast and reliable shipping services."
+  },
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "track": "Track Shipment"
+  }
+}

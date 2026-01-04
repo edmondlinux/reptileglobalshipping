@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Welkom bij het Verzendportaal",
+    "description": "Snelle en betrouwbare verzendservices."
+  },
+  "Navbar": {
+    "home": "Home",
+    "about": "Over ons",
+    "contact": "Contact",
+    "track": "Zending volgen"
+  }
+}
