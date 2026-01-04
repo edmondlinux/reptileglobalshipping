@@ -98,5 +98,15 @@
       "title": "Automated Invoice & Billing",
       "description": "Generate invoices, track payments, and manage expenses effortlessly with built-in financial automation."
     }
+  },
+  "Errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "minLength": "Too short (minimum {min} characters)",
+    "maxLength": "Too long (maximum {max} characters)",
+    "shipmentNotFound": "Shipment not found. Please check your tracking number.",
+    "serverError": "A server error occurred. Please try again later.",
+    "unauthorized": "You are not authorized to perform this action",
+    "invalidTracking": "Invalid tracking number format"
   }
 }
