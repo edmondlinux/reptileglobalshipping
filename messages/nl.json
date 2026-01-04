@@ -19,5 +19,84 @@
     "dashboard": "Dashboard",
     "signOut": "Afmelden",
     "signIn": "Inloggen"
+  },
+  "Benefits": {
+    "badge": "Voordelen",
+    "title": "Waarom kiezen voor Reptile Global",
+    "description": "Ervaar betrouwbare, efficiënte en veilige logistieke oplossingen die zijn ontworpen om aan uw zakelijke behoeften te voldoen met uitmuntendheid in elke levering.",
+    "secure": {
+      "title": "Veilig transport",
+      "description": "Uw lading is beschermd met een uitgebreide verzekeringsdekking en real-time beveiligingsmonitoring gedurende de hele reis."
+    },
+    "time": {
+      "title": "Op tijd geleverd",
+      "description": "Wij garanderen een tijdige levering van 98% met nauwkeurige planning en efficiënte route-optimalisatie voor uw zendingen."
+    },
+    "cost": {
+      "title": "Kosteneffectieve oplossingen",
+      "description": "Competitieve prijzen zonder concessies aan de kwaliteit. Ontvang transparante offertes zonder verborgen kosten voor al uw verzendbehoeften."
+    },
+    "support": {
+      "title": "24/7 klantenservice",
+      "description": "Ons toegewijde ondersteuningsteam is de klok rond beschikbaar om te helpen met tracking, updates en alle verzendvragen."
+    }
+  },
+  "Features": {
+    "badge": "Kenmerken",
+    "title": "Wat ons anders maakt",
+    "description": "Geavanceerde technologie ontmoet persoonlijke service. Ontdek de functies die Reptile Global de voorkeurskeuze maken voor bedrijven wereldwijd.",
+    "tracking": {
+      "title": "Real-time tracking",
+      "description": "Volg uw zendingen in real-time met GPS-gestuurde monitoring en ontvang direct meldingen bij elke mijlpaal."
+    },
+    "network": {
+      "title": "Wereldwijd netwerk",
+      "description": "Toegang tot wereldwijde verzendroutes met gevestigde partnerschappen over continenten voor een naadloze internationale levering."
+    },
+    "handling": {
+      "title": "Zorgvuldige afhandeling",
+      "description": "Professionele verpakkingsdiensten en getrainde medewerkers zorgen ervoor dat uw lading elke keer in perfecte staat aankomt."
+    },
+    "fleet": {
+      "title": "Vlootbeheer",
+      "description": "Moderne, goed onderhouden vloot met gespecialiseerde voertuigen voor verschillende soorten lading, van standaard tot temperatuurgecontroleerd."
+    },
+    "docs": {
+      "title": "Eenvoudige documentatie",
+      "description": "Gestroomlijnde douane-inklaring en digitale documentatie voor probleemloze naleving van internationale verzendingen."
+    },
+    "scalable": {
+      "title": "Schaalbare oplossingen",
+      "description": "Flexibele verzendopties die meegroeien met uw bedrijf, van enkele pakketten tot volledige containerladingen."
+    }
+  },
+  "Services": {
+    "badge": "Diensten",
+    "title": "Krachtige moderne transport & logistiek",
+    "description": "Ons platform helpt logistieke bedrijven om hun activiteiten te stroomlijnen, workflows te automatiseren en goederen sneller en efficiënter te leveren.",
+    "tracking": {
+      "title": "Real-time tracking van zendingen",
+      "description": "Bewaak zendingen met live GPS, leveringstermijnen en directe statusupdates voor volledige transparantie."
+    },
+    "fleet": {
+      "title": "Slim vlootbeheer",
+      "description": "Beheer voertuiggezondheid, brandstofverbruik en chauffeursactiviteit in één intuïtief dashboard."
+    },
+    "route": {
+      "title": "Route-optimalisatie & dispatching",
+      "description": "Wijs automatisch chauffeurs toe en bouw efficiënte routes om vertragingen en operationele kosten te verminderen."
+    },
+    "analytics": {
+      "title": "Geavanceerde analyse-suite",
+      "description": "Krijg inzicht in prestaties, kostenefficiëntie, levertijden en operationele KPI's met krachtige rapportage."
+    },
+    "warehouse": {
+      "title": "Magazijn- & voorraadsynchronisatie",
+      "description": "Synchroniseur voorraadniveaus, automatiseer innamelogs en volg bewegingen over meerdere magazijnlocaties."
+    },
+    "billing": {
+      "title": "Geautomatiseerde facturering & betaling",
+      "description": "Genereer facturen, volg betalingen en beheer onkosten moeiteloos met ingebouwde financiële automatisering."
+    }
   }
 }

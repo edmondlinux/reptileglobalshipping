@@ -11,66 +11,57 @@ enum ProService {
   NO = 0,
 }
 
-interface ServiceProps {
-  title: string;
-  pro: ProService;
-  description: string;
-}
-
-const serviceList: ServiceProps[] = [
-  {
-    title: "Real-Time Shipment Tracking",
-    description:
-      "Monitor shipments with live GPS, delivery timelines, and instant status updates for full transparency.",
-    pro: ProService.NO,
-  },
-  {
-    title: "Smart Fleet Management",
-    description:
-      "Manage vehicle health, fuel usage, and driver activity in one intuitive dashboard.",
-    pro: ProService.NO,
-  },
-  {
-    title: "Route Optimization & Dispatch",
-    description:
-      "Automatically assign drivers and build efficient routes to reduce delays and operational costs.",
-    pro: ProService.NO,
-  },
-  {
-    title: "Advanced Analytics Suite",
-    description:
-      "Unlock insights into performance, cost efficiency, delivery times, and operational KPIs with powerful reporting.",
-    pro: ProService.YES,
-  },
-  {
-    title: "Warehouse & Inventory Sync",
-    description:
-      "Synchronize stock levels, automate intake logs, and track movement across multiple warehouse locations.",
-    pro: ProService.YES,
-  },
-  {
-    title: "Automated Invoice & Billing",
-    description:
-      "Generate invoices, track payments, and manage expenses effortlessly with built-in financial automation.",
-    pro: ProService.YES,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const ServicesSection = () => {
+  const t = useTranslations("Services");
+  
+  const serviceList = [
+    {
+      title: t("tracking.title"),
+      description: t("tracking.description"),
+      pro: false,
+    },
+    {
+      title: t("fleet.title"),
+      description: t("fleet.description"),
+      pro: false,
+    },
+    {
+      title: t("route.title"),
+      description: t("route.description"),
+      pro: false,
+    },
+    {
+      title: t("analytics.title"),
+      description: t("analytics.description"),
+      pro: true,
+    },
+    {
+      title: t("warehouse.title"),
+      description: t("warehouse.description"),
+      pro: true,
+    },
+    {
+      title: t("billing.title"),
+      description: t("billing.description"),
+      pro: true,
+    },
+  ];
+
   return (
     <section id="services" className="container py-24 sm:py-32">
       <div className="text-center mb-12">
         <h2 className="text-lg text-primary mb-2 tracking-wider uppercase">
-          Services
+          {t("badge")}
         </h2>
 
         <h3 className="text-3xl md:text-4xl font-bold mb-4">
-          Powering Modern Transport & Logistics
+          {t("title")}
         </h3>
 
         <p className="md:w-2/3 mx-auto text-lg text-muted-foreground">
-          Our platform helps logistics companies streamline operations,
-          automate workflows, and deliver goods faster and more efficiently.
+          {t("description")}
         </p>
       </div>
 
@@ -90,7 +81,7 @@ export const ServicesSection = () => {
             </CardHeader>
 
             <Badge
-              data-pro={pro === ProService.YES}
+              data-pro={pro}
               variant="secondary"
               className="absolute -top-2 -right-3 data-[pro=false]:hidden"
             >

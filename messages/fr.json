@@ -19,5 +19,84 @@
     "dashboard": "Tableau de bord",
     "signOut": "Se déconnecter",
     "signIn": "Se connecter"
+  },
+  "Benefits": {
+    "badge": "Avantages",
+    "title": "Pourquoi choisir Reptile Global",
+    "description": "Découvrez des solutions logistiques fiables, efficaces et sécurisées conçues pour répondre aux besoins de votre entreprise avec excellence dans chaque livraison.",
+    "secure": {
+      "title": "Transport sécurisé",
+      "description": "Votre cargaison est protégée par une couverture d'assurance complète et une surveillance de sécurité en temps réel tout au long du voyage."
+    },
+    "time": {
+      "title": "Livraison à temps",
+      "description": "Nous garantissons un taux de livraison à temps de 98 % avec une planification précise et une optimisation efficace des itinéraires pour vos envois."
+    },
+    "cost": {
+      "title": "Solutions rentables",
+      "description": "Des prix compétitifs sans compromis sur la qualité. Obtenez des devis transparents sans frais cachés pour tous vos besoins d'expédition."
+    },
+    "support": {
+      "title": "Support client 24/7",
+      "description": "Notre équipe d'assistance dédiée est disponible 24h/24 pour vous aider avec le suivi, les mises à jour et toute demande d'expédition."
+    }
+  },
+  "Features": {
+    "badge": "Caractéristiques",
+    "title": "Ce qui nous rend différents",
+    "description": "La technologie de pointe rencontre un service personnalisé. Découvrez les fonctionnalités qui font de Reptile Global le choix préféré des entreprises du monde entier.",
+    "tracking": {
+      "title": "Suivi en temps réel",
+      "description": "Suivez vos envois en temps réel grâce à une surveillance par GPS et recevez des notifications instantanées à chaque étape."
+    },
+    "network": {
+      "title": "Réseau mondial",
+      "description": "Accès à des itinéraires d'expédition mondiaux avec des partenariats établis sur tous les continents pour une livraison internationale fluide."
+    },
+    "handling": {
+      "title": "Manipulation soigneuse",
+      "description": "Des services d'emballage professionnels et des manutentionnaires qualifiés garantissent que votre cargaison arrive en parfait état à chaque fois."
+    },
+    "fleet": {
+      "title": "Gestion de flotte",
+      "description": "Une flotte moderne et bien entretenue avec des véhicules spécialisés pour différents types de cargaison, du standard au sous température contrôlée."
+    },
+    "docs": {
+      "title": "Documentation facile",
+      "description": "Dédouanement simplifié et documentation numérique pour une conformité d'expédition internationale sans tracas."
+    },
+    "scalable": {
+      "title": "Solutions évolutives",
+      "description": "Des options d'expédition flexibles qui évoluent avec votre entreprise, des colis individuels aux chargements complets de conteneurs."
+    }
+  },
+  "Services": {
+    "badge": "Services",
+    "title": "Propulser le transport et la logistique modernes",
+    "description": "Notre plateforme aide les entreprises de logistique à rationaliser leurs opérations, à automatiser les flux de travail et à livrer les marchandises plus rapidement et plus efficacement.",
+    "tracking": {
+      "title": "Suivi d'expédition en temps réel",
+      "description": "Surveillez les envois avec GPS en direct, les délais de livraison et les mises à jour instantanées du statut pour une transparence totale."
+    },
+    "fleet": {
+      "title": "Gestion de flotte intelligente",
+      "description": "Gérez la santé des véhicules, la consommation de carburant et l'activité des conducteurs dans un tableau de bord intuitif."
+    },
+    "route": {
+      "title": "Optimisation des itinéraires et répartition",
+      "description": "Attribuez automatiquement des chauffeurs et créez des itinéraires efficaces pour réduire les retards et les coûts opérationnels."
+    },
+    "analytics": {
+      "title": "Suite d'analyses avancées",
+      "description": "Débloquez des informations sur les performances, la rentabilité, les délais de livraison et les KPI opérationnels grâce à des rapports puissants."
+    },
+    "warehouse": {
+      "title": "Synchronisation de l'entrepôt et de l'inventaire",
+      "description": "Synchronisez les niveaux de stock, automatisez les journaux d'entrée et suivez les mouvements sur plusieurs sites d'entrepôt."
+    },
+    "billing": {
+      "title": "Facturation et paiement automatisés",
+      "description": "Générez des factures, suivez les paiements et gérez les dépenses sans effort grâce à l'automatisation financière intégrée."
+    }
   }
 }

@@ -8,58 +8,56 @@ interface FeaturesProps {
   description: string;
 }
 
-const featureList: FeaturesProps[] = [
-  {
-    icon: "MapPin",
-    title: "Real-Time Tracking",
-    description:
-      "Track your shipments in real-time with GPS-enabled monitoring and receive instant notifications at every milestone.",
-  },
-  {
-    icon: "Globe",
-    title: "Global Network",
-    description:
-      "Access to worldwide shipping routes with established partnerships across continents for seamless international delivery.",
-  },
-  {
-    icon: "PackageCheck",
-    title: "Careful Handling",
-    description:
-      "Professional packaging services and trained handlers ensure your cargo arrives in perfect condition every time.",
-  },
-  {
-    icon: "Truck",
-    title: "Fleet Management",
-    description:
-      "Modern, well-maintained fleet with specialized vehicles for different cargo types from standard to temperature-controlled.",
-  },
-  {
-    icon: "FileText",
-    title: "Easy Documentation",
-    description:
-      "Streamlined customs clearance and digital documentation for hassle-free international shipping compliance.",
-  },
-  {
-    icon: "TrendingUp",
-    title: "Scalable Solutions",
-    description:
-      "Flexible shipping options that grow with your business, from single packages to full container loads.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const FeaturesSection = () => {
+  const t = useTranslations("Features");
+
+  const featureList = [
+    {
+      icon: "MapPin",
+      title: t("tracking.title"),
+      description: t("tracking.description"),
+    },
+    {
+      icon: "Globe",
+      title: t("network.title"),
+      description: t("network.description"),
+    },
+    {
+      icon: "PackageCheck",
+      title: t("handling.title"),
+      description: t("handling.description"),
+    },
+    {
+      icon: "Truck",
+      title: t("fleet.title"),
+      description: t("fleet.description"),
+    },
+    {
+      icon: "FileText",
+      title: t("docs.title"),
+      description: t("docs.description"),
+    },
+    {
+      icon: "TrendingUp",
+      title: t("scalable.title"),
+      description: t("scalable.description"),
+    },
+  ];
+
   return (
     <section id="features" className="container py-24 sm:py-32">
       <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Features
+        {t("badge")}
       </h2>
 
       <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        What Makes Us Different
+        {t("title")}
       </h2>
 
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        Advanced technology meets personalized service. Discover the features that make Reptile Global the preferred choice for businesses worldwide.
+        {t("description")}
       </h3>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

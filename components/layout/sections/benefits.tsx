@@ -8,45 +8,45 @@ interface BenefitsProps {
   description: string;
 }
 
-const benefitList: BenefitsProps[] = [
-  {
-    icon: "Shield",
-    title: "Secure Transportation",
-    description:
-      "Your cargo is protected with comprehensive insurance coverage and real-time security monitoring throughout the entire journey.",
-  },
-  {
-    icon: "Clock",
-    title: "On-Time Delivery",
-    description:
-      "We guarantee 98% on-time delivery rate with precise scheduling and efficient route optimization for your shipments.",
-  },
-  {
-    icon: "DollarSign",
-    title: "Cost-Effective Solutions",
-    description:
-      "Competitive pricing without compromising quality. Get transparent quotes with no hidden fees for all your shipping needs.",
-  },
-  {
-    icon: "Headphones",
-    title: "24/7 Customer Support",
-    description:
-      "Our dedicated support team is available around the clock to assist with tracking, updates, and any shipping inquiries.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export const BenefitsSection = () => {
+  const t = useTranslations("Benefits");
+
+  const benefitList = [
+    {
+      icon: "Shield",
+      title: t("secure.title"),
+      description: t("secure.description"),
+    },
+    {
+      icon: "Clock",
+      title: t("time.title"),
+      description: t("time.description"),
+    },
+    {
+      icon: "DollarSign",
+      title: t("cost.title"),
+      description: t("cost.description"),
+    },
+    {
+      icon: "Headphones",
+      title: t("support.title"),
+      description: t("support.description"),
+    },
+  ];
+
   return (
     <section id="benefits" className="container py-24 sm:py-32">
       <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
         <div>
-          <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
+          <h2 className="text-lg text-primary mb-2 tracking-wider">{t("badge")}</h2>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Why Choose Reptile Global
+            {t("title")}
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Experience reliable, efficient, and secure logistics solutions designed to meet your business needs with excellence in every delivery.
+            {t("description")}
           </p>
         </div>
 
