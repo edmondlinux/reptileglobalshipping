@@ -30,28 +30,28 @@ const testimonialList: ReviewProps[] = [
     image: "https://i.pravatar.cc/150?img=12",
     name: "Sarah Mitchell",
     userName: "@sarahmitchell",
-    comment: "We've been using RapidWave for our monthly shipments to Europe for the past year. The tracking is always accurate, and our packages arrive on time. Their customer service team actually responds quickly when we have questions!",
+    comment: "We've been using Reptile Global for our monthly shipments to Europe for the past year. The tracking is always accurate, and our packages arrive on time. Their customer service team actually responds quickly when we have questions!",
     rating: 5.0
   },
   {
     image: "https://i.pravatar.cc/150?img=33",
     name: "Marcus Chen",
     userName: "@marcusc_logistics",
-    comment: "Switched from our previous carrier after a friend recommended RapidWave. Best decision we made for our e-commerce business. They handle our international shipments with care, and we've had zero lost packages in 8 months.",
+    comment: "Switched from our previous carrier after a friend recommended Reptile Global. Best decision we made for our e-commerce business. They handle our international shipments with care, and we've had zero lost packages in 8 months.",
     rating: 4.8
   },
   {
     image: "https://i.pravatar.cc/150?img=47",
     name: "Elena Rodriguez",
     userName: "@elena_r",
-    comment: "As a small business owner, I need reliable shipping that won't break the bank. RapidWave delivers on both fronts. Their rates are competitive and my customers always receive their orders in perfect condition.",
+    comment: "As a small business owner, I need reliable shipping that won't break the bank. Reptile Global delivers on both fronts. Their rates are competitive and my customers always receive their orders in perfect condition.",
     rating: 4.9
   },
   {
     image: "https://i.pravatar.cc/150?img=68",
     name: "David Thompson",
     userName: "@d_thompson_tech",
-    comment: "Been working with RapidWave since they started. Watched them grow and improve their service year after year. The personal touch they bring to logistics is rare these days. Highly recommend for anyone shipping overseas.",
+    comment: "Been working with Reptile Global since they started. Watched them grow and improve their service year after year. The personal touch they bring to logistics is rare these days. Highly recommend for anyone shipping overseas.",
     rating: 5.0
   },
   {
@@ -65,7 +65,7 @@ const testimonialList: ReviewProps[] = [
     image: "https://i.pravatar.cc/150?img=52",
     name: "James Wilson",
     userName: "@jwilson_imports",
-    comment: "Our company ships fragile electronics internationally. RapidWave's packaging recommendations and careful handling have resulted in a 99% safe delivery rate. They understand what businesses need from a shipping partner.",
+    comment: "Our company ships fragile electronics internationally. Reptile Global's packaging recommendations and careful handling have resulted in a 99% safe delivery rate. They understand what businesses need from a shipping partner.",
     rating: 5.0
   }
 ];

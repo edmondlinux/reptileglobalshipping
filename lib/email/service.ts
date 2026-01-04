@@ -41,7 +41,7 @@ class EmailService {
       const transporter = this.getTransporter();
 
       await transporter.sendMail({
-        from: `RapidWave Transport <${config.auth.user}>`,
+        from: `Reptile Global <${config.auth.user}>`,
         to,
         subject,
         html,

@@ -43,7 +43,7 @@ export const BenefitsSection = () => {
           <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Why Choose RapidWave Transport
+            Why Choose Reptile Global
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
             Experience reliable, efficient, and secure logistics solutions designed to meet your business needs with excellence in every delivery.

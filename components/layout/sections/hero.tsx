@@ -73,10 +73,8 @@ export const HeroSection = () => {
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               Welcome to{" "}
               <span className="text-transparent bg-gradient-to-r from-[#1E3A5F] via-primary to-[#0D9488] bg-clip-text">
-                SwiftTrust
+                Reptile Global
               </span>
-              <br />
-              Transport
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">

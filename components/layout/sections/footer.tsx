@@ -15,7 +15,7 @@ export const FooterSection = () => {
             <Link href="/" className="flex font-bold items-center">
               <Image
                 src="/logo.png"
-                alt="SwiftTrust Transport"
+                alt="Reptile Global"
                 className="h-12 w-auto"
                 width={100} 
                 height={50} 
@@ -90,12 +90,12 @@ export const FooterSection = () => {
             <h3 className="font-bold text-lg">Connect</h3>
             <div>
               <Link href="tel:+18007947878" className="opacity-60 hover:opacity-100">
-                Call: 1-800-SWIFT
+                Call: 1-800-REPTILE
               </Link>
             </div>
 
             <div>
-              <Link href="mailto:support@swifttrusttransport.com" className="opacity-60 hover:opacity-100">
+              <Link href="mailto:support@reptileglobal.com" className="opacity-60 hover:opacity-100">
                 Email Support
               </Link>
             </div>
@@ -111,7 +111,7 @@ export const FooterSection = () => {
         <Separator className="my-6" />
         <section className="">
           <h3 className="">
-            &copy; {currentYear} SwiftTrust Transport. All rights reserved. | 
+            &copy; {currentYear} Reptile Global. All rights reserved. | 
             <Link
               href="/contact"
               className="text-primary transition-all border-primary hover:border-b-2 ml-1"

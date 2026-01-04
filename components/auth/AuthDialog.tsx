@@ -175,7 +175,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                {isSignIn ? "New to RapidWave?" : "Already have an account?"}
+                {isSignIn ? "New to Reptile Global?" : "Already have an account?"}
               </span>
             </div>
           </div>

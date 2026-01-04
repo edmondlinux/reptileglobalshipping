@@ -60,7 +60,7 @@ export const Navbar = () => {
               <Link href="/" className="ml-2 font-bold text-xl flex items-center">
                 <Image
                   src="/logo.png"
-                  alt="SwiftTrust Transport"
+                  alt="Reptile Global"
                   width={36}
                   height={36}
                 />
@@ -84,7 +84,7 @@ export const Navbar = () => {
                     <SheetTitle className="font-bold text-xl flex items-center gap-2">
                       <Image
                         src="/logo.png"
-                        alt="SwiftTrust Transport"
+                        alt="Reptile Global"
                         width={36}
                         height={36}
                       />

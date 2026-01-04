@@ -10,7 +10,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              About RapidWave Transport
+              About Reptile Global
             </h1>
             <p className="text-xl text-muted-foreground">
               5 Years of Excellence in Transportation
@@ -19,7 +19,7 @@ export default function AboutPage() {
 
           <div className="prose dark:prose-invert max-w-none">
             <p className="text-lg leading-relaxed mb-8">
-              RapidWave Transport has been transporting goods for 5 years, and we recently launched our website to serve more customers worldwide. Our commitment to reliability, speed, and customer satisfaction has made us a trusted name in the logistics industry.
+              Reptile Global has been transporting goods for 5 years, and we recently launched our website to serve more customers worldwide. Our commitment to reliability, speed, and customer satisfaction has made us a trusted name in the logistics industry.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mt-12">

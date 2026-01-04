@@ -141,7 +141,7 @@ export default function TrackPage() {
     doc.setFontSize(24);
     doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
     doc.setFont('helvetica', 'bold');
-    doc.text('RapidWave Transport', pageWidth / 2, yPos + 5, { align: 'center' });
+    doc.text('Reptile Global', pageWidth / 2, yPos + 5, { align: 'center' });
 
     doc.setFontSize(10);
     doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
@@ -403,13 +403,13 @@ export default function TrackPage() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.text('SwiftTrust Transport', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('Reptile Global', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 5;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.text('For support, contact us at support@swifttrusttransport.com | 1-800-SWIFTTRUST', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('For support, contact us at support@reptileglobal.com', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 4;
     doc.text('This is an official shipping label. Please keep for your records.', pageWidth / 2, yPos, { align: 'center' });

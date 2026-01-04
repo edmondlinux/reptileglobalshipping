@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "SwiftTrust Transport - Trusted Global Shipping",
+  title: "Reptile Global - Trusted Global Shipping",
   description: "5 years of excellence in transportation and logistics services",
   icons: {
     icon: "/logo.png",
