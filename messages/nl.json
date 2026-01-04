@@ -92,7 +92,7 @@
     },
     "warehouse": {
       "title": "Magazijn- & voorraadsynchronisatie",
-      "description": "Synchroniseur voorraadniveaus, automatiseer innamelogs en volg bewegingen over meerdere magazijnlocaties."
+      "description": "Synchroniseer voorraadniveaus, automatiseer innamelogs en volg bewegingen over meerdere magazijnlocaties."
     },
     "billing": {
       "title": "Geautomatiseerde facturering & betaling",
