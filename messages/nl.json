@@ -1,102 +1,102 @@
 {
   "Hero": {
-    "excellence": "5 jaar uitmuntendheid",
+    "excellence": "Betrouwbare reptiel verzendexperts",
     "welcome": "Welkom bij",
-    "partner": "Uw betrouwbare partner in wereldwijde verzendoplossingen",
+    "partner": "Gespecialiseerd transport van levende reptielen wereldwijd",
     "trackPlaceholder": "Voer uw trackingnummer in...",
-    "trackButton": "Zending volgen",
-    "globalCoverage": "Wereldwijde dekking",
-    "secureHandling": "Veilige afhandeling",
-    "fastDelivery": "Snelle levering"
+    "trackButton": "Volg uw reptiel",
+    "globalCoverage": "Betrouwbare wereldwijde levering",
+    "secureHandling": "Geïsoleerde dozen & temperatuurbewaking",
+    "fastDelivery": "Express opties beschikbaar"
   },
   "Navbar": {
     "home": "Home",
     "about": "Over ons",
     "team": "Team",
     "track": "Volgen",
-    "testimonials": "Getuigenissen",
+    "testimonials": "Recensies",
     "contact": "Contact",
     "dashboard": "Dashboard",
-    "signOut": "Afmelden",
+    "signOut": "Uitloggen",
     "signIn": "Inloggen"
   },
   "Benefits": {
     "badge": "Voordelen",
     "title": "Waarom kiezen voor Reptile Global",
-    "description": "Ervaar betrouwbare, efficiënte en veilige logistieke oplossingen die zijn ontworpen om aan uw zakelijke behoeften te voldoen met uitmuntendheid in elke levering.",
+    "description": "Wij bieden veilig en betrouwbaar transport van levende reptielen met speciale verpakkingen, transportcertificaten en persoonlijke ondersteuning.",
     "secure": {
-      "title": "Veilig transport",
-      "description": "Uw lading is beschermd met een uitgebreide verzekeringsdekking en real-time beveiligingsmonitoring gedurende de hele reis."
+      "title": "Gecertificeerd transport van levende dieren",
+      "description": "Wij zijn gecertificeerd voor veilig transport van levende reptielen met goedgekeurde verpakkingen en veilige methoden."
     },
     "time": {
-      "title": "Op tijd geleverd",
-      "description": "Wij garanderen een tijdige levering van 98% met nauwkeurige planning en efficiënte route-optimalisatie voor uw zendingen."
+      "title": "Express leveringsopties",
+      "description": "Kies tussen nacht- of versnelde verzending om de transittijd en stress voor de dieren te minimaliseren."
     },
     "cost": {
-      "title": "Kosteneffectieve oplossingen",
-      "description": "Competitieve prijzen zonder concessies aan de kwaliteit. Ontvang transparante offertes zonder verborgen kosten voor al uw verzendbehoeften."
+      "title": "Concurrerende tarieven",
+      "description": "Krijg snel offertes die zijn afgestemd op de behoeften van uw reptielen, zonder verborgen kosten."
     },
     "support": {
-      "title": "24/7 klantenservice",
-      "description": "Ons toegewijde ondersteuningsteam is de klok rond beschikbaar om te helpen met tracking, updates en alle verzendvragen."
+      "title": "Deskundige klantenservice",
+      "description": "Ons team kent de logistiek voor levende reptielen en begeleidt u bij elke stap, inclusief verpakking."
     }
   },
   "Features": {
     "badge": "Kenmerken",
-    "title": "Wat ons anders maakt",
-    "description": "Geavanceerde technologie ontmoet persoonlijke service. Ontdek de functies die Reptile Global de voorkeurskeuze maken voor bedrijven wereldwijd.",
+    "title": "Wat ons onderscheidt",
+    "description": "Geavanceerde tracking en speciale verpakkingen: ontdek waarom fokkers en liefhebbers ons vertrouwen.",
     "tracking": {
-      "title": "Real-time tracking",
-      "description": "Volg uw zendingen in real-time met GPS-gestuurde monitoring en ontvang direct meldingen bij elke mijlpaal."
+      "title": "Realtime tracking",
+      "description": "Volg de reis van uw reptiel met live updates van verzending tot levering."
     },
     "network": {
-      "title": "Wereldwijd netwerk",
-      "description": "Toegang tot wereldwijde verzendroutes met gevestigde partnerschappen over continenten voor een naadloze internationale levering."
+      "title": "Gecertificeerde partners",
+      "description": "Wij werken samen met gecertificeerde vervoersnetwerken voor betrouwbare en uitgebreide levering."
     },
     "handling": {
-      "title": "Zorgvuldige afhandeling",
-      "description": "Professionele verpakkingsdiensten en getrainde medewerkers zorgen ervoor dat uw lading elke keer in perfecte staat aankomt."
+      "title": "Speciale verpakkingsrichtlijnen",
+      "description": "Ontvang instructies en materialen voor het veilig verpakken van uw reptielen met isolatie en warmte-/koelverpakkingen."
     },
     "fleet": {
-      "title": "Vlootbeheer",
-      "description": "Moderne, goed onderhouden vloot met gespecialiseerde voertuigen voor verschillende soorten lading, van standaard tot temperatuurgecontroleerd."
+      "title": "Betrouwbare vervoerspartners",
+      "description": "Wij coördineren met gecertificeerde vervoerders om de veiligheid van uw reptielen te waarborgen."
     },
     "docs": {
-      "title": "Eenvoudige documentatie",
-      "description": "Gestroomlijnde douane-inklaring en digitale documentatie voor probleemloze naleving van internationale verzendingen."
+      "title": "Internationale verzendconformiteit",
+      "description": "Wij helpen u met douane- en wettelijke documenten voor internationale zendingen."
     },
     "scalable": {
-      "title": "Schaalbare oplossingen",
-      "description": "Flexibele verzendopties die meegroeien met uw bedrijf, van enkele pakketten tot volledige containerladingen."
+      "title": "Flexibele verzendoplossingen",
+      "description": "Of u nu één of meerdere dieren verzendt, kies de juiste service en verpakking."
     }
   },
   "Services": {
     "badge": "Diensten",
-    "title": "Krachtige moderne transport & logistiek",
-    "description": "Ons platform helpt logistieke bedrijven om hun activiteiten te stroomlijnen, workflows te automatiseren en goederen sneller en efficiënter te leveren.",
+    "title": "Transportdiensten voor levende reptielen",
+    "description": "Onze diensten zijn speciaal ontworpen voor veilig en conform transport van reptielen en bijbehorende benodigdheden wereldwijd.",
     "tracking": {
-      "title": "Real-time tracking van zendingen",
-      "description": "Bewaak zendingen met live GPS, leveringstermijnen en directe statusupdates voor volledige transparantie."
+      "title": "Tracking & updates",
+      "description": "Bekijk uw verzendstatus en weet altijd waar uw zending is en wanneer deze aankomt."
     },
     "fleet": {
-      "title": "Slim vlootbeheer",
-      "description": "Beheer voertuiggezondheid, brandstofverbruik en chauffeursactiviteit in één intuïtief dashboard."
+      "title": "Integratie met vervoerders",
+      "description": "Wij werken direct samen met vervoerderssystemen om uw verzendervaring te vereenvoudigen."
     },
     "route": {
-      "title": "Route-optimalisatie & dispatching",
-      "description": "Wijs automatisch chauffeurs toe en bouw efficiënte routes om vertragingen en operationele kosten te verminderen."
+      "title": "Geoptimaliseerde transportroutes",
+      "description": "Kies express- of geplande routes die geschikt zijn voor het transport van levende reptielen."
     },
     "analytics": {
-      "title": "Geavanceerde analyse-suite",
-      "description": "Krijg inzicht in prestaties, kostenefficiëntie, levertijden en operationele KPI's met krachtige rapportage."
+      "title": "Prestatie-inzichten",
+      "description": "Analyseer eerdere zendingen om toekomstige transporten beter te plannen."
     },
     "warehouse": {
-      "title": "Magazijn- & voorraadsynchronisatie",
-      "description": "Synchroniseer voorraadniveaus, automatiseer innamelogs en volg bewegingen over meerdere magazijnlocaties."
+      "title": "Voorbereiding & verpakkingsmateriaal",
+      "description": "Wij bieden advies en gespecialiseerde kits voor het veilig verzenden van uw reptielen."
     },
     "billing": {
-      "title": "Geautomatiseerde facturering & betaling",
-      "description": "Genereer facturen, volg betalingen en beheer onkosten moeiteloos met ingebouwde financiële automatisering."
+      "title": "Transparante offertes & facturering",
+      "description": "Krijg duidelijke offertes en volg uw facturen in uw dashboard."
     }
   },
   "Errors": {
@@ -105,8 +105,8 @@
     "minLength": "Te kort (minimaal {min} tekens)",
     "maxLength": "Te lang (maximaal {max} tekens)",
     "shipmentNotFound": "Zending niet gevonden. Controleer uw trackingnummer.",
-    "serverError": "Er is een serverfout opgetreden. Probeer het later opnieuw.",
+    "serverError": "Serverfout. Probeer het later opnieuw.",
     "unauthorized": "U bent niet bevoegd om deze actie uit te voeren",
-    "invalidTracking": "Ongeldig formaat trackingnummer"
+    "invalidTracking": "Ongeldig trackingnummer formaat"
   }
 }

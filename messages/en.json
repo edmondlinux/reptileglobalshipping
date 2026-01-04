@@ -1,13 +1,13 @@
 {
   "Hero": {
-    "excellence": "5 Years of Excellence",
+    "excellence": "Trusted Reptile Shipping Experts",
     "welcome": "Welcome to",
-    "partner": "Your trusted partner in global shipping solutions",
+    "partner": "We're all about getting your reptiles where they need to go safely and comfortably. With worldwide shipping capabilities, we serve North America, Europe, Asia, and beyond. Our climate-controlled transport ensures your reptiles travel stress-free to destinations across the globe",
     "trackPlaceholder": "Enter your tracking number...",
-    "trackButton": "Track Shipment",
-    "globalCoverage": "Global Coverage",
-    "secureHandling": "Secure Handling",
-    "fastDelivery": "Fast Delivery"
+    "trackButton": "Track Your Reptile",
+    "globalCoverage": "Worldwide Shipping You Can Trust",
+    "secureHandling": "Insulated Boxes & Temperature Control",
+    "fastDelivery": "Express Overnight Options Available"
   },
   "Navbar": {
     "home": "Home",
@@ -23,80 +23,80 @@
   "Benefits": {
     "badge": "Benefits",
     "title": "Why Choose Reptile Global",
-    "description": "Experience reliable, efficient, and secure logistics solutions designed to meet your business needs with excellence in every delivery.",
+    "description": "We specialize in safe, reliable transport of live reptiles with enhanced packaging, carrier certifications, and personalized support for every shipment.",
     "secure": {
-      "title": "Secure Transportation",
-      "description": "Your cargo is protected with comprehensive insurance coverage and real-time security monitoring throughout the entire journey."
+      "title": "Certified Live Animal Shipping",
+      "description": "We’re certified with major carriers for safe handling of live reptiles using approved packaging and secure transport methods."
     },
     "time": {
-      "title": "On-Time Delivery",
-      "description": "We guarantee 98% on-time delivery rate with precise scheduling and efficient route optimization for your shipments."
+      "title": "Express Delivery Options",
+      "description": "Choose from overnight or expedited shipping services designed to ensure minimal transit time and reduced stress on animals."
     },
     "cost": {
-      "title": "Cost-Effective Solutions",
-      "description": "Competitive pricing without compromising quality. Get transparent quotes with no hidden fees for all your shipping needs."
+      "title": "Competitive Shipping Rates",
+      "description": "Get quick quotes tailored to your reptile’s needs with transparent pricing and no hidden fees."
     },
     "support": {
-      "title": "24/7 Customer Support",
-      "description": "Our dedicated support team is available around the clock to assist with tracking, updates, and any shipping inquiries."
+      "title": "Expert Customer Support",
+      "description": "Our team knows live reptile logistics and is ready to answer questions, help with packaging advice, and guide you through every step."
     }
   },
   "Features": {
     "badge": "Features",
     "title": "What Makes Us Different",
-    "description": "Advanced technology meets personalized service. Discover the features that make Reptile Global the preferred choice for businesses worldwide.",
+    "description": "From advanced tracking to specialized packaging, discover why breeders, hobbyists, and stores trust Reptile Global for live reptile transport.",
     "tracking": {
-      "title": "Real-Time Tracking",
-      "description": "Track your shipments in real-time with GPS-enabled monitoring and receive instant notifications at every milestone."
+      "title": "Live Shipment Tracking",
+      "description": "Monitor your reptile’s journey with real-time tracking and status updates from departure to delivery."
     },
     "network": {
-      "title": "Global Network",
-      "description": "Access to worldwide shipping routes with established partnerships across continents for seamless international delivery."
+      "title": "Carrier Partnerships",
+      "description": "We work with certified carrier networks to offer broad coverage and reliable delivery across regions."
     },
     "handling": {
-      "title": "Careful Handling",
-      "description": "Professional packaging services and trained handlers ensure your cargo arrives in perfect condition every time."
+      "title": "Specialized Packaging Guidance",
+      "description": "Receive detailed instructions and supplies for packing reptiles in insulated boxes with heat/cold packs for optimal conditions."
     },
     "fleet": {
-      "title": "Fleet Management",
-      "description": "Modern, well-maintained fleet with specialized vehicles for different cargo types from standard to temperature-controlled."
+      "title": "Trusted Carrier Support",
+      "description": "We coordinate with carriers who have live animal shipping certifications to prioritize your reptile’s care."
     },
     "docs": {
-      "title": "Easy Documentation",
-      "description": "Streamlined customs clearance and digital documentation for hassle-free international shipping compliance."
+      "title": "International Shipping Compliance",
+      "description": "We help you manage customs documentation and legal requirements for cross‑border reptile shipments where applicable."
     },
     "scalable": {
-      "title": "Scalable Solutions",
-      "description": "Flexible shipping options that grow with your business, from single packages to full container loads."
+      "title": "Flexible Shipping Solutions",
+      "description": "Whether you’re sending one animal or multiple, choose the service level and packaging that fits your needs."
     }
   },
   "Services": {
     "badge": "Services",
-    "title": "Powering Modern Transport & Logistics",
-    "description": "Our platform helps logistics companies streamline operations, automate workflows, and deliver goods faster and more efficiently.",
+    "title": "Live Reptile Transport Services",
+    "description": "Our service offerings are custom‑built for safe, compliant delivery of live reptiles and related supplies around the globe.",
     "tracking": {
-      "title": "Real-Time Shipment Tracking",
-      "description": "Monitor shipments with live GPS, delivery timelines, and instant status updates for full transparency."
+      "title": "Shipment Tracking & Updates",
+      "description": "Access updated tracking information so you always know where your shipment is and when it will arrive."
     },
     "fleet": {
-      "title": "Smart Fleet Management",
-      "description": "Manage vehicle health, fuel usage, and driver activity in one intuitive dashboard."
+      "title": "Carrier Integration Services",
+      "description": "We integrate directly with carrier systems to streamline your shipping experience."
     },
     "route": {
-      "title": "Route Optimization & Dispatch",
-      "description": "Automatically assign drivers and build efficient routes to reduce delays and operational costs."
+      "title": "Optimized Transit Options",
+      "description": "Select express or scheduled delivery routes tailored to live reptile transport."
     },
     "analytics": {
-      "title": "Advanced Analytics Suite",
-      "description": "Unlock insights into performance, cost efficiency, delivery times, and operational KPIs with powerful reporting."
+      "title": "Performance Insights",
+      "description": "Review your past shipments and delivery patterns to plan future transport with confidence."
     },
     "warehouse": {
-      "title": "Warehouse & Inventory Sync",
-      "description": "Synchronize stock levels, automate intake logs, and track movement across multiple warehouse locations."
+      "title": "Packaging Supplies & Prep",
+      "description": "We offer information and guidance on reptile‑specific shipping kits including boxes, insulation, heat/cold packs, and more."
     },
     "billing": {
-      "title": "Automated Invoice & Billing",
-      "description": "Generate invoices, track payments, and manage expenses effortlessly with built-in financial automation."
+      "title": "Transparent Billing & Quotes",
+      "description": "Get clear, upfront shipping quotes and track billing details in your dashboard."
     }
   },
   "Errors": {

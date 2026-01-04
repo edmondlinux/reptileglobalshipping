@@ -1,102 +1,102 @@
 {
   "Hero": {
-    "excellence": "5 ans d'excellence",
+    "excellence": "Experts de confiance en transport de reptiles",
     "welcome": "Bienvenue chez",
-    "partner": "Votre partenaire de confiance pour les solutions d'expédition mondiales",
+    "partner": "Transport spécialisé de reptiles vivants dans le monde entier",
     "trackPlaceholder": "Entrez votre numéro de suivi...",
-    "trackButton": "Suivre l'envoi",
-    "globalCoverage": "Couverture mondiale",
-    "secureHandling": "Manipulation sécurisée",
-    "fastDelivery": "Livraison rapide"
+    "trackButton": "Suivre votre reptile",
+    "globalCoverage": "Livraison mondiale fiable",
+    "secureHandling": "Boîtes isolantes & contrôle de température",
+    "fastDelivery": "Options express disponibles"
   },
   "Navbar": {
     "home": "Accueil",
     "about": "À propos",
     "team": "Équipe",
     "track": "Suivi",
-    "testimonials": "Témoignages",
+    "testimonials": "Avis",
     "contact": "Contact",
     "dashboard": "Tableau de bord",
-    "signOut": "Se déconnecter",
-    "signIn": "Se connecter"
+    "signOut": "Déconnexion",
+    "signIn": "Connexion"
   },
   "Benefits": {
     "badge": "Avantages",
     "title": "Pourquoi choisir Reptile Global",
-    "description": "Découvrez des solutions logistiques fiables, efficaces et sécurisées conçues pour répondre aux besoins de votre entreprise avec excellence dans chaque livraison.",
+    "description": "Nous assurons un transport sûr et fiable des reptiles vivants avec emballages spécialisés, certifications transport et support personnalisé.",
     "secure": {
-      "title": "Transport sécurisé",
-      "description": "Votre cargaison est protégée par une couverture d'assurance complète et une surveillance de sécurité en temps réel tout au long du voyage."
+      "title": "Transport certifié d’animaux vivants",
+      "description": "Nous sommes certifiés pour le transport sûr des reptiles vivants, avec emballages approuvés et méthodes sécurisées."
     },
     "time": {
-      "title": "Livraison à temps",
-      "description": "Nous garantissons un taux de livraison à temps de 98 % avec une planification précise et une optimisation efficace des itinéraires pour vos envois."
+      "title": "Options de livraison express",
+      "description": "Choisissez entre livraison nocturne ou accélérée pour réduire le temps de transit et le stress des animaux."
     },
     "cost": {
-      "title": "Solutions rentables",
-      "description": "Des prix compétitifs sans compromis sur la qualité. Obtenez des devis transparents sans frais cachés pour tous vos besoins d'expédition."
+      "title": "Tarifs compétitifs",
+      "description": "Obtenez des devis rapides adaptés aux besoins de vos reptiles, sans frais cachés."
     },
     "support": {
-      "title": "Support client 24/7",
-      "description": "Notre équipe d'assistance dédiée est disponible 24h/24 pour vous aider avec le suivi, les mises à jour et toute demande d'expédition."
+      "title": "Support client expert",
+      "description": "Notre équipe connaît la logistique des reptiles vivants et vous guide à chaque étape, y compris pour l’emballage."
     }
   },
   "Features": {
-    "badge": "Caractéristiques",
-    "title": "Ce qui nous rend différents",
-    "description": "La technologie de pointe rencontre un service personnalisé. Découvrez les fonctionnalités qui font de Reptile Global le choix préféré des entreprises du monde entier.",
+    "badge": "Fonctionnalités",
+    "title": "Ce qui nous distingue",
+    "description": "Suivi avancé et emballages spécialisés : découvrez pourquoi les éleveurs et passionnés nous font confiance.",
     "tracking": {
       "title": "Suivi en temps réel",
-      "description": "Suivez vos envois en temps réel grâce à une surveillance par GPS et recevez des notifications instantanées à chaque étape."
+      "description": "Suivez le trajet de votre reptile avec des mises à jour en direct du départ à la livraison."
     },
     "network": {
-      "title": "Réseau mondial",
-      "description": "Accès à des itinéraires d'expédition mondiaux avec des partenariats établis sur tous les continents pour une livraison internationale fluide."
+      "title": "Partenaires transport certifiés",
+      "description": "Nous travaillons avec des transporteurs certifiés pour une couverture étendue et une livraison fiable."
     },
     "handling": {
-      "title": "Manipulation soigneuse",
-      "description": "Des services d'emballage professionnels et des manutentionnaires qualifiés garantissent que votre cargaison arrive en parfait état à chaque fois."
+      "title": "Guides d’emballage spécialisés",
+      "description": "Recevez des instructions et fournitures pour emballer vos reptiles avec isolation et packs thermiques adaptés."
     },
     "fleet": {
-      "title": "Gestion de flotte",
-      "description": "Une flotte moderne et bien entretenue avec des véhicules spécialisés pour différents types de cargaison, du standard au sous température contrôlée."
+      "title": "Support transporteur fiable",
+      "description": "Nous collaborons avec des transporteurs certifiés pour garantir la sécurité de vos reptiles."
     },
     "docs": {
-      "title": "Documentation facile",
-      "description": "Dédouanement simplifié et documentation numérique pour une conformité d'expédition internationale sans tracas."
+      "title": "Conformité transport international",
+      "description": "Nous vous aidons à gérer la documentation douanière et les réglementations pour les envois internationaux."
     },
     "scalable": {
-      "title": "Solutions évolutives",
-      "description": "Des options d'expédition flexibles qui évoluent avec votre entreprise, des colis individuels aux chargements complets de conteneurs."
+      "title": "Solutions flexibles",
+      "description": "Que vous expédiez un ou plusieurs animaux, choisissez le service et l’emballage adaptés."
     }
   },
   "Services": {
     "badge": "Services",
-    "title": "Propulser le transport et la logistique modernes",
-    "description": "Notre plateforme aide les entreprises de logistique à rationaliser leurs opérations, à automatiser les flux de travail et à livrer les marchandises plus rapidement et plus efficacement.",
+    "title": "Services de transport de reptiles vivants",
+    "description": "Nos services sont conçus pour la livraison sûre et conforme de reptiles et fournitures associées à l’échelle mondiale.",
     "tracking": {
-      "title": "Suivi d'expédition en temps réel",
-      "description": "Surveillez les envois avec GPS en direct, les délais de livraison et les mises à jour instantanées du statut pour une transparence totale."
+      "title": "Suivi et mises à jour",
+      "description": "Consultez les informations de suivi pour savoir où se trouve votre envoi et sa date de livraison."
     },
     "fleet": {
-      "title": "Gestion de flotte intelligente",
-      "description": "Gérez la santé des véhicules, la consommation de carburant et l'activité des conducteurs dans un tableau de bord intuitif."
+      "title": "Intégration transporteur",
+      "description": "Nous travaillons directement avec les systèmes des transporteurs pour simplifier votre expérience d’expédition."
     },
     "route": {
-      "title": "Optimisation des itinéraires et répartition",
-      "description": "Attribuez automatiquement des chauffeurs et créez des itinéraires efficaces pour réduire les retards et les coûts opérationnels."
+      "title": "Options de transit optimisées",
+      "description": "Choisissez des itinéraires express ou planifiés adaptés au transport de reptiles vivants."
     },
     "analytics": {
-      "title": "Suite d'analyses avancées",
-      "description": "Débloquez des informations sur les performances, la rentabilité, les délais de livraison et les KPI opérationnels grâce à des rapports puissants."
+      "title": "Analyse des performances",
+      "description": "Examinez vos envois passés et planifiez vos transports futurs en toute confiance."
     },
     "warehouse": {
-      "title": "Synchronisation de l'entrepôt et de l'inventaire",
-      "description": "Synchronisez les niveaux de stock, automatisez les journaux d'entrée et suivez les mouvements sur plusieurs sites d'entrepôt."
+      "title": "Préparation et fournitures",
+      "description": "Nous fournissons conseils et kits spécialisés pour emballer vos reptiles en toute sécurité."
     },
     "billing": {
-      "title": "Facturation et paiement automatisés",
-      "description": "Générez des factures, suivez les paiements et gérez les dépenses sans effort grâce à l'automatisation financière intégrée."
+      "title": "Devis et facturation clairs",
+      "description": "Obtenez des devis transparents et suivez vos factures dans votre tableau de bord."
     }
   },
   "Errors": {
@@ -104,9 +104,9 @@
     "invalidEmail": "Veuillez entrer une adresse e-mail valide",
     "minLength": "Trop court (minimum {min} caractères)",
     "maxLength": "Trop long (maximum {max} caractères)",
-    "shipmentNotFound": "Expédition introuvable. Veuillez vérifier votre numéro de suivi.",
-    "serverError": "Une erreur de serveur est survenue. Veuillez réessayer plus tard.",
-    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action",
+    "shipmentNotFound": "Envoi non trouvé. Vérifiez votre numéro de suivi.",
+    "serverError": "Erreur serveur. Veuillez réessayer plus tard.",
+    "unauthorized": "Vous n’êtes pas autorisé à effectuer cette action",
     "invalidTracking": "Format de numéro de suivi invalide"
   }
 }

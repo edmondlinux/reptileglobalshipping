@@ -1,0 +1,112 @@
+{
+  "Hero": {
+    "excellence": "Vertrauenswürdige Reptilien-Versandexperten",
+    "welcome": "Willkommen bei",
+    "partner": "Spezialisierter Transport lebender Reptilien weltweit",
+    "trackPlaceholder": "Geben Sie Ihre Sendungsnummer ein...",
+    "trackButton": "Ihr Reptil verfolgen",
+    "globalCoverage": "Zuverlässiger weltweiter Versand",
+    "secureHandling": "Isolierte Boxen & Temperaturkontrolle",
+    "fastDelivery": "Express-Optionen verfügbar"
+  },
+  "Navbar": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "team": "Team",
+    "track": "Verfolgung",
+    "testimonials": "Referenzen",
+    "contact": "Kontakt",
+    "dashboard": "Dashboard",
+    "signOut": "Abmelden",
+    "signIn": "Anmelden"
+  },
+  "Benefits": {
+    "badge": "Vorteile",
+    "title": "Warum Reptile Global wählen",
+    "description": "Wir bieten sicheren und zuverlässigen Transport lebender Reptilien mit Spezialverpackungen, Transportzertifikaten und persönlichem Support.",
+    "secure": {
+      "title": "Zertifizierter Transport lebender Tiere",
+      "description": "Wir sind zertifiziert für den sicheren Transport lebender Reptilien mit zugelassenen Verpackungen und sicheren Methoden."
+    },
+    "time": {
+      "title": "Express-Lieferoptionen",
+      "description": "Wählen Sie zwischen Nacht- oder Schnelllieferungen, um die Transportzeit und den Stress für die Tiere zu minimieren."
+    },
+    "cost": {
+      "title": "Faire Versandpreise",
+      "description": "Erhalten Sie schnelle Angebote, die auf die Bedürfnisse Ihrer Reptilien zugeschnitten sind, ohne versteckte Kosten."
+    },
+    "support": {
+      "title": "Experten-Support",
+      "description": "Unser Team kennt die Logistik für lebende Reptilien und begleitet Sie Schritt für Schritt, einschließlich Verpackung."
+    }
+  },
+  "Features": {
+    "badge": "Funktionen",
+    "title": "Was uns auszeichnet",
+    "description": "Fortschrittliche Verfolgung und Spezialverpackungen: Erfahren Sie, warum Züchter und Liebhaber uns vertrauen.",
+    "tracking": {
+      "title": "Echtzeit-Tracking",
+      "description": "Verfolgen Sie den Weg Ihres Reptils mit Live-Updates von Abholung bis Lieferung."
+    },
+    "network": {
+      "title": "Zertifizierte Partner",
+      "description": "Wir arbeiten mit zertifizierten Transportnetzwerken für zuverlässige und weitreichende Lieferungen zusammen."
+    },
+    "handling": {
+      "title": "Spezialverpackungsanleitung",
+      "description": "Erhalten Sie Anweisungen und Materialien für die sichere Verpackung Ihrer Reptilien mit Isolation und Wärme-/Kühlpacks."
+    },
+    "fleet": {
+      "title": "Vertrauenswürdige Transportpartner",
+      "description": "Wir koordinieren mit zertifizierten Transportunternehmen, um die Sicherheit Ihrer Reptilien zu gewährleisten."
+    },
+    "docs": {
+      "title": "Internationale Versandkonformität",
+      "description": "Wir unterstützen Sie bei Zoll- und Rechtsdokumenten für internationale Sendungen."
+    },
+    "scalable": {
+      "title": "Flexible Versandlösungen",
+      "description": "Egal ob einzelne Tiere oder mehrere, wählen Sie den passenden Service und die richtige Verpackung."
+    }
+  },
+  "Services": {
+    "badge": "Dienstleistungen",
+    "title": "Transportservices für lebende Reptilien",
+    "description": "Unsere Services sind speziell auf den sicheren und regelkonformen Versand von Reptilien und Zubehör weltweit zugeschnitten.",
+    "tracking": {
+      "title": "Sendungsverfolgung & Updates",
+      "description": "Verfolgen Sie Ihre Sendung und erfahren Sie, wo sich Ihre Lieferung gerade befindet und wann sie ankommt."
+    },
+    "fleet": {
+      "title": "Integration mit Transportunternehmen",
+      "description": "Wir arbeiten direkt mit den Systemen der Transportpartner, um den Versand für Sie zu vereinfachen."
+    },
+    "route": {
+      "title": "Optimierte Transportoptionen",
+      "description": "Wählen Sie Express- oder planbare Routen, die für den Transport lebender Reptilien geeignet sind."
+    },
+    "analytics": {
+      "title": "Leistungsanalyse",
+      "description": "Analysieren Sie vergangene Sendungen, um zukünftige Transporte besser zu planen."
+    },
+    "warehouse": {
+      "title": "Vorbereitung & Verpackungsmaterial",
+      "description": "Wir bieten Ratschläge und Kits für den sicheren Versand Ihrer Reptilien."
+    },
+    "billing": {
+      "title": "Transparente Angebote & Abrechnung",
+      "description": "Erhalten Sie klare Kostenvoranschläge und verfolgen Sie Rechnungen in Ihrem Dashboard."
+    }
+  },
+  "Errors": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "minLength": "Zu kurz (mindestens {min} Zeichen)",
+    "maxLength": "Zu lang (maximal {max} Zeichen)",
+    "shipmentNotFound": "Sendung nicht gefunden. Bitte überprüfen Sie Ihre Sendungsnummer.",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "unauthorized": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
+    "invalidTracking": "Ungültiges Sendungsverfolgungsformat"
+  }
+}
