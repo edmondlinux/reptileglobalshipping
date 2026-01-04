@@ -1,12 +1,23 @@
 {
-  "HomePage": {
-    "title": "Welcome to Shipping Portal",
-    "description": "Fast and reliable shipping services."
+  "Hero": {
+    "excellence": "5 Years of Excellence",
+    "welcome": "Welcome to",
+    "partner": "Your trusted partner in global shipping solutions",
+    "trackPlaceholder": "Enter your tracking number...",
+    "trackButton": "Track Shipment",
+    "globalCoverage": "Global Coverage",
+    "secureHandling": "Secure Handling",
+    "fastDelivery": "Fast Delivery"
   },
   "Navbar": {
     "home": "Home",
     "about": "About",
+    "team": "Team",
+    "track": "Track",
+    "testimonials": "Testimonials",
     "contact": "Contact",
-    "track": "Track Shipment"
+    "dashboard": "Dashboard",
+    "signOut": "Sign Out",
+    "signIn": "Sign In"
   }
 }

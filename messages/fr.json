@@ -1,12 +1,23 @@
 {
-  "HomePage": {
-    "title": "Bienvenue sur le portail d'expédition",
-    "description": "Services d'expédition rapides et fiables."
+  "Hero": {
+    "excellence": "5 ans d'excellence",
+    "welcome": "Bienvenue chez",
+    "partner": "Votre partenaire de confiance pour les solutions d'expédition mondiales",
+    "trackPlaceholder": "Entrez votre numéro de suivi...",
+    "trackButton": "Suivre l'envoi",
+    "globalCoverage": "Couverture mondiale",
+    "secureHandling": "Manipulation sécurisée",
+    "fastDelivery": "Livraison rapide"
   },
   "Navbar": {
     "home": "Accueil",
     "about": "À propos",
+    "team": "Équipe",
+    "track": "Suivi",
+    "testimonials": "Témoignages",
     "contact": "Contact",
-    "track": "Suivre l'envoi"
+    "dashboard": "Tableau de bord",
+    "signOut": "Se déconnecter",
+    "signIn": "Se connecter"
   }
 }

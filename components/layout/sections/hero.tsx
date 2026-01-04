@@ -6,7 +6,10 @@ import { ArrowRight, Package, Globe, Zap } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
 export const HeroSection = () => {
+  const t = useTranslations("Hero");
   const { theme } = useTheme();
   const [trackingNumber, setTrackingNumber] = useState("");
 
@@ -66,19 +69,19 @@ export const HeroSection = () => {
             <div className="inline-block">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary mb-6">
                 <Zap className="w-4 h-4" />
-                5 Years of Excellence
+                {t("excellence")}
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              Welcome to{" "}
+              {t("welcome")}{" "}
               <span className="text-transparent bg-gradient-to-r from-[#1E3A5F] via-primary to-[#0D9488] bg-clip-text">
                 Reptile Global
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
-              Your trusted partner in global shipping solutions
+              {t("partner")}
             </p>
           </div>
 
@@ -87,7 +90,7 @@ export const HeroSection = () => {
             <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3 p-2 bg-background/80 backdrop-blur-md rounded-2xl shadow-2xl border border-border/50">
               <Input
                 type="text"
-                placeholder="Enter your tracking number..."
+                placeholder={t("trackPlaceholder")}
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 className="flex-1 h-14 text-lg border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-6"
@@ -97,7 +100,7 @@ export const HeroSection = () => {
                 size="lg"
                 className="h-14 px-8 font-semibold group/arrow rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
-                Track Shipment
+                {t("trackButton")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
               </Button>
             </form>
@@ -107,15 +110,15 @@ export const HeroSection = () => {
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-8">
             <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
               <Globe className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">Global Coverage</span>
+              <span className="text-sm font-medium">{t("globalCoverage")}</span>
             </div>
             <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
               <Package className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">Secure Handling</span>
+              <span className="text-sm font-medium">{t("secureHandling")}</span>
             </div>
             <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
               <Zap className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">Fast Delivery</span>
+              <span className="text-sm font-medium">{t("fastDelivery")}</span>
             </div>
           </div>
         </div>

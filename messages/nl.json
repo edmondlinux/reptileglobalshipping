@@ -1,12 +1,23 @@
 {
-  "HomePage": {
-    "title": "Welkom bij het Verzendportaal",
-    "description": "Snelle en betrouwbare verzendservices."
+  "Hero": {
+    "excellence": "5 jaar uitmuntendheid",
+    "welcome": "Welkom bij",
+    "partner": "Uw betrouwbare partner in wereldwijde verzendoplossingen",
+    "trackPlaceholder": "Voer uw trackingnummer in...",
+    "trackButton": "Zending volgen",
+    "globalCoverage": "Wereldwijde dekking",
+    "secureHandling": "Veilige afhandeling",
+    "fastDelivery": "Snelle levering"
   },
   "Navbar": {
     "home": "Home",
     "about": "Over ons",
+    "team": "Team",
+    "track": "Volgen",
+    "testimonials": "Getuigenissen",
     "contact": "Contact",
-    "track": "Zending volgen"
+    "dashboard": "Dashboard",
+    "signOut": "Afmelden",
+    "signIn": "Inloggen"
   }
 }

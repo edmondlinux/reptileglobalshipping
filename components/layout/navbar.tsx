@@ -24,23 +24,26 @@ import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "@/components/auth/AuthDialog";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
 interface RouteProps {
   href: string;
-  label: string;
+  labelKey: string;
 }
 
 const routeList: RouteProps[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/team", label: "Team" },
-  { href: "/track", label: "Track" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", labelKey: "home" },
+  { href: "/about", labelKey: "about" },
+  { href: "/team", labelKey: "team" },
+  { href: "/track", labelKey: "track" },
+  { href: "/testimonials", labelKey: "testimonials" },
+  { href: "/contact", labelKey: "contact" },
 ];
 
 import { LanguageSwitcher } from "./language-switcher";
 
 export const Navbar = () => {
+  const t = useTranslations("Navbar");
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showAuthDialog, setShowAuthDialog] = useState<boolean>(false);
@@ -94,14 +97,14 @@ export const Navbar = () => {
                     </SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col justify-center items-center gap-2 mt-4">
-                    {routeList.map(({ href, label }: RouteProps) => (
+                    {routeList.map(({ href, labelKey }: RouteProps) => (
                       <Link
-                        key={label}
+                        key={labelKey}
                         href={href}
                         onClick={() => setIsOpen(false)}
                         className={buttonVariants({ variant: "ghost" })}
                       >
-                        {label}
+                        {t(labelKey)}
                       </Link>
                     ))}
                     {user?.role === "admin" && (
@@ -110,7 +113,7 @@ export const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                         className={buttonVariants({ variant: "ghost" })}
                       >
-                        Dashboard
+                        {t("dashboard")}
                       </Link>
                     )}
                     {!isLoading && (
@@ -118,7 +121,7 @@ export const Navbar = () => {
                         {user ? (
                           <Button onClick={signout} variant="ghost">
                             <LogOut className="mr-2 h-4 w-4" />
-                            Sign Out
+                            {t("signOut")}
                           </Button>
                         ) : (
                           <Button onClick={() => {
@@ -126,7 +129,7 @@ export const Navbar = () => {
                             setShowAuthDialog(true);
                             setIsOpen(false);
                           }} variant="default">
-                            Sign In
+                            {t("signIn")}
                           </Button>
                         )}
                       </>
@@ -146,14 +149,14 @@ export const Navbar = () => {
                     variant: "ghost",
                   })}`}
                 >
-                  {route.label}
+                  {t(route.labelKey)}
                 </Link>
               ))}
               {user?.role === "admin" && (
                 <NavigationMenuItem>
                   <Link href="/admin-dashboard" legacyBehavior passHref>
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                      Dashboard
+                      {t("dashboard")}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -171,7 +174,7 @@ export const Navbar = () => {
                       </span>
                       <Button onClick={signout} variant="ghost" size="sm">
                         <LogOut className="mr-2 h-4 w-4" />
-                        Sign Out
+                        {t("signOut")}
                       </Button>
                     </div>
                   ) : (
@@ -179,7 +182,7 @@ export const Navbar = () => {
                       window.history.pushState({}, '', '/?auth=signin');
                       setShowAuthDialog(true);
                     }} variant="default" size="sm">
-                      Sign In
+                      {t("signIn")}
                     </Button>
                   )}
                 </>
