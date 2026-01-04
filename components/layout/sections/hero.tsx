@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Package, Globe, Zap } from "lucide-react";
@@ -12,6 +12,16 @@ export const HeroSection = () => {
   const t = useTranslations("Hero");
   const { theme } = useTheme();
   const [trackingNumber, setTrackingNumber] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = ["/hero.png", "/hero1.png"];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 5000); // Switch every 5 seconds
+    return () => clearInterval(timer);
+  }, [images.length]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,21 +30,27 @@ export const HeroSection = () => {
     }
   };
 
-  // Single image (change path if needed)
-  const heroImage = theme === "light" ? "/hero.png" : "/hero.png";
-
   return (
     <section className="relative w-full overflow-hidden min-h-[700px] md:min-h-[900px]">
-      {/* Background Image with Gradient Overlay */}
+      {/* Background Image Carousel with Snap Switch */}
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full">
-          <Image
-            src={heroImage}
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            priority
-          />
+          {images.map((src, index) => (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-0 ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={`Hero Background ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background/80"></div>
       </div>
