@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +21,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { locale }
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  const messages = await getMessages();
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background", inter.className)}>
@@ -35,33 +39,35 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <Navbar />
-            {children}
-            <Toaster
-              position="top-center"
-              toastOptions={{
-                duration: 4000,
-                style: {
-                  background: 'hsl(var(--background))',
-                  color: 'hsl(var(--foreground))',
-                  border: '1px solid hsl(var(--border))',
-                },
-                success: {
-                  iconTheme: {
-                    primary: 'hsl(var(--primary))',
-                    secondary: 'hsl(var(--primary-foreground))',
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <AuthProvider>
+              <Navbar />
+              {children}
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: 'hsl(var(--background))',
+                    color: 'hsl(var(--foreground))',
+                    border: '1px solid hsl(var(--border))',
                   },
-                },
-                error: {
-                  iconTheme: {
-                    primary: 'hsl(var(--destructive))',
-                    secondary: 'hsl(var(--destructive-foreground))',
+                  success: {
+                    iconTheme: {
+                      primary: 'hsl(var(--primary))',
+                      secondary: 'hsl(var(--primary-foreground))',
+                    },
                   },
-                },
-              }}
-            />
-          </AuthProvider>
+                  error: {
+                    iconTheme: {
+                      primary: 'hsl(var(--destructive))',
+                      secondary: 'hsl(var(--destructive-foreground))',
+                    },
+                  },
+                }}
+              />
+            </AuthProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
