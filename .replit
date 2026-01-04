@@ -16,7 +16,7 @@ deploymentTarget = "cloudrun"
 
 [[ports]]
 localPort = 3000
-externalPort = 80
+externalPort = 3000
 
 [[ports]]
 localPort = 3001
@@ -54,5 +54,5 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev -- -p 5000 --hostname 0.0.0.0"
+args = "npm run dev -- -p 5000"
 waitForPort = 5000
