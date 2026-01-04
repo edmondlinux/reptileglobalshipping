@@ -19,7 +19,7 @@ export const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 5000); // Switch every 5 seconds
+    }, 5000);
     return () => clearInterval(timer);
   }, [images.length]);
 
@@ -32,15 +32,16 @@ export const HeroSection = () => {
 
   return (
     <section className="relative w-full overflow-hidden min-h-[700px] md:min-h-[900px]">
-      {/* Background Image Carousel with Snap Switch */}
-      <div className="absolute inset-0 z-0">
-        <div className="relative w-full h-full">
+      {/* Background Image Carousel with Sliding Snap Switch */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div 
+          className="relative w-full h-full flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+        >
           {images.map((src, index) => (
             <div
               key={src}
-              className={`absolute inset-0 transition-opacity duration-0 ${
-                index === currentImageIndex ? "opacity-100" : "opacity-0"
-              }`}
+              className="relative min-w-full h-full"
             >
               <Image
                 src={src}
