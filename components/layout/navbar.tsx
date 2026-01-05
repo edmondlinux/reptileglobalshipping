@@ -58,19 +58,22 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
-        <NavigationMenu className="mx-auto">
-          <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
-            <NavigationMenuItem className="font-bold flex">
-              <Link href="/" className="ml-2 font-bold text-xl flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt="Reptile Global"
-                  width={36}
-                  height={36}
-                />
-              </Link>
-            </NavigationMenuItem>
+      <header className="sticky top-4 z-50 w-full px-4">
+        <div className="mx-auto max-w-7xl">
+          <NavigationMenu className="mx-auto">
+            <NavigationMenuList className="h-16 px-6 w-full flex justify-between bg-white/80 dark:bg-background/80 backdrop-blur-lg border border-border/50 rounded-2xl shadow-lg">
+              <NavigationMenuItem className="font-bold flex">
+                <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                  <Image
+                    src="/logo.png"
+                    alt="Reptile Global"
+                    width={40}
+                    height={40}
+                    className="rounded-lg"
+                  />
+                  <span className="hidden sm:inline-block font-black text-xl tracking-tighter text-primary">REPTILE GLOBAL</span>
+                </Link>
+              </NavigationMenuItem>
 
             {/* mobile */}
             <span className="flex md:hidden gap-2">
