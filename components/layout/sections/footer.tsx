@@ -3,8 +3,10 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronsDownIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const FooterSection = () => {
+  const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -24,85 +26,85 @@ export const FooterSection = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Services</h3>
+            <h3 className="font-bold text-lg">{t("services")}</h3>
             <div>
               <Link href="/track" className="opacity-60 hover:opacity-100">
-                Track Shipment
+                {t("trackShipment")}
               </Link>
             </div>
 
             <div>
               <Link href="/#services" className="opacity-60 hover:opacity-100">
-                Our Services
+                {t("ourServices")}
               </Link>
             </div>
 
             <div>
               <Link href="/contact" className="opacity-60 hover:opacity-100">
-                Get a Quote
+                {t("getQuote")}
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Company</h3>
+            <h3 className="font-bold text-lg">{t("company")}</h3>
             <div>
               <Link href="/about" className="opacity-60 hover:opacity-100">
-                About Us
+                {t("aboutUs")}
               </Link>
             </div>
 
             <div>
               <Link href="/team" className="opacity-60 hover:opacity-100">
-                Our Team
+                {t("ourTeam")}
               </Link>
             </div>
 
             <div>
               <Link href="/testimonials" className="opacity-60 hover:opacity-100">
-                Testimonials
+                {t("testimonials")}
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Support</h3>
+            <h3 className="font-bold text-lg">{t("support")}</h3>
             <div>
               <Link href="/contact" className="opacity-60 hover:opacity-100">
-                Contact Us
+                {t("contactUs")}
               </Link>
             </div>
 
             <div>
               <Link href="/#faq" className="opacity-60 hover:opacity-100">
-                FAQ
+                {t("faq")}
               </Link>
             </div>
 
             <div>
               <Link href="/contact" className="opacity-60 hover:opacity-100">
-                Customer Service
+                {t("customerService")}
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold text-lg">Connect</h3>
+            <h3 className="font-bold text-lg">{t("connect")}</h3>
             <div>
               <Link href="tel:+18007947878" className="opacity-60 hover:opacity-100">
-                Call: 1-800-REPTILE
+                {t("call")}
               </Link>
             </div>
 
             <div>
               <Link href="mailto:support@reptileglobal.com" className="opacity-60 hover:opacity-100">
-                Email Support
+                {t("emailSupport")}
               </Link>
             </div>
 
             <div>
               <span className="opacity-60">
-                24/7 Customer Service
+                {t("customerService247")}
               </span>
             </div>
           </div>
@@ -111,18 +113,18 @@ export const FooterSection = () => {
         <Separator className="my-6" />
         <section className="">
           <h3 className="">
-            &copy; {currentYear} Reptile Global. All rights reserved. | 
+            &copy; {currentYear} Reptile Global. {t("rights")} | 
             <Link
               href="/contact"
               className="text-primary transition-all border-primary hover:border-b-2 ml-1"
             >
-              Privacy Policy
+              {t("privacyPolicy")}
             </Link> | 
             <Link
               href="/contact"
               className="text-primary transition-all border-primary hover:border-b-2 ml-1"
             >
-              Terms of Service
+              {t("termsOfService")}
             </Link>
           </h3>
         </section>

@@ -30,7 +30,7 @@
     },
     "time": {
       "title": "Express leveringsopties",
-      "description": "Kies tussen nacht- of versnelde verzending om de transittijd en stress voor de dieren te minimaliseren."
+      "description": "Kies tussen nacht- of versnelde verzending om de transittijd en stress voor de dieren te kunnen minimaliseren."
     },
     "cost": {
       "title": "Concurrerende tarieven",
@@ -95,9 +95,55 @@
       "description": "Wij bieden advies en gespecialiseerde kits voor het veilig verzenden van uw reptielen."
     },
     "billing": {
-      "title": "Transparante offertes & facturering",
+      "title": "Transparente offertes & facturering",
       "description": "Krijg duidelijke offertes en volg uw facturen in uw dashboard."
     }
+  },
+  "Contact": {
+    "badge": "Contact",
+    "title": "Neem contact met ons op",
+    "description": "Heeft u vragen over verzending of tracking? Onze klantenservice staat voor u klaar.",
+    "findUs": "Vind ons",
+    "callUs": "Bel ons",
+    "emailUs": "E-mail ons",
+    "visitUs": "Bezoek ons",
+    "mondayFriday": "Maandag - Vrijdag",
+    "form": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mail",
+      "subject": "Onderwerp",
+      "subjectPlaceholder": "Kies een onderwerp",
+      "message": "Bericht",
+      "messagePlaceholder": "Uw bericht...",
+      "send": "Bericht verzenden"
+    }
+  },
+  "Team": {
+    "badge": "Team",
+    "title": "Ons expertteam"
+  },
+  "Footer": {
+    "description": "Uw betrouwbare partner voor wereldwijde verzending van levende reptielen.",
+    "services": "Diensten",
+    "company": "Bedrijf",
+    "support": "Ondersteuning",
+    "connect": "Contact",
+    "trackShipment": "Zending volgen",
+    "ourServices": "Onze diensten",
+    "getQuote": "Offerte aanvragen",
+    "aboutUs": "Over ons",
+    "ourTeam": "Ons team",
+    "testimonials": "Recensies",
+    "contactUs": "Contact",
+    "faq": "FAQ",
+    "customerService": "Klantenservice",
+    "call": "Bel: 1-800-REPTILE",
+    "emailSupport": "E-mail support",
+    "customerService247": "24/7 klantenservice",
+    "rights": "Alle rechten voorbehouden.",
+    "privacyPolicy": "Privacybeleid",
+    "termsOfService": "Algemene voorwaarden"
   },
   "Errors": {
     "required": "Dit veld is verplicht",

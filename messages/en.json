@@ -99,6 +99,52 @@
       "description": "Get clear, upfront shipping quotes and track billing details in your dashboard."
     }
   },
+  "Contact": {
+    "badge": "Contact",
+    "title": "Connect With Us",
+    "description": "Have questions about shipping, tracking, or our services? Our customer support team is ready to help you with all your logistics needs.",
+    "findUs": "Find us",
+    "callUs": "Call us",
+    "emailUs": "Email Us",
+    "visitUs": "Visit us",
+    "mondayFriday": "Monday - Friday",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "message": "Message",
+      "messagePlaceholder": "Your message...",
+      "send": "Send message"
+    }
+  },
+  "Team": {
+    "badge": "Team",
+    "title": "The Company Dream Team"
+  },
+  "Footer": {
+    "description": "Your trusted partner for worldwide live reptile shipping.",
+    "services": "Services",
+    "company": "Company",
+    "support": "Support",
+    "connect": "Connect",
+    "trackShipment": "Track Shipment",
+    "ourServices": "Our Services",
+    "getQuote": "Get a Quote",
+    "aboutUs": "About Us",
+    "ourTeam": "Our Team",
+    "testimonials": "Testimonials",
+    "contactUs": "Contact Us",
+    "faq": "FAQ",
+    "customerService": "Customer Service",
+    "call": "Call: 1-800-REPTILE",
+    "emailSupport": "Email Support",
+    "customerService247": "24/7 Customer Service",
+    "rights": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
   "Errors": {
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",

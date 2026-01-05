@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+
 interface TeamProps {
   imageUrl: string;
   firstName: string;
@@ -22,6 +24,7 @@ interface SocialNetworkProps {
   url: string;
 }
 export const TeamSection = () => {
+  const t = useTranslations("Team");
   const teamList: TeamProps[] = [
     {
       imageUrl: "https://i.pravatar.cc/250?img=58",
@@ -178,11 +181,11 @@ export const TeamSection = () => {
     <section id="team" className="container lg:w-[75%] py-24 sm:py-32">
       <div className="text-center mb-8">
         <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-          Team
+          {t("badge")}
         </h2>
 
         <h2 className="text-3xl md:text-4xl text-center font-bold">
-          The Company Dream Team
+          {t("title")}
         </h2>
       </div>
 

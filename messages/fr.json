@@ -99,6 +99,52 @@
       "description": "Obtenez des devis transparents et suivez vos factures dans votre tableau de bord."
     }
   },
+  "Contact": {
+    "badge": "Contact",
+    "title": "Contactez-nous",
+    "description": "Vous avez des questions sur l'expédition ou le suivi ? Notre équipe de support client est là pour vous aider.",
+    "findUs": "Nous trouver",
+    "callUs": "Nous appeler",
+    "emailUs": "Nous écrire",
+    "visitUs": "Nous rendre visite",
+    "mondayFriday": "Lundi - Vendredi",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "E-mail",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sélectionnez un sujet",
+      "message": "Message",
+      "messagePlaceholder": "Votre message...",
+      "send": "Envoyer le message"
+    }
+  },
+  "Team": {
+    "badge": "Équipe",
+    "title": "Notre équipe d'experts"
+  },
+  "Footer": {
+    "description": "Votre partenaire de confiance pour le transport mondial de reptiles vivants.",
+    "services": "Services",
+    "company": "Entreprise",
+    "support": "Support",
+    "connect": "Connecter",
+    "trackShipment": "Suivre l'envoi",
+    "ourServices": "Nos services",
+    "getQuote": "Obtenir un devis",
+    "aboutUs": "À propos",
+    "ourTeam": "Notre équipe",
+    "testimonials": "Témoignages",
+    "contactUs": "Contact",
+    "faq": "FAQ",
+    "customerService": "Service client",
+    "call": "Tél: 1-800-REPTILE",
+    "emailSupport": "Support e-mail",
+    "customerService247": "Service client 24/7",
+    "rights": "Tous droits réservés.",
+    "privacyPolicy": "Confidentialité",
+    "termsOfService": "Conditions d'utilisation"
+  },
   "Errors": {
     "required": "Ce champ est obligatoire",
     "invalidEmail": "Veuillez entrer une adresse e-mail valide",
