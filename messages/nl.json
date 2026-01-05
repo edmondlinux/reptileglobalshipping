@@ -20,6 +20,51 @@
     "signOut": "Uitloggen",
     "signIn": "Inloggen"
   },
+  "About": {
+    "title": "Over Reptile Global",
+    "subtitle": "5 jaar uitmuntendheid in transport",
+    "description": "Reptile Global transporteert al 5 jaar goederen, en we hebben onlangs onze website gelanceerd om meer klanten wereldwijd te bedienen. Onze toewijding aan betrouwbaarheid, snelheid en klanttevredenheid heeft ons tot een vertrouwde naam in de logistieke sector gemaakt.",
+    "mission": {
+      "title": "Onze Missie",
+      "description": "Het bieden van hoogwaardige verzendoplossingen die bedrijven en individuen over de hele wereld efficiënt en met zorg verbinden."
+    },
+    "vision": {
+      "title": "Onze Visie",
+      "description": "De toonaangevende logistieke dienstverlener zijn die bekend staat om innovatie, duurzaamheid en uitzonderlijke servicekwaliteit."
+    }
+  },
+  "Team": {
+    "badge": "Team",
+    "title": "Ons expertteam",
+    "pageTitle": "Maak kennis met ons team",
+    "pageSubtitle": "De mensen achter uw zendingen",
+    "pageDescription": "Ons toegewijde team van logistieke professionals werkt al 5 jaar samen om uitzonderlijke service te verlenen."
+  },
+  "Track": {
+    "title": "Volg uw zending",
+    "subtitle": "Voer uw trackingnummer in om realtime updates te zien",
+    "placeholder": "Voer trackingnummer in",
+    "button": "Zending volgen",
+    "tracking": "Bezig met volgen...",
+    "found": "Zending gevonden!",
+    "notFound": "Zending niet gevonden. Controleer uw trackingnummer.",
+    "status": "Tracking:",
+    "created": "Aangemaakt op",
+    "downloadLabel": "Etiket downloaden",
+    "label": "Etiket",
+    "routeTitle": "Verzendroute & Locatie",
+    "senderInfo": "Informatie afzender",
+    "recipientInfo": "Informatie ontvanger",
+    "packageDetails": "Pakketdetails",
+    "type": "Type",
+    "weight": "Gewicht",
+    "dimensions": "Afmetingen",
+    "value": "Waarde",
+    "service": "Service",
+    "estDelivery": "Verwachte levering",
+    "description": "Beschrijving",
+    "specialInstructions": "Speciale instructies"
+  },
   "Benefits": {
     "badge": "Voordelen",
     "title": "Waarom kiezen voor Reptile Global",
@@ -95,7 +140,7 @@
       "description": "Wij bieden advies en gespecialiseerde kits voor het veilig verzenden van uw reptielen."
     },
     "billing": {
-      "title": "Transparente offertes & facturering",
+      "title": "Transparante offertes & facturering",
       "description": "Krijg duidelijke offertes en volg uw facturen in uw dashboard."
     }
   },

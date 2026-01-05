@@ -20,6 +20,51 @@
     "signOut": "Déconnexion",
     "signIn": "Connexion"
   },
+  "About": {
+    "title": "À propos de Reptile Global",
+    "subtitle": "5 ans d'excellence dans le transport",
+    "description": "Reptile Global transporte des marchandises depuis 5 ans, et nous avons récemment lancé notre site Web pour servir plus de clients dans le monde. Notre engagement envers la fiabilité, la rapidité et la satisfaction du client a fait de nous un nom de confiance dans l'industrie de la logistique.",
+    "mission": {
+      "title": "Notre mission",
+      "description": "Fournir des solutions d'expédition de classe mondiale qui connectent les entreprises et les particuliers à travers le monde avec efficacité et soin."
+    },
+    "vision": {
+      "title": "Notre vision",
+      "description": "Être le principal fournisseur de logistique reconnu pour son innovation, sa durabilité et sa qualité de service exceptionnelle."
+    }
+  },
+  "Team": {
+    "badge": "Équipe",
+    "title": "Notre équipe d'experts",
+    "pageTitle": "Rencontrez notre équipe",
+    "pageSubtitle": "Les personnes derrière vos envois",
+    "pageDescription": "Notre équipe dédiée de professionnels de la logistique travaille ensemble depuis 5 ans pour fournir un service exceptionnel."
+  },
+  "Track": {
+    "title": "Suivez votre envoi",
+    "subtitle": "Entrez votre numéro de suivi pour voir les mises à jour en temps réel",
+    "placeholder": "Entrez le numéro de suivi",
+    "button": "Suivre l'envoi",
+    "tracking": "Suivi en cours...",
+    "found": "Envoi trouvé !",
+    "notFound": "Envoi non trouvé. Veuillez vérifier votre numéro de suivi.",
+    "status": "Suivi :",
+    "created": "Créé le",
+    "downloadLabel": "Télécharger l'étiquette",
+    "label": "Étiquette",
+    "routeTitle": "Itinéraire et emplacement de l'envoi",
+    "senderInfo": "Informations sur l'expéditeur",
+    "recipientInfo": "Informations sur le destinataire",
+    "packageDetails": "Détails du colis",
+    "type": "Type",
+    "weight": "Poids",
+    "dimensions": "Dimensions",
+    "value": "Valeur",
+    "service": "Service",
+    "estDelivery": "Livraison prévue",
+    "description": "Description",
+    "specialInstructions": "Instructions spéciales"
+  },
   "Benefits": {
     "badge": "Avantages",
     "title": "Pourquoi choisir Reptile Global",

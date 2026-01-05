@@ -14,6 +14,7 @@ import { RouteMap } from "@/components/admin/RouteMap";
 import { ShipmentTimeline } from "@/components/admin/ShipmentTimeline";
 import toast from "react-hot-toast";
 import { jsPDF } from "jspdf";
+import { useTranslations } from "next-intl";
 
 interface ShipmentData {
   trackingNumber: string;
@@ -67,6 +68,7 @@ interface ShipmentData {
 }
 
 export default function TrackPage() {
+  const t = useTranslations("Track");
   const searchParams = useSearchParams();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -92,11 +94,11 @@ export default function TrackPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Shipment not found");
+        throw new Error(data.error || t("notFound"));
       }
 
       setShipment(data.shipment);
-      toast.success("Shipment found!");
+      toast.success(t("found"));
     } catch (err: any) {
       toast.error(err.message || "Failed to find shipment");
       setShipment(null);
@@ -442,17 +444,17 @@ export default function TrackPage() {
               <Package className="h-16 w-16 text-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Track Your Shipment
+              {t("title")}
             </h1>
             <p className="text-xl text-muted-foreground">
-              Enter your tracking number to see real-time updates
+              {t("subtitle")}
             </p>
           </div>
 
           <div className="space-y-4 mb-8 w-full">
             <Input
               type="text"
-              placeholder="Enter tracking number"
+              placeholder={t("placeholder")}
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
               onPaste={(e) => {
@@ -477,10 +479,10 @@ export default function TrackPage() {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Tracking...
+                  {t("tracking")}
                 </>
               ) : (
-                "Track Shipment"
+                t("button")
               )}
             </Button>
             {!isLoading && !shipment && trackingNumber && (
@@ -495,9 +497,9 @@ export default function TrackPage() {
                 <CardHeader>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <CardTitle className="text-xl sm:text-2xl break-all">Tracking: {shipment.trackingNumber}</CardTitle>
+                      <CardTitle className="text-xl sm:text-2xl break-all">{t("status")} {shipment.trackingNumber}</CardTitle>
                       <CardDescription className="mt-2">
-                        Created on {new Date(shipment.createdAt).toLocaleDateString()}
+                        {t("created")} {new Date(shipment.createdAt).toLocaleDateString()}
                       </CardDescription>
                     </div>
                     <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
@@ -507,8 +509,8 @@ export default function TrackPage() {
                         className="gap-2 flex-1 sm:flex-initial"
                       >
                         <Download className="h-4 w-4" />
-                        <span className="hidden sm:inline">Download Label</span>
-                        <span className="sm:hidden">Label</span>
+                        <span className="hidden sm:inline">{t("downloadLabel")}</span>
+                        <span className="sm:hidden">{t("label")}</span>
                       </Button>
                       <Badge className={`${getStatusColor(shipment.status)} text-white text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2 whitespace-nowrap`}>
                         {shipment.status.toUpperCase()}
@@ -524,7 +526,7 @@ export default function TrackPage() {
                   <CardHeader className="bg-muted/50">
                     <CardTitle className="flex items-center gap-2">
                       <MapPin className="h-5 w-5" />
-                      Shipment Route & Location
+                      {t("routeTitle")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -554,7 +556,7 @@ export default function TrackPage() {
                   <CardHeader className="bg-muted/50">
                     <CardTitle className="flex items-center gap-2">
                       <User className="h-5 w-5" />
-                      Sender Information
+                      {t("senderInfo")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6 space-y-3">
@@ -592,7 +594,7 @@ export default function TrackPage() {
                   <CardHeader className="bg-muted/50">
                     <CardTitle className="flex items-center gap-2">
                       <User className="h-5 w-5" />
-                      Recipient Information
+                      {t("recipientInfo")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6 space-y-3">

@@ -20,6 +20,51 @@
     "signOut": "Abmelden",
     "signIn": "Anmelden"
   },
+  "About": {
+    "title": "Über Reptile Global",
+    "subtitle": "5 Jahre Exzellenz im Transportwesen",
+    "description": "Reptile Global transportiert seit 5 Jahren Waren, und wir haben vor Kurzem unsere Website gestartet, um mehr Kunden weltweit zu bedienen. Unser Engagement für Zuverlässigkeit, Geschwindigkeit und Kundenzufriedenheit hat uns zu einem vertrauenswürdigen Namen in der Logistikbranche gemacht.",
+    "mission": {
+      "title": "Unsere Mission",
+      "description": "Weltklasse-Versandlösungen anzubieten, die Unternehmen und Einzelpersonen weltweit effizient und sorgfältig verbinden."
+    },
+    "vision": {
+      "title": "Unsere Vision",
+      "description": "Der führende Logistikdienstleister zu sein, der für Innovation, Nachhaltigkeit und außergewöhnliche Servicequalität bekannt ist."
+    }
+  },
+  "Team": {
+    "badge": "Team",
+    "title": "Unser Expertenteam",
+    "pageTitle": "Lernen Sie unser Team kennen",
+    "pageSubtitle": "Die Menschen hinter Ihren Sendungen",
+    "pageDescription": "Unser engagiertes Team von Logistikexperten arbeitet seit 5 Jahren zusammen, um außergewöhnlichen Service zu bieten."
+  },
+  "Track": {
+    "title": "Verfolgen Sie Ihre Sendung",
+    "subtitle": "Geben Sie Ihre Sendungsnummer ein, um Echtzeit-Updates zu sehen",
+    "placeholder": "Sendungsnummer eingeben",
+    "button": "Sendung verfolgen",
+    "tracking": "Verfolgung läuft...",
+    "found": "Sendung gefunden!",
+    "notFound": "Sendung nicht gefunden. Bitte überprüfen Sie Ihre Sendungsnummer.",
+    "status": "Sendungsverfolgung:",
+    "created": "Erstellt am",
+    "downloadLabel": "Etikett herunterladen",
+    "label": "Etikett",
+    "routeTitle": "Versandroute & Standort",
+    "senderInfo": "Absenderinformationen",
+    "recipientInfo": "Empfängerinformationen",
+    "packageDetails": "Paketdetails",
+    "type": "Typ",
+    "weight": "Gewicht",
+    "dimensions": "Maße",
+    "value": "Wert",
+    "service": "Service",
+    "estDelivery": "Voraussichtliche Lieferung",
+    "description": "Beschreibung",
+    "specialInstructions": "Besondere Anweisungen"
+  },
   "Benefits": {
     "badge": "Vorteile",
     "title": "Warum Reptile Global wählen",

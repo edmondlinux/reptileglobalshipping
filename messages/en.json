@@ -20,6 +20,51 @@
     "signOut": "Sign Out",
     "signIn": "Sign In"
   },
+  "About": {
+    "title": "About Reptile Global",
+    "subtitle": "5 Years of Excellence in Transportation",
+    "description": "Reptile Global has been transporting goods for 5 years, and we recently launched our website to serve more customers worldwide. Our commitment to reliability, speed, and customer satisfaction has made us a trusted name in the logistics industry.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide world-class shipping solutions that connect businesses and individuals across the globe with efficiency and care."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading logistics provider known for innovation, sustainability, and exceptional service quality."
+    }
+  },
+  "Team": {
+    "badge": "Team",
+    "title": "The Company Dream Team",
+    "pageTitle": "Meet Our Team",
+    "pageSubtitle": "The People Behind Your Shipments",
+    "pageDescription": "Our dedicated team of logistics professionals has been working together for 5 years to deliver exceptional service."
+  },
+  "Track": {
+    "title": "Track Your Shipment",
+    "subtitle": "Enter your tracking number to see real-time updates",
+    "placeholder": "Enter tracking number",
+    "button": "Track Shipment",
+    "tracking": "Tracking...",
+    "found": "Shipment found!",
+    "notFound": "Shipment not found. Please check your tracking number.",
+    "status": "Tracking:",
+    "created": "Created on",
+    "downloadLabel": "Download Label",
+    "label": "Label",
+    "routeTitle": "Shipment Route & Location",
+    "senderInfo": "Sender Information",
+    "recipientInfo": "Recipient Information",
+    "packageDetails": "Package Details",
+    "type": "Type",
+    "weight": "Weight",
+    "dimensions": "Dimensions",
+    "value": "Value",
+    "service": "Service",
+    "estDelivery": "Est. Delivery",
+    "description": "Description",
+    "specialInstructions": "Special Instructions"
+  },
   "Benefits": {
     "badge": "Benefits",
     "title": "Why Choose Reptile Global",
@@ -118,10 +163,6 @@
       "messagePlaceholder": "Your message...",
       "send": "Send message"
     }
-  },
-  "Team": {
-    "badge": "Team",
-    "title": "The Company Dream Team"
   },
   "Footer": {
     "description": "Your trusted partner for worldwide live reptile shipping.",
