@@ -61,33 +61,30 @@ export const HeroSection = () => {
         <div className="w-full max-w-5xl mx-auto py-24 md:py-32 space-y-12">
           {/* Main Heading */}
           <div className="text-center space-y-6 animate-fade-in">
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
               {t("welcome")}{" "}
-              <span className="text-transparent bg-gradient-to-br from-primary via-blue-600 to-cyan-500 bg-clip-text">
+              <span className="text-transparent bg-gradient-to-r from-[#1E3A5F] via-primary to-[#0D9488] bg-clip-text">
                 Reptile Global
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/80 font-medium max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white font-light max-w-2xl mx-auto leading-relaxed">
               {t("partner")}
             </p>
           </div>
 
           {/* Tracking Form */}
-          <div className="max-w-3xl mx-auto px-4">
-            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-0 p-1 bg-background/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-primary/20 overflow-hidden">
-              <div className="flex-1 flex items-center px-6">
-                <Package className="w-5 h-5 text-muted-foreground mr-3" />
-                <Input
-                  type="text"
-                  placeholder={t("trackPlaceholder")}
-                  value={trackingNumber}
-                  onChange={(e) => setTrackingNumber(e.target.value)}
-                  className="flex-1 h-14 text-lg border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-muted-foreground/50"
-                />
-              </div>
+          <div className="max-w-2xl mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3 p-2 bg-background/80 backdrop-blur-md rounded-2xl shadow-2xl border border-border/50">
+              <Input
+                type="text"
+                placeholder={t("trackPlaceholder")}
+                value={trackingNumber}
+                onChange={(e) => setTrackingNumber(e.target.value)}
+                className="flex-1 h-14 text-lg border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-6"
+              />
               <Button 
                 size="lg"
-                className="h-14 px-10 font-bold text-lg group/arrow rounded-xl shadow-lg hover:shadow-primary/25 transition-all bg-primary hover:bg-primary/90"
+                className="h-14 px-8 font-semibold group/arrow rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
                 {t("trackButton")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
@@ -97,17 +94,17 @@ export const HeroSection = () => {
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-8">
-            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
-              <Globe className="w-6 h-6 text-primary" />
-              <span className="text-base font-bold text-white uppercase tracking-wider">{t("globalCoverage")}</span>
+            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
+              <Globe className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium">{t("globalCoverage")}</span>
             </div>
-            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
-              <Package className="w-6 h-6 text-primary" />
-              <span className="text-base font-bold text-white uppercase tracking-wider">{t("secureHandling")}</span>
+            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
+              <Package className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium">{t("secureHandling")}</span>
             </div>
-            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
-              <Zap className="w-6 h-6 text-primary" />
-              <span className="text-base font-bold text-white uppercase tracking-wider">{t("fastDelivery")}</span>
+            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
+              <Zap className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium">{t("fastDelivery")}</span>
             </div>
           </div>
         </div>

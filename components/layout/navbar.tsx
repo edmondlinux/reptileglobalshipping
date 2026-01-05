@@ -7,8 +7,9 @@ import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -16,14 +17,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu, LogOut, Package } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Menu, LogOut } from "lucide-react";
 import { ModeToggle } from "./toogle-theme";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "@/components/auth/AuthDialog";
 import Image from "next/image";
+
 import { useTranslations } from "next-intl";
-import { LanguageSwitcher } from "./language-switcher";
 
 interface RouteProps {
   href: string;
@@ -38,6 +39,8 @@ const routeList: RouteProps[] = [
   { href: "/testimonials", labelKey: "testimonials" },
   { href: "/contact", labelKey: "contact" },
 ];
+
+import { LanguageSwitcher } from "./language-switcher";
 
 export const Navbar = () => {
   const t = useTranslations("Navbar");
@@ -55,151 +58,139 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="sticky top-4 z-50 w-full px-4">
-        <div className="mx-auto max-w-7xl">
-          <NavigationMenu className="mx-auto">
-            <NavigationMenuList className="h-16 px-6 w-full flex justify-between bg-white/80 dark:bg-background/80 backdrop-blur-lg border border-border/50 rounded-2xl shadow-lg">
-              <NavigationMenuItem className="font-bold flex">
-                <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                  <Image
-                    src="/logo.png"
-                    alt="Reptile Global"
-                    width={40}
-                    height={40}
-                    className="rounded-lg"
+      <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
+        <NavigationMenu className="mx-auto">
+          <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
+            <NavigationMenuItem className="font-bold flex">
+              <Link href="/" className="ml-2 font-bold text-xl flex items-center">
+                <Image
+                  src="/logo.png"
+                  alt="Reptile Global"
+                  width={36}
+                  height={36}
+                />
+              </Link>
+            </NavigationMenuItem>
+
+            {/* mobile */}
+            <span className="flex md:hidden gap-2">
+              <LanguageSwitcher />
+              <ModeToggle />
+
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger className="px-2">
+                  <Menu
+                    className="flex md:hidden h-5 w-5"
+                    onClick={() => setIsOpen(true)}
                   />
-                  <span className="hidden sm:inline-block font-black text-xl tracking-tighter text-primary uppercase">REPTILE GLOBAL</span>
-                </Link>
-              </NavigationMenuItem>
+                </SheetTrigger>
 
-              {/* desktop nav */}
-              <div className="hidden md:flex items-center gap-1">
-                {routeList.map((route: RouteProps, i) => (
-                  <NavigationMenuItem key={i} className="list-none">
-                    <Link
-                      href={route.href}
-                      className={buttonVariants({
-                        variant: "ghost",
-                        className: "text-[15px] font-medium rounded-xl"
-                      })}
-                    >
-                      {t(route.labelKey)}
-                    </Link>
-                  </NavigationMenuItem>
-                ))}
-                {user?.role === "admin" && (
-                  <NavigationMenuItem className="list-none">
-                    <Link
-                      href="/admin-dashboard"
-                      className={buttonVariants({
-                        variant: "ghost",
-                        className: "text-[15px] font-medium rounded-xl"
-                      })}
-                    >
-                      {t("dashboard")}
-                    </Link>
-                  </NavigationMenuItem>
-                )}
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="hidden md:flex items-center gap-2">
-                  <LanguageSwitcher />
-                  {!isLoading && (
-                    <>
-                      {user ? (
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-muted-foreground mr-2">
-                            {user.name}
-                          </span>
-                          <Button onClick={signout} variant="secondary" size="sm" className="rounded-xl">
+                <SheetContent side={"left"}>
+                  <SheetHeader>
+                    <SheetTitle className="font-bold text-xl flex items-center gap-2">
+                      <Image
+                        src="/logo.png"
+                        alt="Reptile Global"
+                        width={36}
+                        height={36}
+                      />
+                    </SheetTitle>
+                  </SheetHeader>
+                  <nav className="flex flex-col justify-center items-center gap-2 mt-4">
+                    {routeList.map(({ href, labelKey }: RouteProps) => (
+                      <Link
+                        key={labelKey}
+                        href={href}
+                        onClick={() => setIsOpen(false)}
+                        className={buttonVariants({ variant: "ghost" })}
+                      >
+                        {t(labelKey)}
+                      </Link>
+                    ))}
+                    {user?.role === "admin" && (
+                      <Link
+                        href="/admin-dashboard"
+                        onClick={() => setIsOpen(false)}
+                        className={buttonVariants({ variant: "ghost" })}
+                      >
+                        {t("dashboard")}
+                      </Link>
+                    )}
+                    {!isLoading && (
+                      <>
+                        {user ? (
+                          <Button onClick={signout} variant="ghost">
                             <LogOut className="mr-2 h-4 w-4" />
                             {t("signOut")}
                           </Button>
-                        </div>
-                      ) : (
-                        <Button onClick={() => {
-                          window.history.pushState({}, '', '/?auth=signin');
-                          setShowAuthDialog(true);
-                        }} variant="default" size="sm" className="rounded-xl px-6 font-bold shadow-md hover:shadow-primary/20 transition-all">
-                          {t("signIn")}
-                        </Button>
-                      )}
-                    </>
-                  )}
-                  <ModeToggle />
-                </div>
+                        ) : (
+                          <Button onClick={() => {
+                            window.history.pushState({}, '', '/?auth=signin');
+                            setShowAuthDialog(true);
+                            setIsOpen(false);
+                          }} variant="default">
+                            {t("signIn")}
+                          </Button>
+                        )}
+                      </>
+                    )}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </span>
 
-                {/* mobile toggle */}
-                <div className="flex md:hidden items-center gap-2">
-                  <LanguageSwitcher />
-                  <ModeToggle />
-                  <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                    <SheetTrigger asChild>
-                      <Button variant="ghost" size="icon" className="rounded-xl">
-                        <Menu className="h-6 w-6" />
+            {/* desktop */}
+            <nav className="hidden md:flex gap-2">
+              {routeList.map((route: RouteProps, i) => (
+                <Link
+                  href={route.href}
+                  key={i}
+                  className={`text-[17px] ${buttonVariants({
+                    variant: "ghost",
+                  })}`}
+                >
+                  {t(route.labelKey)}
+                </Link>
+              ))}
+              {user?.role === "admin" && (
+                <NavigationMenuItem>
+                  <Link href="/admin-dashboard" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      {t("dashboard")}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )}
+            </nav>
+
+            <div className="hidden md:flex gap-2 items-center">
+              <LanguageSwitcher />
+              {!isLoading && (
+                <>
+                  {user ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-muted-foreground">
+                        {user.name}
+                      </span>
+                      <Button onClick={signout} variant="ghost" size="sm">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        {t("signOut")}
                       </Button>
-                    </SheetTrigger>
-                    <SheetContent side="right" className="w-[300px] sm:w-[400px] rounded-l-3xl">
-                      <SheetHeader>
-                        <SheetTitle className="font-bold text-xl flex items-center gap-2">
-                          <Image
-                            src="/logo.png"
-                            alt="Reptile Global"
-                            width={36}
-                            height={36}
-                            className="rounded-lg"
-                          />
-                          <span className="font-black tracking-tighter text-primary">REPTILE GLOBAL</span>
-                        </SheetTitle>
-                      </SheetHeader>
-                      <nav className="flex flex-col gap-4 mt-8">
-                        {routeList.map(({ href, labelKey }: RouteProps) => (
-                          <Link
-                            key={labelKey}
-                            href={href}
-                            onClick={() => setIsOpen(false)}
-                            className="text-lg font-medium px-4 py-3 hover:bg-accent rounded-2xl transition-all flex items-center justify-between group"
-                          >
-                            {t(labelKey)}
-                            <Package className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
-                          </Link>
-                        ))}
-                        {user?.role === "admin" && (
-                          <Link
-                            href="/admin-dashboard"
-                            onClick={() => setIsOpen(false)}
-                            className="text-lg font-medium px-4 py-3 hover:bg-accent rounded-2xl transition-all flex items-center justify-between group"
-                          >
-                            {t("dashboard")}
-                            <Package className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
-                          </Link>
-                        )}
-                        <hr className="my-4 opacity-50" />
-                        {!isLoading && (
-                          user ? (
-                            <Button onClick={signout} variant="destructive" className="w-full rounded-2xl h-12 text-lg font-bold">
-                              <LogOut className="mr-2 h-5 w-5" />
-                              {t("signOut")}
-                            </Button>
-                          ) : (
-                            <Button onClick={() => {
-                              window.history.pushState({}, '', '/?auth=signin');
-                              setShowAuthDialog(true);
-                              setIsOpen(false);
-                            }} className="w-full rounded-2xl h-12 text-lg font-bold shadow-lg shadow-primary/20">
-                              {t("signIn")}
-                            </Button>
-                          )
-                        )}
-                      </nav>
-                    </SheetContent>
-                  </Sheet>
-                </div>
-              </div>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+                    </div>
+                  ) : (
+                    <Button onClick={() => {
+                      window.history.pushState({}, '', '/?auth=signin');
+                      setShowAuthDialog(true);
+                    }} variant="default" size="sm">
+                      {t("signIn")}
+                    </Button>
+                  )}
+                </>
+              )}
+              <ModeToggle />
+            </div>
+          </NavigationMenuList>
+        </NavigationMenu>
       </header>
 
       <AuthDialog isOpen={showAuthDialog} onClose={() => setShowAuthDialog(false)} />
