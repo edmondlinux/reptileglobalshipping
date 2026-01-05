@@ -97,17 +97,17 @@ export const HeroSection = () => {
 
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-8">
-            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
-              <Globe className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">{t("globalCoverage")}</span>
+            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
+              <Globe className="w-6 h-6 text-primary" />
+              <span className="text-base font-bold text-white uppercase tracking-wider">{t("globalCoverage")}</span>
             </div>
-            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
-              <Package className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">{t("secureHandling")}</span>
+            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
+              <Package className="w-6 h-6 text-primary" />
+              <span className="text-base font-bold text-white uppercase tracking-wider">{t("secureHandling")}</span>
             </div>
-            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 shadow-lg hover:shadow-xl transition-shadow">
-              <Zap className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">{t("fastDelivery")}</span>
+            <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all cursor-default">
+              <Zap className="w-6 h-6 text-primary" />
+              <span className="text-base font-bold text-white uppercase tracking-wider">{t("fastDelivery")}</span>
             </div>
           </div>
         </div>
