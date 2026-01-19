@@ -97,7 +97,7 @@ export const FooterSection = () => {
             </div>
 
             <div>
-              <Link href="mailto:support@reptileglobal.com" className="opacity-60 hover:opacity-100">
+              <Link href="mailto:support@reptileglobal.site" className="opacity-60 hover:opacity-100">
                 {t("emailSupport")}
               </Link>
             </div>

@@ -54,7 +54,7 @@ export const ContactSection = () => {
     const { firstName, lastName, email, subject, message } = values;
     console.log(values);
 
-    const mailToLink = `mailto:support@reptileglobal.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
+    const mailToLink = `mailto:support@reptileglobal.site?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
 
     window.location.href = mailToLink;
   }
@@ -90,7 +90,7 @@ export const ContactSection = () => {
                 <div className="font-bold">{t("callUs")}</div>
               </div>
 
-              <div>+1 (800) 794-7878 (SWIFT)</div>
+              <div>{process.env.PHONE_NUMBER || "0000000000"}</div>
             </div>
 
             <div>
@@ -99,7 +99,7 @@ export const ContactSection = () => {
                 <div className="font-bold">{t("emailUs")}</div>
               </div>
 
-              <div>support@reptileglobal.com</div>
+              <div>support@reptileglobal.site</div>
             </div>
 
             <div>

@@ -412,7 +412,7 @@ export default function TrackPage() {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.text('For support, contact us at support@reptileglobal.com', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('For support, contact us at support@reptileglobal.site', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 4;
     doc.text('This is an official shipping label. Please keep for your records.', pageWidth / 2, yPos, { align: 'center' });

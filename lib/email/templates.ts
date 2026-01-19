@@ -127,7 +127,7 @@ export function generateSenderEmailHTML(data: ShipmentEmailData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://reptileglobal.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Shipment</a>
+                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://reptileglobal.site'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Shipment</a>
                   </td>
                 </tr>
               </table>
@@ -142,7 +142,7 @@ export function generateSenderEmailHTML(data: ShipmentEmailData): string {
           <tr>
             <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e9ecef;">
               <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">Reptile Global</p>
-              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@reptileglobal.com</p>
+              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@reptileglobal.site</p>
               <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} Reptile Global. All rights reserved.</p>
             </td>
           </tr>
@@ -261,7 +261,7 @@ export function generateRecipientEmailHTML(data: ShipmentEmailData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center">
-                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://reptileglobal.com'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Package</a>
+                    <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://reptileglobal.site'}/track?tn=${data.trackingNumber}" style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">Track Your Package</a>
                   </td>
                 </tr>
               </table>
@@ -276,7 +276,7 @@ export function generateRecipientEmailHTML(data: ShipmentEmailData): string {
           <tr>
             <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e9ecef;">
               <p style="margin: 0 0 10px 0; font-size: 14px; color: #333333; font-weight: bold;">Reptile Global</p>
-              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@reptileglobal.com</p>
+              <p style="margin: 0 0 5px 0; font-size: 12px; color: #666666;">support@reptileglobal.site</p>
               <p style="margin: 0; font-size: 11px; color: #999999;">© ${new Date().getFullYear()} Reptile Global. All rights reserved.</p>
             </td>
           </tr>
