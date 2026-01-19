@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   const messages: any = await getMessages();
   const t = messages.Metadata.home;
 
-  const ogUrl = "https://ik.imagekit.io/14iir4o77/IMG_0678.jpeg";
+  const ogUrl = "https://ik.imagekit.io/14iir4o77/reptile_global.png";
 
   return {
     title: t.title,
