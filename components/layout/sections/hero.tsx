@@ -67,7 +67,7 @@ export const HeroSection = () => {
                 Reptile Global
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground dark:text-white font-light max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
               {t("partner")}
             </p>
           </div>
