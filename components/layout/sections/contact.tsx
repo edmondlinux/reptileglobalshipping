@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -29,6 +30,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useTranslations } from "next-intl";
 
+import { toast } from "react-hot-toast";
+
 const formSchema = z.object({
   firstName: z.string().min(2).max(255),
   lastName: z.string().min(2).max(255),
@@ -39,6 +42,7 @@ const formSchema = z.object({
 
 export const ContactSection = () => {
   const t = useTranslations("Contact");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,6 +55,7 @@ export const ContactSection = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -61,14 +66,16 @@ export const ContactSection = () => {
       });
 
       if (response.ok) {
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
         form.reset();
       } else {
-        alert("Failed to send message. Please try again later.");
+        toast.error("Failed to send message. Please try again later.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -251,7 +258,9 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <Button className="mt-4">{t("form.send")}</Button>
+                <Button className="mt-4" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : t("form.send")}
+                </Button>
               </form>
             </Form>
           </CardContent>
