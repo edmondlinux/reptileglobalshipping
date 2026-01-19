@@ -95,14 +95,6 @@ export function TrackClient() {
   const [isLoading, setIsLoading] = useState(false);
   const [shipment, setShipment] = useState<ShipmentData | null>(null);
 
-  useEffect(() => {
-    const tn = searchParams.get("tn");
-    if (tn) {
-      setTrackingNumber(tn);
-      handleTrackWithNumber(tn);
-    }
-  }, [searchParams, handleTrackWithNumber]);
-
   const handleTrackWithNumber = useCallback(async (tn: string) => {
     if (!tn.trim()) {
       toast.error("Please enter a tracking number");
@@ -127,6 +119,14 @@ export function TrackClient() {
       setIsLoading(false);
     }
   }, [t]);
+
+  useEffect(() => {
+    const tn = searchParams.get("tn");
+    if (tn) {
+      setTrackingNumber(tn);
+      handleTrackWithNumber(tn);
+    }
+  }, [searchParams, handleTrackWithNumber]);
 
   const handleTrack = async () => {
     const inputElement = document.querySelector(
