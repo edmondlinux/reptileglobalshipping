@@ -151,7 +151,7 @@ export function RouteMap({
             }
           </style>
         `;
-        
+
         currentMarkerRef.current = new mapboxgl.Marker({ element: el })
           .setLngLat([currentLng, currentLat])
           .setPopup(new mapboxgl.Popup().setHTML("<h3>Current Location</h3>"))
@@ -162,13 +162,13 @@ export function RouteMap({
         if (senderAddress && senderCity && senderState && senderCountry) {
           const originQuery = `${senderAddress}, ${senderCity}, ${senderState}, ${senderCountry}`;
           const originGeocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(originQuery)}.json?access_token=${mapboxgl.accessToken}`;
-          
+
           const originResponse = await fetch(originGeocodeUrl);
           const originData = await originResponse.json();
 
           if (originData.features && originData.features.length > 0) {
             const [originLng, originLat] = originData.features[0].center;
-            
+
             originMarkerRef.current = new mapboxgl.Marker({ 
               color: "#1E3A5F",
               draggable: false 
@@ -181,7 +181,8 @@ export function RouteMap({
           }
         }
 
-        // Geocode and add destination marker (green)
+        /* Removed destination marker as per request */
+        /*
         const destQuery = `${destinationAddress}, ${destinationCity}, ${destinationState}, ${destinationCountry}`;
         const destGeocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(destQuery)}.json?access_token=${mapboxgl.accessToken}`;
 
@@ -197,6 +198,7 @@ export function RouteMap({
             .addTo(map);
           bounds.extend([destLng, destLat]);
         }
+        */
 
         // Fit map to show all markers
         map.fitBounds(bounds, { padding: 100 });
@@ -245,10 +247,7 @@ export function RouteMap({
             <div className="w-4 h-4 rounded-full bg-blue-500 animate-pulse"></div>
             <span className="text-sm font-medium">Current Location</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-green-500"></div>
-            <span className="text-sm font-medium">Destination</span>
-          </div>
+          {/* Destination legend item removed */}
         </div>
       </div>
 
