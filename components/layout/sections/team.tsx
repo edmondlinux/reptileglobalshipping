@@ -28,8 +28,8 @@ export const TeamSection = () => {
   const teamList: TeamProps[] = [
     {
       imageUrl: "https://i.pravatar.cc/250?img=32",
-      firstName: "Needham Alexsis",
-      lastName: "Grace",
+      firstName: t("members.sarah_jenkins.firstName"),
+      lastName: t("members.sarah_jenkins.lastName"),
       positions: [t("roles.ceo")],
       socialNetworks: [
         {
@@ -40,8 +40,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=12",
-      firstName: "Marcus",
-      lastName: "Taylor",
+      firstName: t("members.marcus_taylor.firstName"),
+      lastName: t("members.marcus_taylor.lastName"),
       positions: [t("roles.support")],
       socialNetworks: [
         {
@@ -52,8 +52,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=45",
-      firstName: "Allison Rea",
-      lastName: "Yunker",
+      firstName: t("members.elena_rodriguez.firstName"),
+      lastName: t("members.elena_rodriguez.lastName"),
       positions: [t("roles.support")],
       socialNetworks: [
         {
@@ -64,8 +64,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=68",
-      firstName: "Bram",
-      lastName: "van der Meer",
+      firstName: t("members.david_chen.firstName"),
+      lastName: t("members.david_chen.lastName"),
       positions: [t("roles.logistics")],
       socialNetworks: [
         {
@@ -76,8 +76,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=59",
-      firstName: "Jean",
-      lastName: "Dupont",
+      firstName: t("members.michael_obrien.firstName"),
+      lastName: t("members.michael_obrien.lastName"),
       positions: [t("roles.operations")],
       socialNetworks: [
         {
@@ -88,8 +88,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=23",
-      firstName: "Saskia",
-      lastName: "de Vries",
+      firstName: t("members.sophia_muller.firstName"),
+      lastName: t("members.sophia_muller.lastName"),
       positions: [t("roles.compliance")],
       socialNetworks: [
         {
@@ -100,8 +100,8 @@ export const TeamSection = () => {
     },
     {
       imageUrl: "https://i.pravatar.cc/250?img=36",
-      firstName: "Chloé",
-      lastName: "Lefebvre",
+      firstName: t("members.james_wilson.firstName"),
+      lastName: t("members.james_wilson.lastName"),
       positions: [t("roles.logistics")],
       socialNetworks: [
         {
