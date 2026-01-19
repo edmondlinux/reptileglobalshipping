@@ -81,17 +81,23 @@ export default async function RootLayout({
                     var _smartsupp = _smartsupp || {};
                     _smartsupp.key = '638908575fda9112fede8b068509f6e55d4c8507';
                     _smartsupp.language = '${locale}';
-                    window.smartsupp || (function(d) {
-                      var s, c, o = smartsupp = function(){ o._.push(arguments) };
-                      o._ = [];
-                      s = d.getElementsByTagName('script')[0];
-                      c = d.createElement('script');
-                      c.type = 'text/javascript';
-                      c.charset = 'utf-8';
-                      c.async = true;
-                      c.src = 'https://www.smartsuppchat.com/loader.js?';
-                      s.parentNode.insertBefore(c, s);
-                    })(document);
+                    
+                    if (window.smartsupp) {
+                      window.smartsupp('set', 'language', '${locale}');
+                      window.smartsupp('html:apply');
+                    } else {
+                      window.smartsupp || (function(d) {
+                        var s, c, o = smartsupp = function(){ o._.push(arguments) };
+                        o._ = [];
+                        s = d.getElementsByTagName('script')[0];
+                        c = d.createElement('script');
+                        c.type = 'text/javascript';
+                        c.charset = 'utf-8';
+                        c.async = true;
+                        c.src = 'https://www.smartsuppchat.com/loader.js?';
+                        s.parentNode.insertBefore(c, s);
+                      })(document);
+                    }
                   `,
                 }}
               />
