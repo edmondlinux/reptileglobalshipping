@@ -93,7 +93,7 @@ export function TrackClient() {
   const searchParams = useSearchParams();
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [shipment, setShipment] = useState<ShipmentData | null>(null);
+  const [shipment, setShipment] = useState<ShipmentData | null | undefined>(undefined);
 
   const handleTrackWithNumber = useCallback(async (tn: string) => {
     if (!tn.trim()) {
@@ -107,6 +107,7 @@ export function TrackClient() {
       const data = await response.json();
 
       if (!response.ok) {
+        setShipment(null);
         throw new Error(data.error || t("notFound"));
       }
 
@@ -122,11 +123,11 @@ export function TrackClient() {
 
   useEffect(() => {
     const tn = searchParams.get("tn");
-    if (tn) {
+    if (tn && tn !== trackingNumber) {
       setTrackingNumber(tn);
       handleTrackWithNumber(tn);
     }
-  }, [searchParams, handleTrackWithNumber]);
+  }, [searchParams, handleTrackWithNumber, trackingNumber]);
 
   const handleTrack = async () => {
     const inputElement = document.querySelector(
@@ -214,7 +215,7 @@ export function TrackClient() {
                 t("button")
               )}
             </Button>
-            {!isLoading && !shipment && trackingNumber && (
+            {!isLoading && shipment === null && trackingNumber && (
               <ErrorMessage
                 errorKey="shipmentNotFound"
                 className="justify-center mt-2"
