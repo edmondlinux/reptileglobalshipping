@@ -55,12 +55,10 @@ export const GallerySection = () => {
         {galleryItems.map(({ title, description, category, image }) => (
           <Card key={title} className="overflow-hidden group">
             <div className="relative h-48 w-full overflow-hidden">
-              <Image
-                src={image}
-                alt={title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              <div className="absolute inset-0 bg-primary/10 flex items-center justify-center text-primary font-medium">
+                {/* Placeholder until images are provided */}
+                [Image: {title}]
+              </div>
             </div>
             <CardHeader>
               <div className="flex justify-between items-start">

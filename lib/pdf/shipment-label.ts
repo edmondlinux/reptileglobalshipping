@@ -1,6 +1,5 @@
-
 import { jsPDF } from "jspdf";
-import QRCode from 'qrcode';
+import QRCode from "qrcode";
 
 interface ShipmentData {
   trackingNumber: string;
@@ -62,7 +61,7 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
 
   const addLogo = () => {
     try {
-      const logoUrl = "/logo.png";
+      const logoUrl = "/logo_dark.png";
       doc.addImage(logoUrl, "PNG", 12, 12, 15, 15);
     } catch (error) {
       console.error("Could not add logo to PDF", error);
@@ -95,7 +94,7 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
   });
 
   // QR Code Generation
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const trackUrl = `${baseUrl}/track?tn=${shipment.trackingNumber}`;
   const qrDataUrl = await QRCode.toDataURL(trackUrl, {
     margin: 1,
@@ -313,10 +312,7 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
     doc.setFont("helvetica", "bold");
     doc.text("Description:", detailsLeft, yPos);
     doc.setFont("helvetica", "normal");
-    const descLines = doc.splitTextToSize(
-      shipment.description,
-      pageWidth - 50,
-    );
+    const descLines = doc.splitTextToSize(shipment.description, pageWidth - 50);
     doc.text(descLines, detailsLeft + 35, yPos);
     yPos += descLines.length * 5;
   }
