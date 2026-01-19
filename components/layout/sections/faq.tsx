@@ -13,32 +13,28 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free NextJS Shadcn template.",
+    question: "How can I track my shipment?",
+    answer: "You can track your shipment by entering your tracking number in the 'Track' section of our website. This provides real-time updates on your cargo's location.",
     value: "item-1",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    question: "What is CITES documentation?",
+    answer: "CITES (Convention on International Trade in Endangered Species) documentation is required for the international trade and transport of protected species. We handle all necessary permits and compliance.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+    question: "Do you offer temperature-controlled shipping?",
+    answer: "Yes, we provide specialized controlled shipping containers for sensitive cargo that requires specific temperature ranges throughout the transportation process.",
     value: "item-3",
   },
   {
-    question: "Excepteur sint occaecat cupidata non proident sunt?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "What areas do you cover for delivery?",
+    answer: "We offer global transportation and delivery services, covering major international shipping routes as well as specialized local delivery networks.",
     value: "item-4",
   },
   {
-    question:
-      "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-    answer: "consectetur adipisicing elit. Sint labore.",
+    question: "How do you ensure the safety of protected species during transport?",
+    answer: "We follow strict international guidelines and use specialized equipment designed for the humane and safe transport of various species, ensuring full legal compliance.",
     value: "item-5",
   },
 ];
