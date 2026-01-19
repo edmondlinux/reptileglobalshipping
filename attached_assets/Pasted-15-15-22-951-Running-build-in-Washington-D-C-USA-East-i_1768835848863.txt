@@ -1,0 +1,67 @@
+15:15:22.951 Running build in Washington, D.C., USA (East) – iad1
+15:15:22.952 Build machine configuration: 2 cores, 8 GB
+15:15:23.073 Cloning github.com/edmondlinux/reptileglobalshipping (Branch: main, Commit: de787fd)
+15:15:23.074 Previous build caches not available.
+15:15:23.562 Cloning completed: 489.000ms
+15:15:23.954 Running "vercel build"
+15:15:24.842 Vercel CLI 50.4.5
+15:15:25.105 Installing dependencies...
+15:15:27.865 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+15:15:28.698 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+15:15:30.968 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+15:15:41.154 
+15:15:41.155 added 745 packages in 16s
+15:15:41.155 
+15:15:41.155 155 packages are looking for funding
+15:15:41.156   run `npm fund` for details
+15:15:41.454 Detected Next.js version: 14.2.3
+15:15:41.469 Running "npm run build"
+15:15:41.586 
+15:15:41.587 > shipping-website@0.1.0 build
+15:15:41.587 > next build
+15:15:41.587 
+15:15:42.625 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+15:15:42.626 This information is used to shape Next.js' roadmap and prioritize features.
+15:15:42.626 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+15:15:42.627 https://nextjs.org/telemetry
+15:15:42.627 
+15:15:42.757   ▲ Next.js 14.2.3
+15:15:42.759 
+15:15:42.887    Creating an optimized production build ...
+15:16:15.296 Browserslist: caniuse-lite is outdated. Please run:
+15:16:15.298   npx update-browserslist-db@latest
+15:16:15.298   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+15:16:17.772  ✓ Compiled successfully
+15:16:17.775    Linting and checking validity of types ...
+15:16:22.918 
+15:16:22.918 ./app/[locale]/track/TrackClient.tsx
+15:16:22.918 104:6  Warning: React Hook useEffect has a missing dependency: 'handleTrackWithNumber'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+15:16:22.918 
+15:16:22.918 ./components/admin/GoogleMap.tsx
+15:16:22.918 146:6  Warning: React Hook useEffect has missing dependencies: 'latitude', 'longitude', and 'onLocationChange'. Either include them or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+15:16:22.919 211:6  Warning: React Hook useEffect has missing dependencies: 'latitude', 'longitude', 'onLocationChange', 'recipientLat', and 'recipientLng'. Either include them or remove the dependency array. If 'onLocationChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+15:16:22.919 
+15:16:22.919 ./components/admin/RouteMap.tsx
+15:16:22.919 80:6  Warning: React Hook useEffect has missing dependencies: 'currentLat' and 'currentLng'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+15:16:22.937 
+15:16:22.938 ./components/admin/ShipmentForm.tsx
+15:16:22.938 329:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+15:16:22.938 349:6  Warning: React Hook useEffect has a missing dependency: 'formData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+15:16:22.939 
+15:16:22.939 ./components/layout/sections/gallery.tsx
+15:16:22.939 58:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+15:16:22.940 
+15:16:22.940 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+15:16:30.556 Failed to compile.
+15:16:30.557 
+15:16:30.557 ./components/admin/ShipmentForm.tsx:91:19
+15:16:30.558 Type error: Parameter 'prev' implicitly has an 'any' type.
+15:16:30.558 
+15:16:30.558 [0m [90m 89 |[39m     [36mif[39m (latDiff [33m>[39m [35m0.0001[39m [33m||[39m lngDiff [33m>[39m [35m0.0001[39m) {[0m
+15:16:30.559 [0m [90m 90 |[39m       [90m// Use callback form to avoid dependency on formData[39m[0m
+15:16:30.559 [0m[31m[1m>[22m[39m[90m 91 |[39m       setFormData(prev [33m=>[39m ({ [33m...[39mprev[33m,[39m latitude[33m:[39m lat[33m,[39m longitude[33m:[39m lng }))[33m;[39m[0m
+15:16:30.559 [0m [90m    |[39m                   [31m[1m^[22m[39m[0m
+15:16:30.560 [0m [90m 92 |[39m     }[0m
+15:16:30.560 [0m [90m 93 |[39m   }[33m;[39m[0m
+15:16:30.561 [0m [90m 94 |[39m[0m
+15:16:30.666 Error: Command "npm run build" exited with 1
