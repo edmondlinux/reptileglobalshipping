@@ -1,0 +1,67 @@
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:5000
+
+ ✓ Starting...
+ ✓ Ready in 4s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 529ms (102 modules)
+ ○ Compiling /[locale] ...
+ ⨯ ./app/[locale]/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/page.tsx:15:1]
+ 15 │ import { getMessages } from "next-intl/server";
+ 16 │ import { Metadata } from "next";
+ 17 │ 
+ 18 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 19 │   const messages: any = await getMessages();
+ 20 │   const t = messages.Metadata.home;
+ 21 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/page.tsx
+ ⨯ ./app/[locale]/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/page.tsx:15:1]
+ 15 │ import { getMessages } from "next-intl/server";
+ 16 │ import { Metadata } from "next";
+ 17 │ 
+ 18 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 19 │   const messages: any = await getMessages();
+ 20 │   const t = messages.Metadata.home;
+ 21 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/page.tsx
+ ⨯ ./app/[locale]/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/page.tsx:15:1]
+ 15 │ import { getMessages } from "next-intl/server";
+ 16 │ import { Metadata } from "next";
+ 17 │ 
+ 18 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 19 │   const messages: any = await getMessages();
+ 20 │   const t = messages.Metadata.home;
+ 21 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/page.tsx
+ GET /en 500 in 20055ms
