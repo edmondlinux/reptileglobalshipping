@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Reptile Global - Trusted Global Shipping",
-  description: "5 years of excellence in transportation and logistics services",
+  title: "International Reptile Shipping | Best Reptile Courier & Transport Service",
+  description: "Expert international reptile shipping and courier services. Safe, worldwide reptile air shipping for breeders and collectors. Contact us today for a quote!",
   icons: {
     icon: "/logo.png",
   },

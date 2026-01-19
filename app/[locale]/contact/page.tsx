@@ -10,10 +10,10 @@ export default function ContactPage() {
       <section className="container py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Get in Touch
+            Contact Us for International Reptile Shipping
           </h1>
           <p className="text-xl text-muted-foreground">
-            We&apos;re here to help with your shipping needs
+            Email us today for a free quote on international reptile courier and transport services.
           </p>
 
         </div>

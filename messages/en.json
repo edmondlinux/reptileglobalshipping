@@ -1,13 +1,13 @@
 {
   "Hero": {
-    "excellence": "Trusted Reptile Shipping Experts",
-    "welcome": "Welcome to",
-    "partner": "We're all about getting your reptiles where they need to go safely and comfortably. With worldwide shipping capabilities, we serve North America, Europe, Asia, and beyond. Our climate-controlled transport ensures your reptiles travel stress-free to destinations across the globe",
-    "trackPlaceholder": "Enter your tracking number...",
-    "trackButton": "Track Your Reptile",
-    "globalCoverage": "Worldwide Shipping You Can Trust",
-    "secureHandling": "Insulated Boxes & Temperature Control",
-    "fastDelivery": "Express Overnight Options Available"
+    "excellence": "Expert International Reptile Shipping & Courier Services",
+    "welcome": "Worldwide",
+    "partner": "The best reptile shipping company for international transport. We specialize in international reptile courier services, ensuring safe, compliant, and stress-free delivery for breeders and collectors worldwide. Contact us for a quote today.",
+    "trackPlaceholder": "Enter your reptile tracking number...",
+    "trackButton": "Track Shipment",
+    "globalCoverage": "International Reptile Shipping",
+    "secureHandling": "Certified Reptile Courier",
+    "fastDelivery": "Best Reptile Transport Service"
   },
   "Navbar": {
     "home": "Home",
@@ -88,23 +88,23 @@
   },
   "Benefits": {
     "badge": "Benefits",
-    "title": "Why Choose Reptile Global",
-    "description": "We specialize in safe, reliable transport of live reptiles with enhanced packaging, carrier certifications, and personalized support for every shipment.",
+    "title": "Why Choose Our International Reptile Shipping",
+    "description": "We specialize in safe, reliable international reptile transport service with certified handling and global coverage for breeders and collectors.",
     "secure": {
-      "title": "Certified Live Animal Shipping",
-      "description": "We’re certified with major carriers for safe handling of live reptiles using approved packaging and secure transport methods."
+      "title": "Certified Reptile Courier",
+      "description": "We’re certified for safe international reptile air shipping using approved packaging and climate-controlled transport."
     },
     "time": {
-      "title": "Express Delivery Options",
-      "description": "Choose from overnight or expedited shipping services designed to ensure minimal transit time and reduced stress on animals."
+      "title": "Global Reptile Transport Service",
+      "description": "Expert coordination for international reptile shipping across North America, Europe, Asia, and beyond."
     },
     "cost": {
-      "title": "Competitive Shipping Rates",
-      "description": "Get quick quotes tailored to your reptile’s needs with transparent pricing and no hidden fees."
+      "title": "Best Reptile Shipping Rates",
+      "description": "Get a competitive quote for international reptile courier services tailored to your specific needs and destination."
     },
     "support": {
-      "title": "Expert Customer Support",
-      "description": "Our team knows live reptile logistics and is ready to answer questions, help with packaging advice, and guide you through every step."
+      "title": "24/7 Expert Support",
+      "description": "Our team specializes in international reptile shipping logistics and is ready to assist with email inquiries and calls."
     }
   },
   "Features": {
@@ -166,23 +166,23 @@
     }
   },
   "Contact": {
-    "badge": "Contact",
-    "title": "Connect With Us",
-    "description": "Have questions about shipping, tracking, or our services? Our customer support team is ready to help you with all your logistics needs.",
+    "badge": "Contact Us",
+    "title": "Contact Us for International Reptile Shipping",
+    "description": "Email us today or fill out the form for a fast quote on international reptile courier services. Our experts are ready to assist with your reptile air shipping needs.",
     "findUs": "Find us",
     "callUs": "Call us",
-    "emailUs": "Email Us",
+    "emailUs": "Email Us Today",
     "visitUs": "Visit us",
     "mondayFriday": "Monday - Friday",
     "form": {
       "firstName": "First Name",
       "lastName": "Last Name",
-      "email": "Email",
-      "subject": "Subject",
-      "subjectPlaceholder": "Select a subject",
-      "message": "Message",
-      "messagePlaceholder": "Your message...",
-      "send": "Send message"
+      "email": "Email Address",
+      "subject": "Shipping Inquiry",
+      "subjectPlaceholder": "Select service type",
+      "message": "Shipping Details (Species, Destination)",
+      "messagePlaceholder": "Tell us about your reptile shipping needs...",
+      "send": "Get a Free Quote"
     }
   },
   "Footer": {
