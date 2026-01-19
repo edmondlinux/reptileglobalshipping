@@ -107,7 +107,8 @@
     "priority": "Prioriteit",
     "shippingDate": "Verzenddatum",
     "noInsurance": "Geen Verzekering",
-    "noSigRequired": "Geen Handtekening Vereist"
+    "noSigRequired": "Geen Handtekening Vereist",
+    "additionalInfo": "Extra Informatie"
   },
   "Benefits": {
     "badge": "Voordelen",

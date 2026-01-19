@@ -111,7 +111,8 @@
     "priority": "Priority",
     "shippingDate": "Shipping Date",
     "noInsurance": "No Insurance",
-    "noSigRequired": "No Signature Required"
+    "noSigRequired": "No Signature Required",
+    "additionalInfo": "Additional Information"
   },
   "Benefits": {
     "badge": "Benefits",
