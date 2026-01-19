@@ -1,0 +1,151 @@
+Role:
+You are an expert SEO strategist and conversion-focused web editor specializing in logistics and international animal shipping.
+
+Context:
+This website already receives impressions in Google Search Console for the following search queries, but has low or zero clicks. These queries show existing search demand and ranking signals:
+
+international reptile shipping
+international reptile courier
+reptile shipping companies
+reptiles international
+best reptile shipping company
+reptile air shipping contact
+reptile air shipping email
+reptile transport
+reptile transport service
+reptile shipping company
+reptile shipping service
+bearded dragon breeder international shipping worldwide
+reptile delivery
+reptile express international
+
+
+Primary Goal:
+Increase qualified leads (contact form submissions, email inquiries, and calls) by improving:
+
+Page content
+
+SEO titles & meta descriptions
+
+Headings (H1–H3)
+
+Calls-to-action (CTAs)
+
+Internal linking
+
+Trust & conversion signals
+
+🔧 TASKS YOU MUST PERFORM
+1️⃣ Keyword Mapping
+
+Group the search queries by search intent:
+
+Commercial (looking for a service)
+
+Informational
+
+Brand/navigation
+
+Assign each keyword group to the most relevant existing page
+
+If a high-intent keyword has no proper page, recommend a new landing page
+
+2️⃣ Page Content Optimization
+
+For each important page:
+
+Rewrite or expand content to:
+
+Clearly explain international reptile shipping services
+
+Emphasize safety, compliance, experience, and worldwide coverage
+
+Naturally include the high-performing keywords (no keyword stuffing)
+
+Add short FAQ sections that match search intent
+
+Use persuasive language aimed at breeders, exporters, and collectors
+
+3️⃣ SEO Metadata (VERY IMPORTANT)
+
+For each optimized page:
+
+Write:
+
+SEO Title (60 characters max, click-optimized)
+
+Meta Description (155–160 characters, lead-focused)
+
+Titles must:
+
+Include keywords like international reptile shipping, reptile courier, reptile transport service
+
+Descriptions must:
+
+Include a clear CTA (Contact us, Get a quote, Email us today)
+
+4️⃣ Conversion Optimization
+
+Add or improve:
+
+Above-the-fold CTA buttons
+
+“Contact us for international reptile shipping” sections
+
+Trust indicators (experience, compliance, safety standards)
+
+Suggest:
+
+Best CTA wording
+
+Where to place contact forms and email links
+
+Optimize for users searching:
+
+“contact”
+
+“email”
+
+“best company”
+
+5️⃣ Internal Linking Strategy
+
+Create internal links using anchor text such as:
+
+international reptile shipping
+
+reptile shipping company
+
+reptile air transport
+
+Ensure high-intent pages receive the most internal links
+
+6️⃣ Technical & SEO Enhancements (Recommendations Only)
+
+Suggest:
+
+Schema markup (Organization, Service, FAQ)
+
+Page structure improvements
+
+International SEO considerations
+
+Do not change site structure unless clearly justified
+
+📌 OUTPUT FORMAT REQUIRED
+
+For each page, provide:
+
+Target keywords
+
+Recommended SEO title
+
+Recommended meta description
+
+Content changes (bullet points)
+
+CTA improvements
+
+Internal linking suggestions
+
+Be concise, actionable, and focused on lead generation, not just rankings.
