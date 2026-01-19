@@ -211,6 +211,44 @@
     "privacyPolicy": "Privacybeleid",
     "termsOfService": "Algemene voorwaarden"
   },
+  "HowItWorks": {
+    "badge": "Proces",
+    "title": "Hoe u uw reptiel verzendt",
+    "step1": {
+      "title": "Reptiel voorbereiden",
+      "description": "Zorg dat uw reptiel gehydrateerd en gezond is voor transport."
+    },
+    "step2": {
+      "title": "Professionele verpakking",
+      "description": "Gebruik geïsoleerde dozen en geschikte warmte-/koelpacks."
+    },
+    "step3": {
+      "title": "Label aanmaken",
+      "description": "Genereer uw overnight verzendlabel met onze kortingstarieven."
+    },
+    "step4": {
+      "title": "Veilige levering",
+      "description": "Afgeven bij een hub of plan een afhaling voor levering de volgende dag."
+    }
+  },
+  "ShippingKits": {
+    "badge": "Benodigdheden",
+    "title": "Gecertificeerde verzendmaterialen",
+    "subtitle": "Alles wat u nodig heeft voor een veilige reis",
+    "buyNow": "Bestel nu",
+    "kit1": {
+      "title": "Kleine reptielenkit",
+      "description": "Inclusief geïsoleerde doos, warmtepack en deli cup."
+    },
+    "kit2": {
+      "title": "Grote slangenkit",
+      "description": "Dubbelwandige doos met extra grote slangenzak."
+    },
+    "kit3": {
+      "title": "Temperatuurbeheersingspakket",
+      "description": "Assortiment 40u warmtepacks en faseveranderingsmaterialen."
+    }
+  },
   "Errors": {
     "required": "Dit veld is verplicht",
     "invalidEmail": "Voer een geldig e-mailadres in",

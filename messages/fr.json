@@ -211,6 +211,44 @@
     "privacyPolicy": "Confidentialité",
     "termsOfService": "Conditions d'utilisation"
   },
+  "HowItWorks": {
+    "badge": "Processus",
+    "title": "Comment expédier votre reptile",
+    "step1": {
+      "title": "Préparez votre reptile",
+      "description": "Assurez-vous que votre reptile est hydraté et en bonne santé avant le transport."
+    },
+    "step2": {
+      "title": "Emballage professionnel",
+      "description": "Utilisez des boîtes isolées et des packs chauffants/froids appropriés."
+    },
+    "step3": {
+      "title": "Créez votre étiquette",
+      "description": "Générez votre étiquette d'expédition express avec nos tarifs réduits."
+    },
+    "step4": {
+      "title": "Livraison sécurisée",
+      "description": "Déposez en centre ou planifiez un ramassage pour une arrivée le lendemain."
+    }
+  },
+  "ShippingKits": {
+    "badge": "Fournitures",
+    "title": "Matériel d'expédition certifié",
+    "subtitle": "Tout ce dont vous avez besoin pour un voyage en toute sécurité",
+    "buyNow": "Commander",
+    "kit1": {
+      "title": "Kit petit reptile",
+      "description": "Comprend une boîte isolée, un pack chauffant et une coupelle."
+    },
+    "kit2": {
+      "title": "Kit grand serpent",
+      "description": "Boîte à double paroi avec sac à serpent extra large."
+    },
+    "kit3": {
+      "title": "Pack de contrôle thermique",
+      "description": "Assortiment de packs chauffants 40h et matériaux à changement de phase."
+    }
+  },
   "Errors": {
     "required": "Ce champ est obligatoire",
     "invalidEmail": "Veuillez entrer une adresse e-mail valide",

@@ -211,6 +211,44 @@
     "privacyPolicy": "Datenschutz",
     "termsOfService": "Nutzungsbedingungen"
   },
+  "HowItWorks": {
+    "badge": "Ablauf",
+    "title": "So versenden Sie Ihr Reptil",
+    "step1": {
+      "title": "Reptil vorbereiten",
+      "description": "Stellen Sie sicher, dass Ihr Reptil vor dem Transport hydriert und gesund ist."
+    },
+    "step2": {
+      "title": "Professionelle Verpackung",
+      "description": "Verwenden Sie isolierte Boxen und geeignete Wärme-/Kühlpacks."
+    },
+    "step3": {
+      "title": "Etikett erstellen",
+      "description": "Erstellen Sie Ihr Express-Versandetikett mit unseren vergünstigten Tarifen."
+    },
+    "step4": {
+      "title": "Sichere Zustellung",
+      "description": "Abgabe am Stützpunkt oder Abholung für Zustellung am nächsten Tag."
+    }
+  },
+  "ShippingKits": {
+    "badge": "Zubehör",
+    "title": "Zertifiziertes Versandmaterial",
+    "subtitle": "Alles, was Sie für eine sichere Reise benötigen",
+    "buyNow": "Jetzt bestellen",
+    "kit1": {
+      "title": "Set für kleine Reptilien",
+      "description": "Inklusive Isolierbox, Wärmekissen und Feinkostbecher."
+    },
+    "kit2": {
+      "title": "Set für große Schlangen",
+      "description": "Doppelwandige Box mit extra großem Schlangenbeutel."
+    },
+    "kit3": {
+      "title": "Temperaturkontroll-Set",
+      "description": "Sortiment an 40h-Wärmekissen und Phasenwechselmaterialien."
+    }
+  },
   "Errors": {
     "required": "Dieses Feld ist erforderlich",
     "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",

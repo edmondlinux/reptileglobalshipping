@@ -207,6 +207,44 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"
   },
+  "HowItWorks": {
+    "badge": "Process",
+    "title": "How to Ship Your Reptile",
+    "step1": {
+      "title": "Prepare Your Reptile",
+      "description": "Ensure your reptile is hydrated and healthy before transit."
+    },
+    "step2": {
+      "title": "Professional Packaging",
+      "description": "Use insulated boxes and appropriate heat/cold packs."
+    },
+    "step3": {
+      "title": "Create Your Label",
+      "description": "Generate your overnight shipping label with our discounted rates."
+    },
+    "step4": {
+      "title": "Safe Delivery",
+      "description": "Drop off at a hub or schedule a pickup for overnight arrival."
+    }
+  },
+  "ShippingKits": {
+    "badge": "Supplies",
+    "title": "Certified Shipping Supplies",
+    "subtitle": "Everything you need for a safe journey",
+    "buyNow": "Order Now",
+    "kit1": {
+      "title": "Small Reptile Kit",
+      "description": "Includes insulated box, heat pack, and deli cup."
+    },
+    "kit2": {
+      "title": "Large Snake Kit",
+      "description": "Double-walled box with extra large snake bag."
+    },
+    "kit3": {
+      "title": "Temperature Control Pack",
+      "description": "Assortment of 40h heat packs and phase change materials."
+    }
+  },
   "Errors": {
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",
