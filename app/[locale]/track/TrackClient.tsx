@@ -132,6 +132,18 @@ export function TrackClient() {
     const pageWidth = doc.internal.pageSize.getWidth();
     let yPos = 15;
 
+    const addLogo = () => {
+      try {
+        // Since we are in a client component, we can use the logo from public folder
+        const logoUrl = '/logo.png';
+        doc.addImage(logoUrl, 'PNG', 12, 12, 15, 15);
+      } catch (error) {
+        console.error("Could not add logo to PDF", error);
+      }
+    };
+
+    addLogo();
+
     doc.setDrawColor(0, 0, 0);
     doc.setLineWidth(0.5);
     doc.rect(10, 10, pageWidth - 20, 40);
