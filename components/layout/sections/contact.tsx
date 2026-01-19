@@ -81,7 +81,7 @@ export const ContactSection = () => {
                 <div className="font-bold">{t("findUs")}</div>
               </div>
 
-              <div>1250 Harbor Blvd, Suite 300, Los Angeles, CA 90021</div>
+              <div>10 York Rd, London SE1 7ND, United Kingdom</div>
             </div>
 
             <div>
