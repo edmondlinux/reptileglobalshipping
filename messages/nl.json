@@ -47,34 +47,18 @@
       "compliance": "Compliance Officer"
     },
     "members": {
-      "marcus_taylor": {
-        "firstName": "Marcus",
-        "lastName": "Taylor"
-      },
-      "sarah_jenkins": {
-        "firstName": "Sarah",
-        "lastName": "Jenkins"
-      },
-      "david_chen": {
-        "firstName": "David",
-        "lastName": "Chen"
-      },
-      "elena_rodriguez": {
-        "firstName": "Elena",
-        "lastName": "Rodriguez"
-      },
-      "michael_obrien": {
-        "firstName": "Michael",
-        "lastName": "O'Brien"
-      },
-      "sophia_muller": {
-        "firstName": "Sophia",
-        "lastName": "Müller"
-      },
-      "james_wilson": {
-        "firstName": "James",
-        "lastName": "Wilson"
-      }
+      "sarah_jenkins": { "firstName": "Sarah", "lastName": "Jenkins" },
+      "marcus_taylor": { "firstName": "Marcus", "lastName": "Taylor" },
+      "elena_rodriguez": { "firstName": "Elena", "lastName": "Rodriguez" },
+      "david_chen": { "firstName": "David", "lastName": "Chen" },
+      "michael_obrien": { "firstName": "Michael", "lastName": "O'Brien" },
+      "sophia_muller": { "firstName": "Sophia", "lastName": "Müller" },
+      "james_wilson": { "firstName": "James", "lastName": "Wilson" },
+      "olivia_brown": { "firstName": "Olivia", "lastName": "Brown" },
+      "lucas_garcia": { "firstName": "Lucas", "lastName": "Garcia" },
+      "isabella_rossi": { "firstName": "Isabella", "lastName": "Rossi" },
+      "ethan_hunt": { "firstName": "Ethan", "lastName": "Hunt" },
+      "chloe_dubois": { "firstName": "Chloé", "lastName": "Dubois" }
     }
   },
   "Track": {
