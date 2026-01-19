@@ -38,7 +38,14 @@
     "title": "Ons expertteam",
     "pageTitle": "Maak kennis met ons team",
     "pageSubtitle": "De mensen achter uw zendingen",
-    "pageDescription": "Ons toegewijde team van logistieke professionals werkt al 5 jaar samen om uitzonderlijke service te verlenen."
+    "pageDescription": "Ons toegewijde team van logistieke professionals werkt al 5 jaar samen om uitzonderlijke service te verlenen.",
+    "roles": {
+      "ceo": "Oprichter & CEO",
+      "support": "Klantenservice Specialist",
+      "logistics": "Logistiek Coördinator",
+      "operations": "Operations Manager",
+      "compliance": "Compliance Officer"
+    }
   },
   "Track": {
     "title": "Volg uw zending",

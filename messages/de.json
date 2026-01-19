@@ -166,7 +166,14 @@
   },
   "Team": {
     "badge": "Team",
-    "title": "Unser Expertenteam"
+    "title": "Unser Expertenteam",
+    "roles": {
+      "ceo": "Gründerin & CEO",
+      "support": "Kundensupport-Spezialist",
+      "logistics": "Logistik-Koordinator",
+      "operations": "Operations Manager",
+      "compliance": "Compliance-Beauftragter"
+    }
   },
   "Footer": {
     "description": "Ihr vertrauenswürdiger Partner für den weltweiten Versand lebender Reptilien.",

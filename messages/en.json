@@ -38,7 +38,14 @@
     "title": "The Company Dream Team",
     "pageTitle": "Meet Our Team",
     "pageSubtitle": "The People Behind Your Shipments",
-    "pageDescription": "Our dedicated team of logistics professionals has been working together for 5 years to deliver exceptional service."
+    "pageDescription": "Our dedicated team of logistics professionals has been working together for 5 years to deliver exceptional service.",
+    "roles": {
+      "ceo": "Founder & CEO",
+      "support": "Customer Support Specialist",
+      "logistics": "Logistics Coordinator",
+      "operations": "Operations Manager",
+      "compliance": "Compliance Officer"
+    }
   },
   "Track": {
     "title": "Track Your Shipment",

@@ -27,141 +27,86 @@ export const TeamSection = () => {
   const t = useTranslations("Team");
   const teamList: TeamProps[] = [
     {
-      imageUrl: "https://i.pravatar.cc/250?img=58",
-      firstName: "Leo",
-      lastName: "Miranda",
-      positions: ["Vue Fronted Developer", "Creator Of This Website"],
+      imageUrl: "https://i.pravatar.cc/250?img=32",
+      firstName: "Needham Alexsis",
+      lastName: "Grace",
+      positions: [t("roles.ceo")],
       socialNetworks: [
         {
           name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-        {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
+          url: "#",
         },
       ],
     },
     {
-      imageUrl:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Elizabeth",
-      lastName: "Moore",
-      positions: ["UI/UX Designer"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "David",
-      lastName: "Diaz",
-      positions: ["Machine Learning Engineer", "TensorFlow Tinkerer"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Sarah",
-      lastName: "Robinson",
-      positions: ["Cloud Native Developer", " Kubernetes Orchestrator"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-        {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1616805765352-beedbad46b2a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Michael",
-      lastName: "Holland",
-      positions: ["DevOps Engineer", "CI/CD Pipeline Mastermind"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Zoe",
-      lastName: "Garcia",
-      positions: ["JavaScript Evangelist", "Deno Champion"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Evan",
-      lastName: "James",
-      positions: ["Backend Developer"],
-      socialNetworks: [
-        {
-          name: "LinkedIn",
-          url: "https://www.linkedin.com/in/leopoldo-miranda/",
-        },
-        {
-          name: "Github",
-          url: "https://github.com/leoMirandaa",
-        },
-        {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
-        },
-      ],
-    },
-    {
-      imageUrl:
-        "https://images.unsplash.com/photo-1573497019236-17f8177b81e8?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1573497019236-17f8177b81e8?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      firstName: "Pam",
+      imageUrl: "https://i.pravatar.cc/250?img=12",
+      firstName: "Marcus",
       lastName: "Taylor",
-      positions: ["Fullstack Developer", "UX Researcher"],
+      positions: [t("roles.support")],
       socialNetworks: [
         {
-          name: "X",
-          url: "https://x.com/leo_mirand4",
+          name: "LinkedIn",
+          url: "#",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=45",
+      firstName: "Allison Rea",
+      lastName: "Yunker",
+      positions: [t("roles.support")],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "#",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=68",
+      firstName: "Bram",
+      lastName: "van der Meer",
+      positions: [t("roles.logistics")],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "#",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=59",
+      firstName: "Jean",
+      lastName: "Dupont",
+      positions: [t("roles.operations")],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "#",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=23",
+      firstName: "Saskia",
+      lastName: "de Vries",
+      positions: [t("roles.compliance")],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "#",
+        },
+      ],
+    },
+    {
+      imageUrl: "https://i.pravatar.cc/250?img=36",
+      firstName: "Chloé",
+      lastName: "Lefebvre",
+      positions: [t("roles.logistics")],
+      socialNetworks: [
+        {
+          name: "LinkedIn",
+          url: "#",
         },
       ],
     },

@@ -166,7 +166,14 @@
   },
   "Team": {
     "badge": "Équipe",
-    "title": "Notre équipe d'experts"
+    "title": "Notre équipe d'experts",
+    "roles": {
+      "ceo": "Fondatrice et PDG",
+      "support": "Spécialiste du support client",
+      "logistics": "Coordinateur logistique",
+      "operations": "Responsable des opérations",
+      "compliance": "Responsable de la conformité"
+    }
   },
   "Footer": {
     "description": "Votre partenaire de confiance pour le transport mondial de reptiles vivants.",
