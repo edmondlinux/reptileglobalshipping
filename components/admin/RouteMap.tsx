@@ -77,7 +77,7 @@ export function RouteMap({
       }
       map.remove();
     };
-  }, []);
+  }, [currentLat, currentLng]);
 
   useEffect(() => {
     if (!mapRef.current || !currentLat || !currentLng) return;

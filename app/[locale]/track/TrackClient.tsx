@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -101,9 +101,9 @@ export function TrackClient() {
       setTrackingNumber(tn);
       handleTrackWithNumber(tn);
     }
-  }, [searchParams]);
+  }, [searchParams, handleTrackWithNumber]);
 
-  const handleTrackWithNumber = async (tn: string) => {
+  const handleTrackWithNumber = useCallback(async (tn: string) => {
     if (!tn.trim()) {
       toast.error("Please enter a tracking number");
       return;
@@ -126,7 +126,7 @@ export function TrackClient() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [t]);
 
   const handleTrack = async () => {
     const inputElement = document.querySelector(

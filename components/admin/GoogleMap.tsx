@@ -143,7 +143,7 @@ export function GoogleMap({
     return () => {
       map.remove();
     };
-  }, []);
+  }, [onLocationChange]);
 
   // Update current location marker
   useEffect(() => {
@@ -208,20 +208,18 @@ export function GoogleMap({
         });
       }
     }
-  }, [senderLat, senderLng]);
+  }, [senderLat, senderLng, latitude, longitude, onLocationChange, recipientLat, recipientLng]);
 
-  // Add recipient marker when both locations are available
   useEffect(() => {
+    if (recipientMarkerRef.current) {
+      recipientMarkerRef.current.remove();
+    }
+
     if (!recipientLat || !recipientLng || !mapRef.current) {
       return;
     }
 
     const map = mapRef.current;
-
-    // Add recipient marker (green)
-    if (recipientMarkerRef.current) {
-      recipientMarkerRef.current.remove();
-    }
 
     recipientMarkerRef.current = new mapboxgl.Marker({
       color: "#10b981",

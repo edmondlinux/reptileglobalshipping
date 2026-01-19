@@ -50,7 +50,7 @@ interface ShipmentFormData {
 
 interface ShipmentFormProps {
   formData: ShipmentFormData;
-  setFormData: (data: ShipmentFormData) => void;
+  setFormData: (data: ShipmentFormData | ((prev: ShipmentFormData) => ShipmentFormData)) => void;
   isEditMode?: boolean;
 }
 
@@ -88,7 +88,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
     
     if (latDiff > 0.0001 || lngDiff > 0.0001) {
       // Use callback form to avoid dependency on formData
-      setFormData(prev => ({ ...prev, latitude: lat, longitude: lng }));
+      setFormData((prev: ShipmentFormData) => ({ ...prev, latitude: lat, longitude: lng }));
     }
   };
 
@@ -326,7 +326,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
         });
       }
     }
-  }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry]);
+  }, [formData.recipientAddress, formData.recipientCity, formData.recipientState, formData.recipientCountry, formData]);
 
   // Auto-geocode sender address when all fields are filled
   useEffect(() => {
@@ -346,7 +346,7 @@ export function ShipmentForm({ formData, setFormData, isEditMode }: ShipmentForm
         });
       }
     }
-  }, [formData.senderAddress, formData.senderCity, formData.senderState, formData.senderCountry]);
+  }, [formData.senderAddress, formData.senderCity, formData.senderState, formData.senderCountry, formData]);
 
   return (
     <div className="space-y-6">

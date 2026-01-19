@@ -55,11 +55,12 @@ export const GallerySection = () => {
         {galleryItems.map(({ title, description, category, image }) => (
           <Card key={title} className="overflow-hidden group">
             <div className="relative h-48 w-full overflow-hidden">
-              <img
+              <Image
                 src={image}
                 alt={title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                loading="lazy"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
             </div>
             <CardHeader>
