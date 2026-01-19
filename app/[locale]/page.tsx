@@ -1,6 +1,4 @@
 
-"use client";
-
 import { HeroSection } from "@/components/layout/sections/hero";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 import { BenefitsSection } from "@/components/layout/sections/benefits";
