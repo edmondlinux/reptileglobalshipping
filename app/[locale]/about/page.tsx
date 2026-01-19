@@ -1,6 +1,4 @@
 
-"use client";
-
 import { FooterSection } from "@/components/layout/sections/footer";
 import { useTranslations } from "next-intl";
 

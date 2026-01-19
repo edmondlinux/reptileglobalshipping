@@ -1,6 +1,4 @@
 
-"use client";
-
 import { ContactSection } from "@/components/layout/sections/contact";
 import { FooterSection } from "@/components/layout/sections/footer";
 

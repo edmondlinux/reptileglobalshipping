@@ -1,0 +1,73 @@
+~/workspace$ npm run build
+
+> shipping-website@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.3
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/[locale]/about/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/about/page.tsx:7:1]
+  7 │ import { getMessages } from "next-intl/server";
+  8 │ import { Metadata } from "next";
+  9 │ 
+ 10 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 11 │   const messages: any = await getMessages();
+ 12 │   const t = messages.Metadata.about;
+ 13 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/about/page.tsx
+
+./app/[locale]/contact/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/contact/page.tsx:7:1]
+  7 │ import { getMessages } from "next-intl/server";
+  8 │ import { Metadata } from "next";
+  9 │ 
+ 10 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 11 │   const messages: any = await getMessages();
+ 12 │   const t = messages.Metadata.contact;
+ 13 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/contact/page.tsx
+
+./app/[locale]/track/page.tsx
+Error: 
+  × You are attempting to export "generateMetadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://
+  │ nextjs.org/docs/getting-started/react-essentials#the-use-client-directive
+  │ 
+  │ 
+    ╭─[/home/runner/workspace/app/[locale]/track/page.tsx:70:1]
+ 70 │ import { getMessages } from "next-intl/server";
+ 71 │ import { Metadata } from "next";
+ 72 │ 
+ 73 │ export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+    ·                       ────────────────
+ 74 │   const messages: any = await getMessages();
+ 75 │   const t = messages.Metadata.track;
+ 76 │   return {
+    ╰────
+
+Import trace for requested module:
+./app/[locale]/track/page.tsx
+
+
+> Build failed because of webpack errors
+~/workspace$ 
