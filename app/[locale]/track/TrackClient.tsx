@@ -148,6 +148,7 @@ export function TrackClient() {
       let mapSnapshot;
       const mapCanvas = document.querySelector('.mapboxgl-canvas') as HTMLCanvasElement;
       if (mapCanvas) {
+        // Force a render cycle to ensure markers are drawn on canvas if using preserveDrawingBuffer
         mapSnapshot = mapCanvas.toDataURL('image/png');
       }
 
