@@ -1,7 +1,7 @@
-
 "use client";
 
 import { FooterSection } from "@/components/layout/sections/footer";
+import { TeamSection } from "@/components/layout/sections/team";
 import { useTranslations } from "next-intl";
 
 export default function TeamPage() {
@@ -20,6 +20,7 @@ export default function TeamPage() {
             {t("pageDescription")}
           </p>
         </div>
+        <TeamSection />
       </section>
       <FooterSection />
     </>
