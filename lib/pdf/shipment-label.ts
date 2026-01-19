@@ -107,10 +107,10 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
   });
 
   const qrSize = 30;
-  doc.addImage(qrDataUrl, "PNG", 15, pageHeight - 45, qrSize, qrSize);
+  doc.addImage(qrDataUrl, "PNG", 15, pageHeight - 75, qrSize, qrSize);
   doc.setFontSize(8);
   doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-  doc.text("SCAN TO TRACK", 15 + qrSize / 2, pageHeight - 12, {
+  doc.text("SCAN TO TRACK", 15 + qrSize / 2, pageHeight - 42, {
     align: "center",
   });
 
