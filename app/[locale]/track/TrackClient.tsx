@@ -4,15 +4,38 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { ErrorMessage } from "@/components/ui/error-message";
-import { Package, Loader2, MapPin, Calendar, DollarSign, Box, Weight, Ruler, User, Mail, Phone, Home, Shield, FileText, Download } from "lucide-react";
+import {
+  Package,
+  Loader2,
+  MapPin,
+  Calendar,
+  DollarSign,
+  Box,
+  Weight,
+  Ruler,
+  User,
+  Mail,
+  Phone,
+  Home,
+  Shield,
+  FileText,
+  Download,
+} from "lucide-react";
 import { RouteMap } from "@/components/admin/RouteMap";
 import { ShipmentTimeline } from "@/components/admin/ShipmentTimeline";
 import toast from "react-hot-toast";
 import { jsPDF } from "jspdf";
+import QRCode from 'qrcode';
 import { useTranslations } from "next-intl";
 
 interface ShipmentData {
@@ -74,7 +97,7 @@ export function TrackClient() {
   const [shipment, setShipment] = useState<ShipmentData | null>(null);
 
   useEffect(() => {
-    const tn = searchParams.get('tn');
+    const tn = searchParams.get("tn");
     if (tn) {
       setTrackingNumber(tn);
       handleTrackWithNumber(tn);
@@ -107,7 +130,9 @@ export function TrackClient() {
   };
 
   const handleTrack = async () => {
-    const inputElement = document.querySelector('input[type="text"]') as HTMLInputElement;
+    const inputElement = document.querySelector(
+      'input[type="text"]',
+    ) as HTMLInputElement;
     const currentValue = inputElement?.value.trim() || trackingNumber.trim();
     if (!currentValue) {
       toast.error("Please enter a tracking number");
@@ -117,295 +142,358 @@ export function TrackClient() {
     await handleTrackWithNumber(currentValue);
   };
 
-  const downloadShipmentLabel = () => {
+  const downloadShipmentLabel = async () => {
     if (!shipment) return;
 
-    const doc = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4'
-    });
+    try {
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
 
-    const primaryColor = [20, 184, 166];
-    const darkGray = [51, 51, 51];
-    const lightGray = [128, 128, 128];
-    const pageWidth = doc.internal.pageSize.getWidth();
-    let yPos = 15;
+      const primaryColor = [255, 126, 0]; // Orange
+      const darkGray = [51, 51, 51];
+      const lightGray = [128, 128, 128];
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      let yPos = 15;
 
-    const addLogo = () => {
-      try {
-        // Since we are in a client component, we can use the logo from public folder
-        const logoUrl = '/logo.png';
-        doc.addImage(logoUrl, 'PNG', 12, 12, 15, 15);
-      } catch (error) {
-        console.error("Could not add logo to PDF", error);
-      }
-    };
+      // Background
+      doc.setFillColor(255, 255, 255);
+      doc.rect(0, 0, pageWidth, pageHeight, "F");
 
-    addLogo();
+      const addLogo = () => {
+        try {
+          const logoUrl = "/logo.png";
+          doc.addImage(logoUrl, "PNG", 12, 12, 15, 15);
+        } catch (error) {
+          console.error("Could not add logo to PDF", error);
+        }
+      };
 
-    doc.setDrawColor(0, 0, 0);
-    doc.setLineWidth(0.5);
-    doc.rect(10, 10, pageWidth - 20, 40);
+      addLogo();
 
-    doc.setFontSize(24);
-    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Reptile Global', pageWidth / 2, yPos + 5, { align: 'center' });
+      doc.setDrawColor(0, 0, 0);
+      doc.setLineWidth(0.5);
+      doc.rect(10, 10, pageWidth - 20, 40);
 
-    doc.setFontSize(10);
-    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.setFont('helvetica', 'normal');
-    doc.text('Global Shipping Solutions', pageWidth / 2, yPos + 12, { align: 'center' });
+      doc.setFontSize(24);
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.setFont("helvetica", "bold");
+      doc.text("Reptile Global", pageWidth / 2, yPos + 5, { align: "center" });
 
-    doc.setFontSize(16);
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`TRACKING: ${shipment.trackingNumber}`, pageWidth / 2, yPos + 20, { align: 'center' });
+      doc.setFontSize(10);
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+      doc.setFont("helvetica", "normal");
+      doc.text("Global Shipping Solutions", pageWidth / 2, yPos + 12, {
+        align: "center",
+      });
 
-    yPos = 55;
-    doc.setFillColor(245, 245, 245);
-    doc.rect(15, yPos, pageWidth - 30, 30, 'F');
-    
-    const barcodeStartX = 30;
-    const barcodeWidth = pageWidth - 60;
-    const barHeight = 18;
-    const barcodeY = yPos + 3;
-    
-    doc.setFillColor(0, 0, 0);
-    let currentX = barcodeStartX;
-    const trackingChars = shipment.trackingNumber.split('');
-    
-    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-    currentX += 2;
-    doc.rect(currentX, barcodeY, 2, barHeight, 'F');
-    currentX += 3;
-    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-    currentX += 3;
-    
-    trackingChars.forEach((char) => {
-      const charCode = char.charCodeAt(0);
-      const pattern = charCode % 4;
-      
-      if (pattern === 0) {
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
-        currentX += 3.5;
-      } else if (pattern === 1) {
-        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
-        currentX += 3.5;
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-      } else if (pattern === 2) {
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
-        currentX += 3.5;
-      } else {
-        doc.rect(currentX, barcodeY, 2.5, barHeight, 'F');
-        currentX += 3.5;
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-        doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-        currentX += 2;
-      }
-      
-      if (currentX > barcodeStartX + barcodeWidth - 20) return;
-    });
-    
-    currentX = barcodeStartX + barcodeWidth - 10;
-    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-    currentX += 2;
-    doc.rect(currentX, barcodeY, 2, barHeight, 'F');
-    currentX += 3;
-    doc.rect(currentX, barcodeY, 1, barHeight, 'F');
-    
-    doc.setFontSize(10);
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFont('courier', 'bold');
-    doc.text(shipment.trackingNumber, pageWidth / 2, yPos + 26, { align: 'center' });
+      doc.setFontSize(16);
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFont("helvetica", "bold");
+      doc.text(`TRACKING: ${shipment.trackingNumber}`, pageWidth / 2, yPos + 20, {
+        align: "center",
+      });
 
-    yPos = 85;
-    const colWidth = (pageWidth - 25) / 2;
-    
-    doc.setFillColor(124, 58, 237);
-    doc.rect(10, yPos, colWidth, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('FROM', 15, yPos + 5.5);
+      // QR Code Generation
+      const baseUrl = window.location.origin;
+      const trackUrl = `${baseUrl}/track?tn=${shipment.trackingNumber}`;
+      const qrDataUrl = await QRCode.toDataURL(trackUrl, {
+        margin: 1,
+        width: 100,
+        color: {
+          dark: "#000000",
+          light: "#ffffff",
+        },
+      });
 
-    yPos += 12;
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.text(shipment.senderName, 15, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.text(shipment.senderEmail, 15, yPos);
-    yPos += 5;
-    doc.text(shipment.senderPhone, 15, yPos);
-    yPos += 5;
-    doc.text(shipment.senderAddress, 15, yPos);
-    yPos += 5;
-    doc.text(`${shipment.senderCity}, ${shipment.senderState} ${shipment.senderZip}`, 15, yPos);
-    yPos += 5;
-    doc.text(shipment.senderCountry, 15, yPos);
+      const qrSize = 30;
+      doc.addImage(qrDataUrl, "PNG", 15, pageHeight - 45, qrSize, qrSize);
+      doc.setFontSize(8);
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+      doc.text("SCAN TO TRACK", 15 + qrSize / 2, pageHeight - 12, {
+        align: "center",
+      });
 
-    yPos = 85;
-    doc.setFillColor(124, 58, 237);
-    doc.rect(10 + colWidth + 5, yPos, colWidth, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('TO', 15 + colWidth + 5, yPos + 5.5);
+      yPos = 55;
+      doc.setFillColor(245, 245, 245);
+      doc.rect(15, yPos, pageWidth - 30, 30, "F");
 
-    yPos += 12;
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.text(shipment.recipientName, 15 + colWidth + 5, yPos);
-    yPos += 5;
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.text(shipment.recipientEmail, 15 + colWidth + 5, yPos);
-    yPos += 5;
-    doc.text(shipment.recipientPhone, 15 + colWidth + 5, yPos);
-    yPos += 5;
-    doc.text(shipment.recipientAddress, 15 + colWidth + 5, yPos);
-    yPos += 5;
-    doc.text(`${shipment.recipientCity}, ${shipment.recipientState} ${shipment.recipientZip}`, 15 + colWidth + 5, yPos);
-    yPos += 5;
-    doc.text(shipment.recipientCountry, 15 + colWidth + 5, yPos);
+      const barcodeStartX = 30;
+      const barcodeWidth = pageWidth - 60;
+      const barHeight = 18;
+      const barcodeY = yPos + 3;
 
-    yPos = 140;
-    doc.setFillColor(124, 58, 237);
-    doc.rect(10, yPos, pageWidth - 20, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('PACKAGE DETAILS', 15, yPos + 5.5);
+      doc.setFillColor(0, 0, 0);
+      let currentX = barcodeStartX;
+      const trackingChars = shipment.trackingNumber.split("");
 
-    yPos += 12;
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'bold');
-    
-    const detailsLeft = 15;
-    const detailsRight = pageWidth / 2 + 5;
-    
-    doc.text('Type:', detailsLeft, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(shipment.packageType.toUpperCase(), detailsLeft + 25, yPos);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.text('Service:', detailsRight, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(shipment.serviceType.toUpperCase(), detailsRight + 25, yPos);
-    
-    yPos += 6;
-    doc.setFont('helvetica', 'bold');
-    doc.text('Weight:', detailsLeft, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(shipment.weight, detailsLeft + 25, yPos);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.text('Priority:', detailsRight, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]); 
-    doc.setFont('helvetica', 'bold');
-    doc.text(shipment.priority.toUpperCase(), detailsRight + 25, yPos);
+      doc.rect(currentX, barcodeY, 1, barHeight, "F");
+      currentX += 2;
+      doc.rect(currentX, barcodeY, 2, barHeight, "F");
+      currentX += 3;
+      doc.rect(currentX, barcodeY, 1, barHeight, "F");
+      currentX += 3;
 
-    yPos += 6;
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Dimensions:', detailsLeft, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`${shipment.dimensions.length} × ${shipment.dimensions.width} × ${shipment.dimensions.height}`, detailsLeft + 25, yPos);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.text('Ship Date:', detailsRight, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(shipment.shippingDate, detailsRight + 25, yPos);
-    
-    yPos += 6;
-    doc.setFont('helvetica', 'bold');
-    doc.text('Value:', detailsLeft, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`$${shipment.value}`, detailsLeft + 25, yPos);
-    
-    doc.setFont('helvetica', 'bold');
-    doc.text('Est. Delivery:', detailsRight, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.text(shipment.estimatedDeliveryDate, detailsRight + 25, yPos);
+      trackingChars.forEach((char) => {
+        const charCode = char.charCodeAt(0);
+        const pattern = charCode % 4;
 
-    if (shipment.description) {
-      yPos += 8;
-      doc.setFont('helvetica', 'bold');
-      doc.text('Description:', detailsLeft, yPos);
-      doc.setFont('helvetica', 'normal');
-      const descLines = doc.splitTextToSize(shipment.description, pageWidth - 50);
-      doc.text(descLines, detailsLeft + 25, yPos);
-      yPos += descLines.length * 5;
-    }
+        if (pattern === 0) {
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+          doc.rect(currentX, barcodeY, 2.5, barHeight, "F");
+          currentX += 3.5;
+        } else if (pattern === 1) {
+          doc.rect(currentX, barcodeY, 2.5, barHeight, "F");
+          currentX += 3.5;
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+        } else if (pattern === 2) {
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+          doc.rect(currentX, barcodeY, 2.5, barHeight, "F");
+          currentX += 3.5;
+        } else {
+          doc.rect(currentX, barcodeY, 2.5, barHeight, "F");
+          currentX += 3.5;
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+          doc.rect(currentX, barcodeY, 1, barHeight, "F");
+          currentX += 2;
+        }
 
-    if (shipment.specialInstructions) {
+        if (currentX > barcodeStartX + barcodeWidth - 20) return;
+      });
+
+      currentX = barcodeStartX + barcodeWidth - 10;
+      doc.rect(currentX, barcodeY, 1, barHeight, "F");
+      currentX += 2;
+      doc.rect(currentX, barcodeY, 2, barHeight, "F");
+      currentX += 3;
+      doc.rect(currentX, barcodeY, 1, barHeight, "F");
+
+      doc.setFontSize(10);
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFont("courier", "bold");
+      doc.text(shipment.trackingNumber, pageWidth / 2, yPos + 26, {
+        align: "center",
+      });
+
+      yPos = 85;
+      const colWidth = (pageWidth - 25) / 2;
+
+      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.rect(10, yPos, colWidth, 8, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+      doc.text("FROM", 15, yPos + 5.5);
+
+      yPos += 12;
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text(shipment.senderName, 15, yPos);
       yPos += 5;
-      doc.setFont('helvetica', 'bold');
-      doc.text('Special Instructions:', detailsLeft, yPos);
-      doc.setFont('helvetica', 'normal');
-      const instrLines = doc.splitTextToSize(shipment.specialInstructions, pageWidth - 50);
-      doc.text(instrLines, detailsLeft + 25, yPos);
-      yPos += instrLines.length * 5;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text(shipment.senderEmail, 15, yPos);
+      yPos += 5;
+      doc.text(shipment.senderPhone, 15, yPos);
+      yPos += 5;
+      doc.text(shipment.senderAddress, 15, yPos);
+      yPos += 5;
+      doc.text(
+        `${shipment.senderCity}, ${shipment.senderState} ${shipment.senderZip}`,
+        15,
+        yPos,
+      );
+      yPos += 5;
+      doc.text(shipment.senderCountry, 15, yPos);
+
+      yPos = 85;
+      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.rect(10 + colWidth + 5, yPos, colWidth, 8, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+      doc.text("TO", 15 + colWidth + 5, yPos + 5.5);
+
+      yPos += 12;
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text(shipment.recipientName, 15 + colWidth + 5, yPos);
+      yPos += 5;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text(shipment.recipientEmail, 15 + colWidth + 5, yPos);
+      yPos += 5;
+      doc.text(shipment.recipientPhone, 15 + colWidth + 5, yPos);
+      yPos += 5;
+      doc.text(shipment.recipientAddress, 15 + colWidth + 5, yPos);
+      yPos += 5;
+      doc.text(
+        `${shipment.recipientCity}, ${shipment.recipientState} ${shipment.recipientZip}`,
+        15 + colWidth + 5,
+        yPos,
+      );
+      yPos += 5;
+      doc.text(shipment.recipientCountry, 15 + colWidth + 5, yPos);
+
+      yPos = 140;
+      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.rect(10, yPos, pageWidth - 20, 8, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+      doc.text("PACKAGE DETAILS", 15, yPos + 5.5);
+
+      yPos += 12;
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "bold");
+
+      const detailsLeft = 15;
+      const detailsRight = pageWidth / 2 + 5;
+
+      doc.text("Type:", detailsLeft, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(shipment.packageType.toUpperCase(), detailsLeft + 25, yPos);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Service:", detailsRight, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(shipment.serviceType.toUpperCase(), detailsRight + 25, yPos);
+
+      yPos += 6;
+      doc.setFont("helvetica", "bold");
+      doc.text("Weight:", detailsLeft, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(shipment.weight, detailsLeft + 25, yPos);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Priority:", detailsRight, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.setFont("helvetica", "bold");
+      doc.text(shipment.priority.toUpperCase(), detailsRight + 25, yPos);
+
+      yPos += 6;
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFont("helvetica", "bold");
+      doc.text("Dimensions:", detailsLeft, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(
+        `${shipment.dimensions.length} × ${shipment.dimensions.width} × ${shipment.dimensions.height}`,
+        detailsLeft + 25,
+        yPos,
+      );
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Ship Date:", detailsRight, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(shipment.shippingDate, detailsRight + 25, yPos);
+
+      yPos += 6;
+      doc.setFont("helvetica", "bold");
+      doc.text("Value:", detailsLeft, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(`$${shipment.value}`, detailsLeft + 25, yPos);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Est. Delivery:", detailsRight, yPos);
+      doc.setFont("helvetica", "normal");
+      doc.text(shipment.estimatedDeliveryDate, detailsRight + 25, yPos);
+
+      if (shipment.description) {
+        yPos += 8;
+        doc.setFont("helvetica", "bold");
+        doc.text("Description:", detailsLeft, yPos);
+        doc.setFont("helvetica", "normal");
+        const descLines = doc.splitTextToSize(
+          shipment.description,
+          pageHeight - 50,
+        );
+        doc.text(descLines, detailsLeft + 25, yPos);
+        yPos += descLines.length * 5;
+      }
+
+      if (shipment.specialInstructions) {
+        yPos += 5;
+        doc.setFont("helvetica", "bold");
+        doc.text("Special Instructions:", detailsLeft, yPos);
+        doc.setFont("helvetica", "normal");
+        const instrLines = doc.splitTextToSize(
+          shipment.specialInstructions,
+          pageWidth - 50,
+        );
+        doc.text(instrLines, detailsLeft + 25, yPos);
+        yPos += instrLines.length * 5;
+      }
+
+      yPos += 8;
+      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+      doc.rect(10, yPos, pageWidth - 20, 8, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
+      doc.setFont("helvetica", "bold");
+      doc.text("ADDITIONAL SERVICES", 15, yPos + 5.5);
+
+      yPos += 12;
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "normal");
+      const services = [];
+      if (shipment.insurance) services.push("✓ Insurance Coverage");
+      if (shipment.signatureRequired) services.push("✓ Signature Required");
+      if (services.length > 0) {
+        doc.text(services.join("  |  "), 15, yPos);
+      } else {
+        doc.text("No additional services", 15, yPos);
+      }
+
+      yPos = doc.internal.pageSize.getHeight() - 25;
+      doc.setDrawColor(0, 0, 0);
+      doc.setLineWidth(0.5);
+      doc.line(10, yPos, pageWidth - 10, yPos);
+
+      yPos += 5;
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+      doc.text("Reptile Global", pageWidth / 2, yPos, { align: "center" });
+
+      yPos += 5;
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+      doc.text(
+        "For support, contact us at support@reptileglobal.site",
+        pageWidth / 2,
+        yPos,
+        { align: "center" },
+      );
+
+      yPos += 4;
+      doc.text(
+        "This is an official shipping label. Please keep for your records.",
+        pageWidth / 2,
+        yPos,
+        { align: "center" },
+      );
+
+      doc.save(`shipping-label-${shipment.trackingNumber}.pdf`);
+      toast.success("Shipping label PDF downloaded successfully!");
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      toast.error("Failed to generate PDF. Please try again.");
     }
-
-    yPos += 8;
-    doc.setFillColor(124, 58, 237);
-    doc.rect(10, yPos, pageWidth - 20, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('ADDITIONAL SERVICES', 15, yPos + 5.5);
-
-    yPos += 12;
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    const services = [];
-    if (shipment.insurance) services.push('✓ Insurance Coverage');
-    if (shipment.signatureRequired) services.push('✓ Signature Required');
-    if (services.length > 0) {
-      doc.text(services.join('  |  '), 15, yPos);
-    } else {
-      doc.text('No additional services', 15, yPos);
-    }
-
-    yPos = doc.internal.pageSize.getHeight() - 25;
-    doc.setDrawColor(0, 0, 0);
-    doc.setLineWidth(0.5);
-    doc.line(10, yPos, pageWidth - 10, yPos);
-    
-    yPos += 5;
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    doc.text('Reptile Global', pageWidth / 2, yPos, { align: 'center' });
-    
-    yPos += 5;
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-    doc.text('For support, contact us at support@reptileglobal.site', pageWidth / 2, yPos, { align: 'center' });
-    
-    yPos += 4;
-    doc.text('This is an official shipping label. Please keep for your records.', pageWidth / 2, yPos, { align: 'center' });
-
-    doc.save(`shipping-label-${shipment.trackingNumber}.pdf`);
-    toast.success("Shipping label PDF downloaded successfully!");
   };
 
   const getStatusColor = (status: string) => {
@@ -432,9 +520,7 @@ export function TrackClient() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {t("title")}
             </h1>
-            <p className="text-xl text-muted-foreground">
-              {t("subtitle")}
-            </p>
+            <p className="text-xl text-muted-foreground">{t("subtitle")}</p>
           </div>
 
           <div className="space-y-4 mb-8 w-full">
@@ -445,20 +531,20 @@ export function TrackClient() {
               onChange={(e) => setTrackingNumber(e.target.value)}
               onPaste={(e) => {
                 e.preventDefault();
-                const pastedText = e.clipboardData.getData('text');
+                const pastedText = e.clipboardData.getData("text");
                 setTrackingNumber(pastedText);
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   e.preventDefault();
                   handleTrack();
                 }
               }}
               className="text-base sm:text-lg h-12 sm:h-14 w-full"
             />
-            <Button 
+            <Button
               onClick={handleTrack}
-              size="lg" 
+              size="lg"
               className="w-full opacity-100"
               disabled={isLoading}
             >
@@ -472,7 +558,10 @@ export function TrackClient() {
               )}
             </Button>
             {!isLoading && !shipment && trackingNumber && (
-              <ErrorMessage errorKey="shipmentNotFound" className="justify-center mt-2" />
+              <ErrorMessage
+                errorKey="shipmentNotFound"
+                className="justify-center mt-2"
+              />
             )}
           </div>
 
@@ -482,22 +571,29 @@ export function TrackClient() {
                 <CardHeader>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <CardTitle className="text-xl sm:text-2xl break-all">{t("status")} {shipment.trackingNumber}</CardTitle>
+                      <CardTitle className="text-xl sm:text-2xl break-all">
+                        {t("status")} {shipment.trackingNumber}
+                      </CardTitle>
                       <CardDescription className="mt-2">
-                        {t("created")} {new Date(shipment.createdAt).toLocaleDateString()}
+                        {t("created")}{" "}
+                        {new Date(shipment.createdAt).toLocaleDateString()}
                       </CardDescription>
                     </div>
                     <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-                      <Button 
+                      <Button
                         onClick={downloadShipmentLabel}
                         variant="outline"
                         className="gap-2 flex-1 sm:flex-initial"
                       >
                         <Download className="h-4 w-4" />
-                        <span className="hidden sm:inline">{t("downloadLabel")}</span>
+                        <span className="hidden sm:inline">
+                          {t("downloadLabel")}
+                        </span>
                         <span className="sm:hidden">{t("label")}</span>
                       </Button>
-                      <Badge className={`${getStatusColor(shipment.status)} text-white text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2 whitespace-nowrap`}>
+                      <Badge
+                        className={`${getStatusColor(shipment.status)} text-white text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2 whitespace-nowrap`}
+                      >
                         {shipment.status.toUpperCase()}
                       </Badge>
                     </div>
@@ -563,7 +659,10 @@ export function TrackClient() {
                       <Home className="h-4 w-4 mt-1 text-muted-foreground" />
                       <div>
                         <p className="text-sm">{shipment.senderAddress}</p>
-                        <p className="text-sm">{shipment.senderCity}, {shipment.senderState} {shipment.senderZip}</p>
+                        <p className="text-sm">
+                          {shipment.senderCity}, {shipment.senderState}{" "}
+                          {shipment.senderZip}
+                        </p>
                         <p className="text-sm">{shipment.senderCountry}</p>
                       </div>
                     </div>
@@ -600,7 +699,10 @@ export function TrackClient() {
                       <Home className="h-4 w-4 mt-1 text-muted-foreground" />
                       <div>
                         <p className="text-sm">{shipment.recipientAddress}</p>
-                        <p className="text-sm">{shipment.recipientCity}, {shipment.recipientState} {shipment.recipientZip}</p>
+                        <p className="text-sm">
+                          {shipment.recipientCity}, {shipment.recipientState}{" "}
+                          {shipment.recipientZip}
+                        </p>
                         <p className="text-sm">{shipment.recipientCountry}</p>
                       </div>
                     </div>
@@ -636,7 +738,8 @@ export function TrackClient() {
                       {t("dimensions")}
                     </p>
                     <p className="font-medium">
-                      {shipment.dimensions.length}x{shipment.dimensions.width}x{shipment.dimensions.height}
+                      {shipment.dimensions.length}x{shipment.dimensions.width}x
+                      {shipment.dimensions.height}
                     </p>
                   </div>
                   <div className="space-y-1">
@@ -651,14 +754,20 @@ export function TrackClient() {
                       <Calendar className="h-4 w-4" />
                       {t("shippingDate")}
                     </p>
-                    <p className="font-medium">{new Date(shipment.shippingDate).toLocaleDateString()}</p>
+                    <p className="font-medium">
+                      {new Date(shipment.shippingDate).toLocaleDateString()}
+                    </p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       {t("estDelivery")}
                     </p>
-                    <p className="font-medium">{new Date(shipment.estimatedDeliveryDate).toLocaleDateString()}</p>
+                    <p className="font-medium">
+                      {new Date(
+                        shipment.estimatedDeliveryDate,
+                      ).toLocaleDateString()}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -672,21 +781,33 @@ export function TrackClient() {
                 </CardHeader>
                 <CardContent className="pt-6 grid sm:grid-cols-2 gap-6">
                   <div className="space-y-1">
-                    <p className="text-sm text-muted-foreground">{t("service")}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("service")}
+                    </p>
                     <p className="font-medium">{shipment.serviceType}</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-sm text-muted-foreground">{t("priority")}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("priority")}
+                    </p>
                     <Badge variant="outline" className="capitalize">
                       {shipment.priority}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant={shipment.insurance ? "default" : "secondary"}>
+                    <Badge
+                      variant={shipment.insurance ? "default" : "secondary"}
+                    >
                       {shipment.insurance ? t("insured") : t("noInsurance")}
                     </Badge>
-                    <Badge variant={shipment.signatureRequired ? "default" : "secondary"}>
-                      {shipment.signatureRequired ? t("sigRequired") : t("noSigRequired")}
+                    <Badge
+                      variant={
+                        shipment.signatureRequired ? "default" : "secondary"
+                      }
+                    >
+                      {shipment.signatureRequired
+                        ? t("sigRequired")
+                        : t("noSigRequired")}
                     </Badge>
                   </div>
                 </CardContent>
@@ -703,14 +824,20 @@ export function TrackClient() {
                   <CardContent className="pt-6 space-y-4">
                     {shipment.description && (
                       <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">{t("description")}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t("description")}
+                        </p>
                         <p className="text-sm">{shipment.description}</p>
                       </div>
                     )}
                     {shipment.specialInstructions && (
                       <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">{t("specialInstructions")}</p>
-                        <p className="text-sm">{shipment.specialInstructions}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t("specialInstructions")}
+                        </p>
+                        <p className="text-sm">
+                          {shipment.specialInstructions}
+                        </p>
                       </div>
                     )}
                   </CardContent>
