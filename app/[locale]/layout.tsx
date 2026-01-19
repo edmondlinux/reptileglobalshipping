@@ -18,11 +18,32 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   const messages: any = await getMessages();
   const t = messages.Metadata.home;
 
+  const ogUrl = "https://ik.imagekit.io/14iir4o77/IMG_0678.jpeg";
+
   return {
     title: t.title,
     description: t.description,
     icons: {
       icon: "/logo.png",
+    },
+    openGraph: {
+      title: t.title,
+      description: t.description,
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: t.title,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.title,
+      description: t.description,
+      images: [ogUrl],
     },
   };
 }
