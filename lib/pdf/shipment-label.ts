@@ -315,9 +315,9 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
     doc.setFont("helvetica", "normal");
     const descLines = doc.splitTextToSize(
       shipment.description,
-      pageHeight - 50,
+      pageWidth - 50,
     );
-    doc.text(descLines, detailsLeft + 25, yPos);
+    doc.text(descLines, detailsLeft + 35, yPos);
     yPos += descLines.length * 5;
   }
 
@@ -330,7 +330,7 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
       shipment.specialInstructions,
       pageWidth - 50,
     );
-    doc.text(instrLines, detailsLeft + 25, yPos);
+    doc.text(instrLines, detailsLeft + 35, yPos);
     yPos += instrLines.length * 5;
   }
 
