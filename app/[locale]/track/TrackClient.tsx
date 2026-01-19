@@ -145,7 +145,13 @@ export function TrackClient() {
     if (!shipment) return;
 
     try {
-      await generateShippingLabelPDF(shipment);
+      let mapSnapshot;
+      const mapCanvas = document.querySelector('.mapboxgl-canvas') as HTMLCanvasElement;
+      if (mapCanvas) {
+        mapSnapshot = mapCanvas.toDataURL('image/png');
+      }
+
+      await generateShippingLabelPDF(shipment, mapSnapshot);
       toast.success("Shipping label PDF downloaded successfully!");
     } catch (error) {
       console.error("PDF generation error:", error);

@@ -42,7 +42,7 @@ interface ShipmentData {
   createdAt: string;
 }
 
-export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
+export const generateShippingLabelPDF = async (shipment: ShipmentData, mapSnapshot?: string) => {
   const doc = new jsPDF({
     orientation: "portrait",
     unit: "mm",
@@ -106,13 +106,26 @@ export const generateShippingLabelPDF = async (shipment: ShipmentData) => {
     },
   });
 
-  const qrSize = 30;
-  doc.addImage(qrDataUrl, "PNG", 15, pageHeight - 75, qrSize, qrSize);
-  doc.setFontSize(8);
-  doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-  doc.text("SCAN TO TRACK", 15 + qrSize / 2, pageHeight - 42, {
-    align: "center",
-  });
+      const qrSize = 30;
+      doc.addImage(qrDataUrl, "PNG", 15, pageHeight - 75, qrSize, qrSize);
+      doc.setFontSize(8);
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+      doc.text("SCAN TO TRACK", 15 + qrSize / 2, pageHeight - 42, {
+        align: "center",
+      });
+
+      // Map Snapshot
+      if (mapSnapshot) {
+        try {
+          const mapWidth = 80;
+          const mapHeight = 45;
+          doc.addImage(mapSnapshot, "PNG", 50, pageHeight - 80, mapWidth, mapHeight);
+          doc.rect(50, pageHeight - 80, mapWidth, mapHeight); // Border
+          doc.text("CURRENT ROUTE STATUS", 50 + mapWidth / 2, pageHeight - 32, { align: "center" });
+        } catch (error) {
+          console.error("Could not add map to PDF", error);
+        }
+      }
 
   yPos = 55;
   doc.setFillColor(245, 245, 245);

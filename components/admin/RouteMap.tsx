@@ -60,6 +60,7 @@ export function RouteMap({
       style: "mapbox://styles/mapbox/streets-v12",
       center: [currentLng, currentLat],
       zoom: 8,
+      preserveDrawingBuffer: true
     });
 
     mapRef.current = map;
