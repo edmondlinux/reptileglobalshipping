@@ -145,14 +145,7 @@ export function TrackClient() {
     if (!shipment) return;
 
     try {
-      let mapSnapshot;
-      const mapCanvas = document.querySelector('.mapboxgl-canvas') as HTMLCanvasElement;
-      if (mapCanvas) {
-        // Force a render cycle to ensure markers are drawn on canvas if using preserveDrawingBuffer
-        mapSnapshot = mapCanvas.toDataURL('image/png');
-      }
-
-      await generateShippingLabelPDF(shipment, mapSnapshot);
+      await generateShippingLabelPDF(shipment);
       toast.success("Shipping label PDF downloaded successfully!");
     } catch (error) {
       console.error("PDF generation error:", error);

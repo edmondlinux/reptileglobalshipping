@@ -60,7 +60,6 @@ export function RouteMap({
       style: "mapbox://styles/mapbox/streets-v12",
       center: [currentLng, currentLat],
       zoom: 8,
-      preserveDrawingBuffer: true
     });
 
     mapRef.current = map;
@@ -103,13 +102,55 @@ export function RouteMap({
 
         // Add current location marker (pulsing dot)
         const el = document.createElement('div');
-        el.className = 'current-location-marker';
-        el.style.width = '20px';
-        el.style.height = '20px';
-        el.style.borderRadius = '50%';
-        el.style.backgroundColor = '#14B8A6';
-        el.style.border = '3px solid white';
-        el.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+        el.className = 'current-location-pulse';
+        el.innerHTML = `
+          <style>
+            .current-location-pulse {
+              width: 48px;
+              height: 48px;
+              position: relative;
+            }
+            .current-location-pulse::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              background: rgba(20, 184, 166, 0.25);
+              animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            .current-location-pulse::after {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background: #14B8A6;
+              border: 3px solid white;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+            @keyframes pulse-ring {
+              0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+              }
+              50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.6;
+              }
+              100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+              }
+            }
+          </style>
+        `;
         
         currentMarkerRef.current = new mapboxgl.Marker({ element: el })
           .setLngLat([currentLng, currentLat])
