@@ -68,19 +68,27 @@ export const Navbar = () => {
                   alt="Reptile Global"
                   width={36}
                   height={36}
+                  className="hidden dark:block"
+                />
+                <Image
+                  src="/logo_dark.png"
+                  alt="Reptile Global"
+                  width={36}
+                  height={36}
+                  className="block dark:hidden"
                 />
               </Link>
             </NavigationMenuItem>
 
             {/* mobile */}
-            <span className="flex md:hidden gap-2">
+            <span className="flex lg:hidden gap-2">
               <LanguageSwitcher />
               <ModeToggle />
 
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className="px-2">
                   <Menu
-                    className="flex md:hidden h-5 w-5"
+                    className="flex lg:hidden h-5 w-5"
                     onClick={() => setIsOpen(true)}
                   />
                 </SheetTrigger>
@@ -93,6 +101,14 @@ export const Navbar = () => {
                         alt="Reptile Global"
                         width={36}
                         height={36}
+                        className="hidden dark:block"
+                      />
+                      <Image
+                        src="/logo_dark.png"
+                        alt="Reptile Global"
+                        width={36}
+                        height={36}
+                        className="block dark:hidden"
                       />
                     </SheetTitle>
                   </SheetHeader>
@@ -140,7 +156,7 @@ export const Navbar = () => {
             </span>
 
             {/* desktop */}
-            <nav className="hidden md:flex gap-2">
+            <nav className="hidden lg:flex gap-2">
               {routeList.map((route: RouteProps, i) => (
                 <Link
                   href={route.href}
@@ -163,7 +179,7 @@ export const Navbar = () => {
               )}
             </nav>
 
-            <div className="hidden md:flex gap-2 items-center">
+            <div className="hidden lg:flex gap-2 items-center">
               <LanguageSwitcher />
               {!isLoading && (
                 <>
