@@ -13,13 +13,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: "International Reptile Shipping | Best Reptile Courier & Transport Service",
-  description: "Expert international reptile shipping and courier services. Safe, worldwide reptile air shipping for breeders and collectors. Contact us today for a quote!",
-  icons: {
-    icon: "/logo.png",
-  },
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const messages: any = await getMessages();
+  const t = messages.Metadata.home;
+
+  return {
+    title: t.title,
+    description: t.description,
+    icons: {
+      icon: "/logo.png",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

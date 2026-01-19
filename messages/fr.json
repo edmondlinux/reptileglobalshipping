@@ -1,4 +1,22 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Transport de Reptiles International | Meilleur Coursier de Reptiles",
+      "description": "Services d'expédition et de coursier de reptiles internationaux. Transport aérien sécurisé pour éleveurs et collectionneurs. Contactez-nous pour un devis !"
+    },
+    "about": {
+      "title": "À Propos | Experts en Expédition Internationale de Reptiles",
+      "description": "Découvrez Reptile Global, votre partenaire de confiance pour le transport international de reptiles. Plus de 5 ans d'expérience."
+    },
+    "contact": {
+      "title": "Contactez-nous | Devis Transport de Reptiles",
+      "description": "Contactez nos experts pour un devis gratuit. Expédition internationale et transport aérien de reptiles."
+    },
+    "track": {
+      "title": "Suivi de Reptile | Suivi d'Expédition Internationale",
+      "description": "Suivez votre envoi de reptiles en temps réel. Entrez votre numéro de suivi pour voir l'emplacement de votre transport."
+    }
+  },
   "Hero": {
     "excellence": "Experts de confiance en transport de reptiles",
     "welcome": "Bienvenue chez",

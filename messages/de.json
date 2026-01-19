@@ -1,4 +1,22 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Internationaler Reptilienversand | Bester Reptilien-Kurier",
+      "description": "Experte für internationalen Reptilienversand und Kurierdienste. Sicherer weltweiter Lufttransport für Züchter und Sammler. Fordern Sie ein Angebot an!"
+    },
+    "about": {
+      "title": "Über uns | Experten für internationalen Reptilienversand",
+      "description": "Erfahren Sie mehr über Reptile Global, Ihren Partner für Tiertransporte. Über 5 Jahre Erfahrung in der Logistik lebender Tiere."
+    },
+    "contact": {
+      "title": "Kontakt | Angebot für Reptilienversand anfordern",
+      "description": "Kontaktieren Sie uns für ein kostenloses Angebot. Internationaler Kurierdienst und Lufttransport für Reptilien."
+    },
+    "track": {
+      "title": "Sendungsverfolgung | Internationaler Reptilienversand",
+      "description": "Verfolgen Sie Ihre Sendung in Echtzeit. Geben Sie Ihre Nummer ein, um den Status Ihres internationalen Transports zu sehen."
+    }
+  },
   "Hero": {
     "excellence": "Vertrauenswürdige Reptilien-Versandexperten",
     "welcome": "Willkommen bei",

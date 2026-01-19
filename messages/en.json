@@ -1,4 +1,22 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "International Reptile Shipping | Best Reptile Courier & Transport Service",
+      "description": "Expert international reptile shipping and courier services. Safe, worldwide reptile air shipping for breeders and collectors. Contact us today for a quote!"
+    },
+    "about": {
+      "title": "About Us | International Reptile Shipping Experts",
+      "description": "Learn about Reptile Global, your trusted partner for international reptile transport. Over 5 years of experience in safe live animal logistics."
+    },
+    "contact": {
+      "title": "Contact Us | Get a Quote for International Reptile Shipping",
+      "description": "Contact our reptile shipping experts for a free quote. Email or call us for international reptile courier services and air transport."
+    },
+    "track": {
+      "title": "Track Your Reptile | International Shipment Tracking",
+      "description": "Track your reptile shipment in real-time. Enter your tracking number to see the status and location of your international reptile transport."
+    }
+  },
   "Hero": {
     "excellence": "Expert International Reptile Shipping & Courier Services",
     "welcome": "Worldwide",

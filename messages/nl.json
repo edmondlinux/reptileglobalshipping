@@ -1,4 +1,22 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Internationaal Reptielenvervoer | Beste Reptielenkoerier",
+      "description": "Expert in internationaal reptielenvervoer en koeriersdiensten. Veilig wereldwijd luchtvervoer voor fokkers en verzamelaars. Vraag vandaag een offerte aan!"
+    },
+    "about": {
+      "title": "Over ons | Experts in Internationaal Reptielenvervoer",
+      "description": "Leer meer over Reptile Global, uw partner voor internationaal transport. Meer dan 5 jaar ervaring in veilige logistiek voor levende dieren."
+    },
+    "contact": {
+      "title": "Contact | Offerte voor Internationaal Reptielenvervoer",
+      "description": "Neem contact op voor een gratis offerte. Internationale koeriersdiensten en luchtvervoer voor reptielen."
+    },
+    "track": {
+      "title": "Volg uw Reptiel | Internationale Tracking",
+      "description": "Volg uw zending in realtime. Voer uw trackingnummer in om de locatie van uw internationaal transport te zien."
+    }
+  },
   "Hero": {
     "excellence": "Betrouwbare reptiel verzendexperts",
     "welcome": "Welkom bij",
