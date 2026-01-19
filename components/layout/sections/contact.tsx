@@ -110,7 +110,7 @@ export const ContactSection = () => {
                 <div className="font-bold">{t("callUs")}</div>
               </div>
 
-              <div>{process.env.PHONE_NUMBER || "0000000000"}</div>
+              <div>{process.env.PHONE_NUMBER || "NaN"}</div>
             </div>
 
             <div>

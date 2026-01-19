@@ -102,7 +102,12 @@
     "service": "Service",
     "estDelivery": "Verwachte levering",
     "description": "Beschrijving",
-    "specialInstructions": "Speciale instructies"
+    "specialInstructions": "Speciale instructies",
+    "shippingDate": "Verzenddatum",
+    "serviceDetails": "Servicedetails",
+    "priority": "Prioriteit",
+    "noInsurance": "Geen verzekering",
+    "noSigRequired": "Geen handtekening vereist"
   },
   "Benefits": {
     "badge": "Voordelen",

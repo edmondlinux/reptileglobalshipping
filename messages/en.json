@@ -30,6 +30,8 @@
     "globalCoverage": "International Reptile Shipping",
     "secureHandling": "Certified Reptile Courier",
     "fastDelivery": "Best Reptile Transport Service"
+    
+    
   },
   "Navbar": {
     "home": "Home",
@@ -103,10 +105,16 @@
     "weight": "Weight",
     "dimensions": "Dimensions",
     "value": "Value",
+    "shippingDate": "Shipping Date",
     "service": "Service",
+    "priority": "Priority",
     "estDelivery": "Est. Delivery",
+    "serviceDetails": "Service Details",
     "description": "Description",
-    "specialInstructions": "Special Instructions"
+    "specialInstructions": "Special Instructions",
+    "noInsurance": "No insurance",
+    "noSigRequired": "No signature required",
+    "additionalInfo": "Additional Information"
   },
   "Benefits": {
     "badge": "Benefits",

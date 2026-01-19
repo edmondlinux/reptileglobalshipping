@@ -81,7 +81,14 @@
     "service": "Service",
     "estDelivery": "Voraussichtliche Lieferung",
     "description": "Beschreibung",
-    "specialInstructions": "Besondere Anweisungen"
+    "specialInstructions": "Besondere Anweisungen",
+    "shippingDate": "Versanddatum",
+    "serviceDetails": "Servicedetails",
+    "priority": "Priorität",
+    "noInsurance": "Keine Versicherung",
+    "noSigRequired": "Keine Unterschrift erforderlich"
+    
+    
   },
   "Benefits": {
     "badge": "Vorteile",
