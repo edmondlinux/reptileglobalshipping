@@ -14,7 +14,7 @@ export const HeroSection = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const images = ["/hero.png", "/hero1.png"];
+  const images = ["/reptile_global.png", "/hero1.png"];
 
   useEffect(() => {
     const timer = setInterval(() => {

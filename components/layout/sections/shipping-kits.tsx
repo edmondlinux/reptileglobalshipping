@@ -11,19 +11,19 @@ export const ShippingKits = () => {
       title: t("kit1.title"),
       description: t("kit1.description"),
       price: "$24.99",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=300&h=200&auto=format&fit=crop",
+      image: "https://www.reptiles2you.com/media/catalog/product/cache/daa2896c59988dba6a87e4f91f57bfc5/i/n/insulated-rep-box-7x7x7.jpg",
     },
     {
       title: t("kit2.title"),
       description: t("kit2.description"),
       price: "$34.99",
-      image: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=300&h=200&auto=format&fit=crop",
+      image: "https://www.reptiles2you.com/media/catalog/product/cache/daa2896c59988dba6a87e4f91f57bfc5/r/e/reptile-shipping-kit.jpg",
     },
     {
       title: t("kit3.title"),
       description: t("kit3.description"),
       price: "$14.99",
-      image: "https://images.unsplash.com/photo-1620912189865-1e8a33da4c5e?q=80&w=300&h=200&auto=format&fit=crop",
+      image: "https://www.reptiles2you.com/media/catalog/product/cache/daa2896c59988dba6a87e4f91f57bfc5/h/p/hp-60-01.jpg",
     },
   ];
 
