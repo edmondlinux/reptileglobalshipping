@@ -102,13 +102,7 @@
     "service": "Service",
     "estDelivery": "Verwachte levering",
     "description": "Beschrijving",
-    "specialInstructions": "Speciale instructies",
-    "serviceDetails": "Service Details",
-    "priority": "Prioriteit",
-    "shippingDate": "Verzenddatum",
-    "noInsurance": "Geen Verzekering",
-    "noSigRequired": "Geen Handtekening Vereist",
-    "additionalInfo": "Extra Informatie"
+    "specialInstructions": "Speciale instructies"
   },
   "Benefits": {
     "badge": "Voordelen",
@@ -213,7 +207,7 @@
     "badge": "Team",
     "title": "Ons expertteam"
   },
-    "Footer": {
+  "Footer": {
     "description": "Uw betrouwbare partner voor wereldwijde verzending van levende reptielen.",
     "services": "Diensten",
     "company": "Bedrijf",
@@ -228,6 +222,7 @@
     "contactUs": "Contact",
     "faq": "FAQ",
     "customerService": "Klantenservice",
+    "call": "Bel: 1-800-REPTILE",
     "emailSupport": "E-mail support",
     "customerService247": "24/7 klantenservice",
     "rights": "Alle rechten voorbehouden.",

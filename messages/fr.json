@@ -81,13 +81,7 @@
     "service": "Service",
     "estDelivery": "Livraison prévue",
     "description": "Description",
-    "specialInstructions": "Instructions spéciales",
-    "serviceDetails": "Détails du service",
-    "priority": "Priorité",
-    "shippingDate": "Date d'expédition",
-    "noInsurance": "Pas d'assurance",
-    "noSigRequired": "Signature non requise",
-    "additionalInfo": "Informations supplémentaires"
+    "specialInstructions": "Instructions spéciales"
   },
   "Benefits": {
     "badge": "Avantages",
@@ -213,7 +207,7 @@
       "chloe_dubois": { "firstName": "Chloé", "lastName": "Dubois" }
     }
   },
-    "Footer": {
+  "Footer": {
     "description": "Votre partenaire de confiance pour le transport mondial de reptiles vivants.",
     "services": "Services",
     "company": "Entreprise",
@@ -228,6 +222,7 @@
     "contactUs": "Contact",
     "faq": "FAQ",
     "customerService": "Service client",
+    "call": "Tél: 1-800-REPTILE",
     "emailSupport": "Support e-mail",
     "customerService247": "Service client 24/7",
     "rights": "Tous droits réservés.",
