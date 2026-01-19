@@ -106,15 +106,6 @@ export const ContactSection = () => {
 
             <div>
               <div className="flex gap-2 mb-1">
-                <Phone />
-                <div className="font-bold">{t("callUs")}</div>
-              </div>
-
-              <div>{process.env.PHONE_NUMBER || "0000000000"}</div>
-            </div>
-
-            <div>
-              <div className="flex gap-2 mb-1">
                 <Mail />
                 <div className="font-bold">{t("emailUs")}</div>
               </div>

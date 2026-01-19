@@ -12,7 +12,7 @@
     },
     "contact": {
       "title": "Contact Us | Get a Quote for International Reptile Shipping",
-      "description": "Contact our reptile shipping experts for a free quote. Email or call us for international reptile courier services and air transport.",
+      "description": "Contact our reptile shipping experts for a free quote. Email us for international reptile courier services and air transport.",
       "keywords": "contact reptile shipping, reptile shipping quote, reptile courier contact"
     },
     "track": {
@@ -207,7 +207,7 @@
       "send": "Get a Free Quote"
     }
   },
-  "Footer": {
+    "Footer": {
     "description": "Your trusted partner for worldwide live reptile shipping.",
     "services": "Services",
     "company": "Company",
@@ -222,7 +222,6 @@
     "contactUs": "Contact Us",
     "faq": "FAQ",
     "customerService": "Customer Service",
-    "call": "Call: 1-800-REPTILE",
     "emailSupport": "Email Support",
     "customerService247": "24/7 Customer Service",
     "rights": "All rights reserved.",

@@ -207,7 +207,7 @@
       "chloe_dubois": { "firstName": "Chloé", "lastName": "Dubois" }
     }
   },
-  "Footer": {
+    "Footer": {
     "description": "Ihr vertrauenswürdiger Partner für den weltweiten Versand lebender Reptilien.",
     "services": "Dienstleistungen",
     "company": "Unternehmen",
@@ -222,7 +222,6 @@
     "contactUs": "Kontakt",
     "faq": "FAQ",
     "customerService": "Kundendienst",
-    "call": "Tel: 1-800-REPTILE",
     "emailSupport": "E-Mail Support",
     "customerService247": "24/7 Kundendienst",
     "rights": "Alle Rechte vorbehalten.",

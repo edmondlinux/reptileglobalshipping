@@ -207,7 +207,7 @@
     "badge": "Team",
     "title": "Ons expertteam"
   },
-  "Footer": {
+    "Footer": {
     "description": "Uw betrouwbare partner voor wereldwijde verzending van levende reptielen.",
     "services": "Diensten",
     "company": "Bedrijf",
@@ -222,7 +222,6 @@
     "contactUs": "Contact",
     "faq": "FAQ",
     "customerService": "Klantenservice",
-    "call": "Bel: 1-800-REPTILE",
     "emailSupport": "E-mail support",
     "customerService247": "24/7 klantenservice",
     "rights": "Alle rechten voorbehouden.",
