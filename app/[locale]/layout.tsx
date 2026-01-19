@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,6 +70,28 @@ export default async function RootLayout({
                       secondary: 'hsl(var(--destructive-foreground))',
                     },
                   },
+                }}
+              />
+              
+              <Script
+                id="smartsupp-livechat"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    var _smartsupp = _smartsupp || {};
+                    _smartsupp.key = '638908575fda9112fede8b068509f6e55d4c8507';
+                    window.smartsupp || (function(d) {
+                      var s, c, o = smartsupp = function(){ o._.push(arguments) };
+                      o._ = [];
+                      s = d.getElementsByTagName('script')[0];
+                      c = d.createElement('script');
+                      c.type = 'text/javascript';
+                      c.charset = 'utf-8';
+                      c.async = true;
+                      c.src = 'https://www.smartsuppchat.com/loader.js?';
+                      s.parentNode.insertBefore(c, s);
+                    })(document);
+                  `,
                 }}
               />
             </AuthProvider>
