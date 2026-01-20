@@ -40,6 +40,7 @@ export interface IShipment extends Document {
   recipientLatitude: number;
   recipientLongitude: number;
   status: string;
+  kycStatus: 'none' | 'pending' | 'submitted' | 'approved' | 'rejected';
   history: Array<{
     status: string;
     location: string;
@@ -95,6 +96,11 @@ const ShipmentSchema: Schema = new Schema(
       type: String, 
       default: 'pending',
       enum: ['pending', 'processing', 'in-transit', 'out-for-delivery', 'delivered', 'on-hold', 'cancelled']
+    },
+    kycStatus: {
+      type: String,
+      default: 'none',
+      enum: ['none', 'pending', 'submitted', 'approved', 'rejected']
     },
     history: [{
       status: { type: String, required: true },
