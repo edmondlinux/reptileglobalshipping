@@ -115,52 +115,149 @@ export default function KYCPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Identity Verification</CardTitle>
-          <CardDescription>
-            Shipping expensive animals, protected species (CITES), or general reptiles often requires identification of the receiving party to ensure compliance with transport laws and to verify you are a real person and not a smuggler.
+          <CardDescription className="space-y-4">
+            <p>
+              Shipping expensive animals, protected species (CITES), or general reptiles often requires identification of the receiving party to ensure compliance with transport laws and to verify you are a real person and not a smuggler.
+            </p>
+            <p className="text-sm font-medium text-amber-600 dark:text-amber-400">
+              Privacy Notice: Your documents are used strictly for legal verification purposes and will be permanently deleted as soon as your identity is confirmed.
+            </p>
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 p-4 bg-muted rounded-lg">
+          <div className="mb-6 p-4 bg-muted rounded-lg border border-border">
             <h3 className="font-semibold mb-2">Shipment Details</h3>
-            <p className="text-sm">Tracking: {kycData.shipmentId.trackingNumber}</p>
-            <p className="text-sm">Content: {kycData.shipmentId.description}</p>
+            <p className="text-sm"><span className="text-muted-foreground">Tracking:</span> {kycData.shipmentId.trackingNumber}</p>
+            <p className="text-sm"><span className="text-muted-foreground">Content:</span> {kycData.shipmentId.description}</p>
           </div>
 
           {step === 1 && (
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <Label>Front of ID Card</Label>
-                <div className="flex items-center gap-4">
-                  <Input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'idFront')} />
-                  {previews.idFront && <img src={previews.idFront} className="h-20 w-20 object-cover rounded" />}
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="text-base font-semibold">Front of ID Card</Label>
+                    <p className="text-xs text-muted-foreground">Clear photo of the front side of your Government ID.</p>
+                  </div>
+                  <div className="relative group aspect-[1.6/1] overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
+                    {previews.idFront ? (
+                      <img src={previews.idFront} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
+                        <img src="/id_front.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:opacity-20 transition-opacity" />
+                        <Upload className="h-8 w-8" />
+                        <span className="text-xs font-medium">Click to upload front</span>
+                      </div>
+                    )}
+                    <Input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={(e) => handleFileChange(e, 'idFront')} 
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="text-base font-semibold">Back of ID Card</Label>
+                    <p className="text-xs text-muted-foreground">Clear photo of the back side of your Government ID.</p>
+                  </div>
+                  <div className="relative group aspect-[1.6/1] overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
+                    {previews.idBack ? (
+                      <img src={previews.idBack} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
+                        <img src="/id_back.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:opacity-20 transition-opacity" />
+                        <Upload className="h-8 w-8" />
+                        <span className="text-xs font-medium">Click to upload back</span>
+                      </div>
+                    )}
+                    <Input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={(e) => handleFileChange(e, 'idBack')} 
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="space-y-4">
-                <Label>Back of ID Card</Label>
-                <div className="flex items-center gap-4">
-                  <Input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'idBack')} />
-                  {previews.idBack && <img src={previews.idBack} className="h-20 w-20 object-cover rounded" />}
-                </div>
+
+              <div className="bg-muted/50 p-4 rounded-lg flex items-start gap-3">
+                <div className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
+                <p className="text-xs text-muted-foreground">
+                  Ensure all text on your ID is readable and no parts are cut off. We accept Passport, Driver&apos;s License, or National Identity Card.
+                </p>
               </div>
-              <Button onClick={() => setStep(2)} className="w-full" disabled={!files.idFront || !files.idBack}>Next Step</Button>
+
+              <Button onClick={() => setStep(2)} className="w-full h-12 text-base font-semibold" disabled={!files.idFront || !files.idBack}>
+                Continue to Final Step
+              </Button>
             </div>
           )}
 
           {step === 2 && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="space-y-4">
-                <Label>Selfie with Reptile & Enclosure</Label>
-                <p className="text-xs text-muted-foreground">Please take a selfie holding any reptile you currently own in front of its enclosure.</p>
-                <div className="flex flex-col items-center gap-4">
-                  <Input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'selfie')} />
-                  {previews.selfie && <img src={previews.selfie} className="w-full max-h-64 object-cover rounded-lg" />}
+                <div className="space-y-2">
+                  <Label className="text-base font-semibold">Selfie with Reptile & Enclosure</Label>
+                  <p className="text-sm text-muted-foreground">
+                    To verify your capability as a keeper, please take a photo of yourself holding any reptile you currently own, with its enclosure visible in the background.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                  <div className="relative group aspect-square overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
+                    {previews.selfie ? (
+                      <img src={previews.selfie} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
+                        <Upload className="h-10 w-10" />
+                        <span className="text-sm font-medium">Upload your selfie</span>
+                      </div>
+                    )}
+                    <Input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={(e) => handleFileChange(e, 'selfie')} 
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-semibold">Example Shot:</h4>
+                    <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
+                      <img src="/selfie_reptile.jpeg" className="w-full h-full object-cover opacity-80" alt="Example selfie" />
+                    </div>
+                    <ul className="text-xs space-y-2 text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Your face must be clearly visible
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Reptile must be in hand
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Enclosure must be visible
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+
               <div className="flex gap-4">
-                <Button variant="outline" onClick={() => setStep(1)} className="flex-1">Back</Button>
-                <Button onClick={handleSubmit} className="flex-1" disabled={submitting}>
-                  {submitting ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <Upload className="mr-2 h-4 w-4" />}
-                  Submit Verification
+                <Button variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">Back</Button>
+                <Button onClick={handleSubmit} className="flex-1 h-12 text-base font-semibold" disabled={submitting}>
+                  {submitting ? (
+                    <>
+                      <Loader2 className="animate-spin mr-2 h-5 w-5" />
+                      Uploading Documents...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="mr-2 h-5 w-5" />
+                      Submit Verification
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
