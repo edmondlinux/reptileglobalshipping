@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, MapPin, Trash2, Edit } from "lucide-react";
+import { Loader2, MapPin, Trash2, Edit, Link2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -180,6 +180,29 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
                           >
                             <MapPin className="h-4 w-4 mr-1" />
                             View Route
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () => {
+                              try {
+                                const res = await fetch('/api/kyc/generate', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ shipmentId: (shipment as any)._id }),
+                                });
+                                const data = await res.json();
+                                if (data.magicLink) {
+                                  await navigator.clipboard.writeText(data.magicLink);
+                                  toast.success("KYC Link generated and copied to clipboard!");
+                                }
+                              } catch (err) {
+                                toast.error("Failed to generate KYC link");
+                              }
+                            }}
+                          >
+                            <Link2 className="h-4 w-4 mr-1" />
+                            KYC
                           </Button>
                           <Button
                             variant="outline"
