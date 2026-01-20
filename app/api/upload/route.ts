@@ -19,7 +19,6 @@ export async function POST(req: Request) {
         {
           resource_type: 'auto',
           folder: 'kyc_verifications',
-          upload_preset: uploadPreset || undefined,
         },
         (error, result) => {
           if (error) reject(error);
