@@ -193,8 +193,16 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
                                 });
                                 const data = await res.json();
                                 if (data.magicLink) {
-                                  await navigator.clipboard.writeText(data.magicLink);
-                                  toast.success("KYC Link generated and copied to clipboard!");
+                                  try {
+                                    await navigator.clipboard.writeText(data.magicLink);
+                                    toast.success("KYC Link generated and copied to clipboard!");
+                                  } catch (clipboardErr) {
+                                    // Fallback for cases where clipboard access is denied or restricted
+                                    toast.success("KYC Link generated!");
+                                    console.log("KYC Link:", data.magicLink);
+                                    // Optionally provide a way for the user to see the link if clipboard fails
+                                    alert(`KYC Link: ${data.magicLink}`);
+                                  }
                                 } else {
                                   throw new Error(data.error || "Failed to generate link");
                                 }

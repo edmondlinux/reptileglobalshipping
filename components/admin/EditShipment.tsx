@@ -36,8 +36,13 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
       });
       const data = await res.json();
       if (data.magicLink) {
-        await navigator.clipboard.writeText(data.magicLink);
-        toast.success("KYC Link generated and copied to clipboard!");
+        try {
+          await navigator.clipboard.writeText(data.magicLink);
+          toast.success("KYC Link generated and copied to clipboard!");
+        } catch (clipboardErr) {
+          toast.success("KYC Link generated!");
+          alert(`KYC Link: ${data.magicLink}`);
+        }
       } else {
         throw new Error(data.error || "Failed to generate link");
       }
