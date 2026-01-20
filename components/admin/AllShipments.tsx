@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, MapPin, Trash2, Edit, Link2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
+import { KYCModal } from "./KYCModal";
 import {
   Dialog,
   DialogContent,
@@ -38,6 +39,8 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [kycModalOpen, setKycModalOpen] = useState(false);
+  const [generatedKycLink, setGeneratedKycLink] = useState("");
 
   useEffect(() => {
     fetchShipments();
@@ -193,16 +196,8 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
                                 });
                                 const data = await res.json();
                                 if (data.magicLink) {
-                                  try {
-                                    await navigator.clipboard.writeText(data.magicLink);
-                                    toast.success("KYC Link generated and copied to clipboard!");
-                                  } catch (clipboardErr) {
-                                    // Fallback for cases where clipboard access is denied or restricted
-                                    toast.success("KYC Link generated!");
-                                    console.log("KYC Link:", data.magicLink);
-                                    // Optionally provide a way for the user to see the link if clipboard fails
-                                    alert(`KYC Link: ${data.magicLink}`);
-                                  }
+                                  setGeneratedKycLink(data.magicLink);
+                                  setKycModalOpen(true);
                                 } else {
                                   throw new Error(data.error || "Failed to generate link");
                                 }
@@ -311,6 +306,11 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <KYCModal 
+        isOpen={kycModalOpen} 
+        onClose={() => setKycModalOpen(false)} 
+        magicLink={generatedKycLink} 
+      />
     </Card>
   );
 }

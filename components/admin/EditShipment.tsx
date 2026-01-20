@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Search, Loader2, Link2 } from "lucide-react";
 import { shipmentValidationSchema } from "@/lib/validations/shipment";
 import { ZodError } from "zod";
+import { KYCModal } from "./KYCModal";
 
 interface EditShipmentProps {
   initialTrackingNumber?: string;
@@ -21,6 +22,8 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingKyc, setIsGeneratingKyc] = useState(false);
   const [shipmentFound, setShipmentFound] = useState(false);
+  const [kycModalOpen, setKycModalOpen] = useState(false);
+  const [generatedKycLink, setGeneratedKycLink] = useState("");
 
   const handleGenerateKYC = async () => {
     if (!(formData as any)?._id) {
@@ -36,13 +39,8 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
       });
       const data = await res.json();
       if (data.magicLink) {
-        try {
-          await navigator.clipboard.writeText(data.magicLink);
-          toast.success("KYC Link generated and copied to clipboard!");
-        } catch (clipboardErr) {
-          toast.success("KYC Link generated!");
-          alert(`KYC Link: ${data.magicLink}`);
-        }
+        setGeneratedKycLink(data.magicLink);
+        setKycModalOpen(true);
       } else {
         throw new Error(data.error || "Failed to generate link");
       }
@@ -268,6 +266,11 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
             </div>
           </>
         )}
+        <KYCModal 
+          isOpen={kycModalOpen} 
+          onClose={() => setKycModalOpen(false)} 
+          magicLink={generatedKycLink} 
+        />
       </CardContent>
     </Card>
   );
