@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     const token = crypto.randomBytes(32).toString('hex');
     
     await KYC.findOneAndUpdate(
-      { shipmentId },
+      { shipmentId: shipment._id },
       { token, status: 'pending' },
       { upsert: true, new: true }
     );
