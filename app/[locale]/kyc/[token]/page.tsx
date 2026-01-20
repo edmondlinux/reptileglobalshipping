@@ -133,52 +133,58 @@ export default function KYCPage() {
 
           {step === 1 && (
             <div className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* ID Front */}
                 <div className="space-y-4">
-                  <div className="space-y-2">
+                  <div className="space-y-2 text-center md:text-left">
                     <Label className="text-base font-semibold">Front of ID Card</Label>
-                    <p className="text-xs text-muted-foreground">Clear photo of the front side of your Government ID.</p>
+                    <p className="text-xs text-muted-foreground">Clear photo of the front side</p>
                   </div>
-                  <div className="relative group aspect-[1.6/1] overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
-                    {previews.idFront ? (
-                      <img src={previews.idFront} className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
-                        <img src="/id_front.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:opacity-20 transition-opacity" />
-                        <Upload className="h-8 w-8" />
-                        <span className="text-xs font-medium">Click to upload front</span>
-                      </div>
-                    )}
-                    <Input 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={(e) => handleFileChange(e, 'idFront')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
-                    />
+                  <div className="space-y-3">
+                    <div className="aspect-[1.6/1] rounded-lg overflow-hidden border bg-muted">
+                      <img src="/id_front.jpeg" className="w-full h-full object-cover opacity-50" alt="ID Front Example" />
+                    </div>
+                    <div className="space-y-2">
+                      <Input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => handleFileChange(e, 'idFront')} 
+                        className="cursor-pointer"
+                      />
+                      {previews.idFront && (
+                        <div className="mt-2 p-2 bg-primary/5 rounded border border-primary/20">
+                          <p className="text-[10px] font-medium uppercase text-primary mb-1">Preview:</p>
+                          <img src={previews.idFront} className="w-full aspect-[1.6/1] object-cover rounded shadow-sm" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
+                {/* ID Back */}
                 <div className="space-y-4">
-                  <div className="space-y-2">
+                  <div className="space-y-2 text-center md:text-left">
                     <Label className="text-base font-semibold">Back of ID Card</Label>
-                    <p className="text-xs text-muted-foreground">Clear photo of the back side of your Government ID.</p>
+                    <p className="text-xs text-muted-foreground">Clear photo of the back side</p>
                   </div>
-                  <div className="relative group aspect-[1.6/1] overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
-                    {previews.idBack ? (
-                      <img src={previews.idBack} className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
-                        <img src="/id_back.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:opacity-20 transition-opacity" />
-                        <Upload className="h-8 w-8" />
-                        <span className="text-xs font-medium">Click to upload back</span>
-                      </div>
-                    )}
-                    <Input 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={(e) => handleFileChange(e, 'idBack')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
-                    />
+                  <div className="space-y-3">
+                    <div className="aspect-[1.6/1] rounded-lg overflow-hidden border bg-muted">
+                      <img src="/id_back.jpeg" className="w-full h-full object-cover opacity-50" alt="ID Back Example" />
+                    </div>
+                    <div className="space-y-2">
+                      <Input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => handleFileChange(e, 'idBack')} 
+                        className="cursor-pointer"
+                      />
+                      {previews.idBack && (
+                        <div className="mt-2 p-2 bg-primary/5 rounded border border-primary/20">
+                          <p className="text-[10px] font-medium uppercase text-primary mb-1">Preview:</p>
+                          <img src={previews.idBack} className="w-full aspect-[1.6/1] object-cover rounded shadow-sm" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -186,7 +192,7 @@ export default function KYCPage() {
               <div className="bg-muted/50 p-4 rounded-lg flex items-start gap-3">
                 <div className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
                 <p className="text-xs text-muted-foreground">
-                  Ensure all text on your ID is readable and no parts are cut off. We accept Passport, Driver&apos;s License, or National Identity Card.
+                  Ensure all text on your ID is readable. We accept Passport, Driver&apos;s License, or National Identity Card.
                 </p>
               </div>
 
@@ -198,59 +204,63 @@ export default function KYCPage() {
 
           {step === 2 && (
             <div className="space-y-8">
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="space-y-2">
                   <Label className="text-base font-semibold">Selfie with Reptile & Enclosure</Label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     To verify your capability as a keeper, please take a photo of yourself holding any reptile you currently own, with its enclosure visible in the background.
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                  <div className="relative group aspect-square overflow-hidden rounded-lg border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors">
-                    {previews.selfie ? (
-                      <img src={previews.selfie} className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center h-full gap-2 text-muted-foreground">
-                        <Upload className="h-10 w-10" />
-                        <span className="text-sm font-medium">Upload your selfie</span>
-                      </div>
-                    )}
-                    <Input 
-                      type="file" 
-                      accept="image/*" 
-                      onChange={(e) => handleFileChange(e, 'selfie')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => handleFileChange(e, 'selfie')} 
+                        className="cursor-pointer h-12"
+                      />
+                      {previews.selfie && (
+                        <div className="mt-4 p-2 bg-primary/5 rounded border border-primary/20">
+                          <p className="text-[10px] font-medium uppercase text-primary mb-2">Your Upload:</p>
+                          <img src={previews.selfie} className="w-full aspect-square object-cover rounded shadow-md" />
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="bg-muted/30 p-4 rounded-lg">
+                      <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-muted-foreground">Requirements:</h4>
+                      <ul className="text-xs space-y-2.5">
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Your face must be clearly visible
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Reptile must be in hand
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Enclosure must be visible
+                        </li>
+                      </ul>
+                    </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold">Example Shot:</h4>
-                    <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
-                      <img src="/selfie_reptile.jpeg" className="w-full h-full object-cover opacity-80" alt="Example selfie" />
+                  <div className="space-y-3">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-center text-muted-foreground">Example Reference:</p>
+                    <div className="aspect-square rounded-xl overflow-hidden border-2 border-muted bg-muted shadow-inner">
+                      <img src="/selfie_reptile.jpeg" className="w-full h-full object-cover grayscale-[20%]" alt="Example selfie" />
                     </div>
-                    <ul className="text-xs space-y-2 text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Your face must be clearly visible
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Reptile must be in hand
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle2 className="h-3 w-3 text-green-500" /> Enclosure must be visible
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 pt-4 border-t">
                 <Button variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">Back</Button>
-                <Button onClick={handleSubmit} className="flex-1 h-12 text-base font-semibold" disabled={submitting}>
+                <Button onClick={handleSubmit} className="flex-1 h-12 text-base font-semibold shadow-lg shadow-primary/20" disabled={submitting}>
                   {submitting ? (
                     <>
                       <Loader2 className="animate-spin mr-2 h-5 w-5" />
-                      Uploading Documents...
+                      Finalizing...
                     </>
                   ) : (
                     <>
