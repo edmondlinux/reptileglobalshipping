@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ShipmentForm } from "./ShipmentForm";
 import toast from "react-hot-toast";
-import { Search, Loader2 } from "lucide-react";
+import { Search, Loader2, Link2 } from "lucide-react";
 import { shipmentValidationSchema } from "@/lib/validations/shipment";
 import { ZodError } from "zod";
 
@@ -19,7 +19,34 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
   const [trackingNumber, setTrackingNumber] = useState(initialTrackingNumber || "");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isGeneratingKyc, setIsGeneratingKyc] = useState(false);
   const [shipmentFound, setShipmentFound] = useState(false);
+
+  const handleGenerateKYC = async () => {
+    if (!(formData as any)?._id) {
+      toast.error("Shipment ID not found");
+      return;
+    }
+    setIsGeneratingKyc(true);
+    try {
+      const res = await fetch('/api/kyc/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ shipmentId: (formData as any)._id }),
+      });
+      const data = await res.json();
+      if (data.magicLink) {
+        await navigator.clipboard.writeText(data.magicLink);
+        toast.success("KYC Link generated and copied to clipboard!");
+      } else {
+        throw new Error(data.error || "Failed to generate link");
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Failed to generate KYC link");
+    } finally {
+      setIsGeneratingKyc(false);
+    }
+  };
   const [formData, setFormData] = useState<{
     senderName: string;
     senderEmail: string;
@@ -209,16 +236,31 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
         {shipmentFound && (
           <>
             <ShipmentForm formData={formData} setFormData={setFormData} isEditMode={true} />
-            <Button onClick={handleUpdate} className="w-full" disabled={isSaving}>
-              {isSaving ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Updating Shipment...
-                </>
-              ) : (
-                "Update Shipment"
-              )}
-            </Button>
+            <div className="flex gap-4">
+              <Button onClick={handleUpdate} className="flex-1" disabled={isSaving}>
+                {isSaving ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Updating...
+                  </>
+                ) : (
+                  "Update Shipment"
+                )}
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={handleGenerateKYC} 
+                className="flex-1" 
+                disabled={isGeneratingKyc}
+              >
+                {isGeneratingKyc ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : (
+                  <Link2 className="h-4 w-4 mr-2" />
+                )}
+                KYC Link
+              </Button>
+            </div>
           </>
         )}
       </CardContent>
