@@ -189,15 +189,17 @@ export function AllShipments({ onEditShipment }: AllShipmentsProps) {
                                 const res = await fetch('/api/kyc/generate', {
                                   method: 'POST',
                                   headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ shipmentId: (shipment as any)._id }),
+                                  body: JSON.stringify({ shipmentId: shipment.trackingNumber }),
                                 });
                                 const data = await res.json();
                                 if (data.magicLink) {
                                   await navigator.clipboard.writeText(data.magicLink);
                                   toast.success("KYC Link generated and copied to clipboard!");
+                                } else {
+                                  throw new Error(data.error || "Failed to generate link");
                                 }
-                              } catch (err) {
-                                toast.error("Failed to generate KYC link");
+                              } catch (err: any) {
+                                toast.error(err.message || "Failed to generate KYC link");
                               }
                             }}
                           >

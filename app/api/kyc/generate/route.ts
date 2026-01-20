@@ -3,13 +3,19 @@ import dbConnect from '@/lib/mongodb';
 import Shipment from '@/models/Shipment';
 import KYC from '@/models/KYC';
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 
 export async function POST(req: Request) {
   try {
     await dbConnect();
     const { shipmentId } = await req.json();
 
-    const shipment = await Shipment.findById(shipmentId);
+    const shipment = await Shipment.findOne({
+      $or: [
+        { _id: mongoose.isValidObjectId(shipmentId) ? shipmentId : null },
+        { trackingNumber: shipmentId }
+      ]
+    });
     if (!shipment) {
       return NextResponse.json({ error: 'Shipment not found' }, { status: 404 });
     }

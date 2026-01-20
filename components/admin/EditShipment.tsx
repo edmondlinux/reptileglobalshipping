@@ -32,7 +32,7 @@ export function EditShipment({ initialTrackingNumber }: EditShipmentProps) {
       const res = await fetch('/api/kyc/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ shipmentId: (formData as any)._id }),
+        body: JSON.stringify({ shipmentId: trackingNumber }),
       });
       const data = await res.json();
       if (data.magicLink) {
