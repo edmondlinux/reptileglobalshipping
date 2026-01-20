@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -10,6 +11,7 @@ import { Loader2, Upload, CheckCircle2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 export default function KYCPage() {
+  const t = useTranslations('KYC');
   const { token } = useParams();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -114,21 +116,21 @@ export default function KYCPage() {
     <div className="container max-w-2xl py-12 px-4">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Identity Verification</CardTitle>
+          <CardTitle className="text-2xl">{t('title')}</CardTitle>
           <CardDescription className="space-y-4">
             <p>
-              Shipping expensive animals, protected species (CITES), or general reptiles often requires identification of the receiving party to ensure compliance with transport laws and to verify you are a real person and not a smuggler.
+              {t('description')}
             </p>
             <p className="text-sm font-medium text-amber-600 dark:text-amber-400">
-              Privacy Notice: Your documents are used strictly for legal verification purposes and will be permanently deleted as soon as your identity is confirmed.
+              {t('privacyNotice')}
             </p>
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="mb-6 p-4 bg-muted rounded-lg border border-border">
-            <h3 className="font-semibold mb-2">Shipment Details</h3>
-            <p className="text-sm"><span className="text-muted-foreground">Tracking:</span> {kycData.shipmentId.trackingNumber}</p>
-            <p className="text-sm"><span className="text-muted-foreground">Content:</span> {kycData.shipmentId.description}</p>
+            <h3 className="font-semibold mb-2">{t('shipmentDetails')}</h3>
+            <p className="text-sm"><span className="text-muted-foreground">{t('tracking')}:</span> {kycData.shipmentId.trackingNumber}</p>
+            <p className="text-sm"><span className="text-muted-foreground">{t('content')}:</span> {kycData.shipmentId.description}</p>
           </div>
 
           {step === 1 && (
@@ -137,8 +139,8 @@ export default function KYCPage() {
                 {/* ID Front */}
                 <div className="space-y-4">
                   <div className="space-y-2 text-center md:text-left">
-                    <Label className="text-base font-semibold">Front of ID Card</Label>
-                    <p className="text-xs text-muted-foreground">Clear photo of the front side</p>
+                    <Label className="text-base font-semibold">{t('idFront')}</Label>
+                    <p className="text-xs text-muted-foreground">{t('idFrontDesc')}</p>
                   </div>
                   <div className="space-y-3">
                     <div className="aspect-[1.6/1] rounded-lg overflow-hidden border bg-muted">
@@ -153,7 +155,7 @@ export default function KYCPage() {
                       />
                       {previews.idFront && (
                         <div className="mt-2 p-2 bg-primary/5 rounded border border-primary/20">
-                          <p className="text-[10px] font-medium uppercase text-primary mb-1">Preview:</p>
+                          <p className="text-[10px] font-medium uppercase text-primary mb-1">{t('preview')}:</p>
                           <img src={previews.idFront} className="w-full aspect-[1.6/1] object-cover rounded shadow-sm" />
                         </div>
                       )}
@@ -164,8 +166,8 @@ export default function KYCPage() {
                 {/* ID Back */}
                 <div className="space-y-4">
                   <div className="space-y-2 text-center md:text-left">
-                    <Label className="text-base font-semibold">Back of ID Card</Label>
-                    <p className="text-xs text-muted-foreground">Clear photo of the back side</p>
+                    <Label className="text-base font-semibold">{t('idBack')}</Label>
+                    <p className="text-xs text-muted-foreground">{t('idBackDesc')}</p>
                   </div>
                   <div className="space-y-3">
                     <div className="aspect-[1.6/1] rounded-lg overflow-hidden border bg-muted">
@@ -180,7 +182,7 @@ export default function KYCPage() {
                       />
                       {previews.idBack && (
                         <div className="mt-2 p-2 bg-primary/5 rounded border border-primary/20">
-                          <p className="text-[10px] font-medium uppercase text-primary mb-1">Preview:</p>
+                          <p className="text-[10px] font-medium uppercase text-primary mb-1">{t('preview')}:</p>
                           <img src={previews.idBack} className="w-full aspect-[1.6/1] object-cover rounded shadow-sm" />
                         </div>
                       )}
@@ -192,12 +194,12 @@ export default function KYCPage() {
               <div className="bg-muted/50 p-4 rounded-lg flex items-start gap-3">
                 <div className="h-2 w-2 rounded-full bg-primary mt-1.5 shrink-0" />
                 <p className="text-xs text-muted-foreground">
-                  Ensure all text on your ID is readable. We accept Passport, Driver&apos;s License, or National Identity Card.
+                  {t('requirements')}
                 </p>
               </div>
 
               <Button onClick={() => setStep(2)} className="w-full h-12 text-base font-semibold" disabled={!files.idFront || !files.idBack}>
-                Continue to Final Step
+                {t('continue')}
               </Button>
             </div>
           )}
@@ -206,9 +208,9 @@ export default function KYCPage() {
             <div className="space-y-8">
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <Label className="text-base font-semibold">Selfie with Reptile & Enclosure</Label>
+                  <Label className="text-base font-semibold">{t('selfieTitle')}</Label>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    To verify your capability as a keeper, please take a photo of yourself holding any reptile you currently own, with its enclosure visible in the background.
+                    {t('selfieDesc')}
                   </p>
                 </div>
                 
@@ -223,30 +225,30 @@ export default function KYCPage() {
                       />
                       {previews.selfie && (
                         <div className="mt-4 p-2 bg-primary/5 rounded border border-primary/20">
-                          <p className="text-[10px] font-medium uppercase text-primary mb-2">Your Upload:</p>
+                          <p className="text-[10px] font-medium uppercase text-primary mb-2">{t('yourUpload')}:</p>
                           <img src={previews.selfie} className="w-full aspect-square object-cover rounded shadow-md" />
                         </div>
                       )}
                     </div>
                     
                     <div className="bg-muted/30 p-4 rounded-lg">
-                      <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-muted-foreground">Requirements:</h4>
+                      <h4 className="text-xs font-bold uppercase tracking-wider mb-3 text-muted-foreground">{t('reqList')}:</h4>
                       <ul className="text-xs space-y-2.5">
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Your face must be clearly visible
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> {t('reqFace')}
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Reptile must be in hand
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> {t('reqReptile')}
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> Enclosure must be visible
+                          <CheckCircle2 className="h-3.5 w-3.5 text-green-500 shrink-0" /> {t('reqEnclosure')}
                         </li>
                       </ul>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-center text-muted-foreground">Example Reference:</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-center text-muted-foreground">{t('exampleShot')}:</p>
                     <div className="aspect-square rounded-xl overflow-hidden border-2 border-muted bg-muted shadow-inner">
                       <img src="/selfie_reptile.jpeg" className="w-full h-full object-cover grayscale-[20%]" alt="Example selfie" />
                     </div>
@@ -255,17 +257,17 @@ export default function KYCPage() {
               </div>
 
               <div className="flex gap-4 pt-4 border-t">
-                <Button variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">Back</Button>
+                <Button variant="outline" onClick={() => setStep(1)} className="flex-1 h-12">{t('back')}</Button>
                 <Button onClick={handleSubmit} className="flex-1 h-12 text-base font-semibold shadow-lg shadow-primary/20" disabled={submitting}>
                   {submitting ? (
                     <>
                       <Loader2 className="animate-spin mr-2 h-5 w-5" />
-                      Finalizing...
+                      {t('submitting')}
                     </>
                   ) : (
                     <>
                       <Upload className="mr-2 h-5 w-5" />
-                      Submit Verification
+                      {t('submit')}
                     </>
                   )}
                 </Button>
@@ -276,8 +278,8 @@ export default function KYCPage() {
           {step === 3 && (
             <div className="text-center py-8 space-y-4">
               <CheckCircle2 className="mx-auto h-16 w-16 text-green-500" />
-              <h2 className="text-2xl font-bold">KYC Submitted</h2>
-              <p className="text-muted-foreground">Your identity verification is awaiting approval. We will process your shipment once verified.</p>
+              <h2 className="text-2xl font-bold">{t('submittedTitle')}</h2>
+              <p className="text-muted-foreground">{t('submittedDesc')}</p>
             </div>
           )}
         </CardContent>
