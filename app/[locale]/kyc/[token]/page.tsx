@@ -153,7 +153,7 @@ export default function KYCPage() {
                       type="file" 
                       accept="image/*" 
                       onChange={(e) => handleFileChange(e, 'idFront')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer"
+                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
                     />
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function KYCPage() {
                       type="file" 
                       accept="image/*" 
                       onChange={(e) => handleFileChange(e, 'idBack')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer"
+                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
                     />
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export default function KYCPage() {
                       type="file" 
                       accept="image/*" 
                       onChange={(e) => handleFileChange(e, 'selfie')} 
-                      className="absolute inset-0 opacity-0 cursor-pointer"
+                      className="absolute inset-0 opacity-0 cursor-pointer z-10"
                     />
                   </div>
 
