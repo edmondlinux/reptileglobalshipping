@@ -101,7 +101,7 @@ export const ContactSection = () => {
                 <div className="font-bold">{t("findUs")}</div>
               </div>
 
-              <div>10 York Rd, London SE1 7ND, United Kingdom</div>
+              <div>1201 Main Street, Columbia, SC 29201, USA</div>
             </div>
 
             <div>
@@ -137,7 +137,7 @@ export const ContactSection = () => {
         </div>
 
         <Card className="bg-muted/60 dark:bg-card">
-          <CardHeader className="text-primary text-2xl"> </CardHeader>
+          <CardHeader className="text-primary text-2xl"></CardHeader>
           <CardContent>
             <Form {...form}>
               <form
@@ -268,6 +268,25 @@ export const ContactSection = () => {
           <CardFooter></CardFooter>
         </Card>
       </section>
+
+      <div className="mt-12">
+        <h3 className="text-2xl font-bold mb-4">{t("ourLocation")}</h3>
+        <p className="text-muted-foreground mb-6">1201 Main Street, Columbia, SC 29201, USA</p>
+        <div className="rounded-xl overflow-hidden border border-secondary shadow-md w-full h-[400px]">
+          <iframe
+            title="Reptile Global Head Office – Columbia, South Carolina"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-81.15%2C33.92%2C-80.92%2C34.08&layer=mapnik&marker=34.0007%2C-81.0348"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="underline">OpenStreetMap</a> contributors
+        </p>
+      </div>
     </section>
   );
 };

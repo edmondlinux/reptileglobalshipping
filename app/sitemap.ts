@@ -1,7 +1,7 @@
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://reptileglobal.site';
   const locales = ['en', 'fr', 'nl', 'de'];
-  const routes = ['', '/about', '/team', '/track', '/testimonials', '/contact'];
+  const routes = ['', '/about', /* '/team', */ '/track', '/testimonials', '/contact'];
 
   const sitemaps = locales.flatMap((locale) =>
     routes.map((route) => ({

@@ -34,7 +34,7 @@ interface RouteProps {
 const routeList: RouteProps[] = [
   { href: "/", labelKey: "home" },
   { href: "/about", labelKey: "about" },
-  { href: "/team", labelKey: "team" },
+  // { href: "/team", labelKey: "team" },
   { href: "/track", labelKey: "track" },
   { href: "/testimonials", labelKey: "testimonials" },
   { href: "/contact", labelKey: "contact" },

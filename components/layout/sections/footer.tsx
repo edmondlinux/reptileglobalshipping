@@ -54,11 +54,11 @@ export const FooterSection = () => {
               </Link>
             </div>
 
-            <div>
+            {/* <div>
               <Link href="/team" className="opacity-60 hover:opacity-100">
                 {t("ourTeam")}
               </Link>
-            </div>
+            </div> */}
 
             <div>
               <Link href="/testimonials" className="opacity-60 hover:opacity-100">
